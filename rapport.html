@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Rapport - IFT 3911 Devoir maison 1</title>
+<style>
+  body {
+    margin: 0;
+    background: #f3f5f8;
+    color: #18212d;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .page {
+    max-width: 960px;
+    margin: 24px auto;
+    padding: 24px 32px 40px;
+    background: #fff;
+    border: 1px solid #dfe5ec;
+  }
+  h1 {
+    margin: 0;
+    padding-bottom: 6px;
+    color: #173f67;
+    font-size: 28px;
+    border-bottom: 3px solid #173f67;
+  }
+  .equipe { margin: 8px 0 20px; font-size: 16px; }
+  h2 {
+    margin-top: 36px;
+    color: #173f67;
+    font-size: 21px;
+    border-bottom: 1px solid #dfe5ec;
+    padding-bottom: 4px;
+  }
+  h3 { margin-top: 24px; font-size: 17px; }
+  h4 { margin: 18px 0 6px; font-size: 15px; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+  th, td { border: 1px solid #c9d2dc; padding: 6px 9px; text-align: left; vertical-align: top; }
+  th { background: #edf4fa; color: #173f67; }
+  img { display: block; max-width: 100%; margin: 10px 0 4px; border: 1px solid #c9d2dc; }
+  .fichier { font-size: 13px; color: #647083; margin: 0 0 14px; }
+  pre {
+    background: #f8fafc;
+    border: 1px solid #dfe5ec;
+    padding: 10px 12px;
+    overflow-x: auto;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 13px;
+  }
+  code { font-family: Consolas, "Courier New", monospace; font-size: 13px; }
+  .ocl { color: #173f67; font-weight: bold; font-size: 12px; }
+  a { color: #235b8d; }
+  @media print {
+    body { background: #fff; }
+    .page { border: 0; margin: 0; max-width: none; }
+    img, pre, table { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>Rapport</h1>
+<p class="equipe">IFT 3911 - Devoir maison 1 - Système de réservation de voyages<br>
+
+<table>
+<tr><th>Nom</th><th>Matricule (4 derniers chiffres)</th><th>Courriel</th><th>Temps sur le devoir</th></tr>
+<tr><td>Toky Erick Rabenantoandro</td><td>6409</td><td>toky.erick.rabenantoandro@umontreal.ca</td><td> 10h</td></tr>
+<tr><td>Membre 2</td><td>XXXX</td><td></td><td> h</td></tr>
+<tr><td>Membre 3</td><td>XXXX</td><td></td><td> h</td></tr>
+</table>
+<p>repo github : <a href="https://github.com/Toky5/IFT3911-dev1">https://github.com/Toky5/IFT3911-dev1</a></p>
+
+<h2>Fichiers remis</h2>
+<ul>
+<li>Projet Visual Paradigm : <a href="projet.vpp">projet.vpp</a></li>
+<li>Dossier <a href="diagrammes/Domaine/">Domaine</a> : diagramme de classes conceptuel et diagrammes de séquence système</li>
+<li>Dossier <a href="diagrammes/Design/">Design</a> : diagramme de classes logiciel, diagrammes de séquence et diagramme de paquets</li>
+</ul>
+
+<h2>Hypothèses</h2>
+<ul>
+<li>Les voyages sont des allers simples.</li>
+<li>Une réservation porte sur une seule unité (siège ou cabine) pour un seul voyage.</li>
+<li>Pour le naval, il n'y a pas de priorité aile/fenêtre : le système choisit une cabine libre dans la section demandée.</li>
+<li>Une réservation non payée après 24 h passe à l'état Expiree et l'unité redevient disponible.</li>
+<li>Les codes de terminaux (aéroports, gares, ports) sont uniques entre tous les terminaux.</li>
+<li>Le paiement par carte de crédit passe par un service externe qui accepte ou refuse la transaction.</li>
+<li>Pour l'OCL, <code>Date</code> est un type ordonné (&lt;, &lt;=) qui a l'opération <code>plusJours(n : Integer) : Date</code>. <code>Voyage</code> a les opérations <code>getDebut()</code> et <code>getFin()</code>, qui combinent la date et l'heure de départ ou d'arrivée.</li>
+</ul>
+
+<h2>1. Conception du domaine</h2>
+
+<h3>1.1 Diagramme de classes conceptuel</h3>
+<img src="diagrammes/Domaine/DCC.svg" alt="Diagramme de classes conceptuel">
+<p class="fichier">Fichier : <a href="diagrammes/Domaine/DCC.svg">diagrammes/Domaine/DCC.svg</a></p>
+
+<h3>1.2 Diagrammes de séquence système</h3>
+
+<h4>Vérifier les voyages disponibles</h4>
+<img src="diagrammes/Domaine/DSSVerifierDesVoyages.svg" alt="DSS Vérifier les voyages">
+<p class="fichier">Fichier : <a href="diagrammes/Domaine/DSSVerifierDesVoyages.svg">diagrammes/Domaine/DSSVerifierDesVoyages.svg</a></p>
+
+<h4>Réserver une unité</h4>
+<img src="diagrammes/Domaine/DSSReserverUneUnite.svg" alt="DSS Réserver une unité">
+<p class="fichier">Fichier : <a href="diagrammes/Domaine/DSSReserverUneUnite.svg">diagrammes/Domaine/DSSReserverUneUnite.svg</a></p>
+
+<h4>Payer une réservation</h4>
+<img src="diagrammes/Domaine/DSSPayerReservation.svg" alt="DSS Payer une réservation">
+<p class="fichier">Fichier : <a href="diagrammes/Domaine/DSSPayerReservation.svg">diagrammes/Domaine/DSSPayerReservation.svg</a></p>
+
+<h2>2. Design du logiciel</h2>
+
+<h3>2.1 Diagramme de classes logiciel</h3>
+<img src="diagrammes/Design/DC.svg" alt="Diagramme de classes logiciel">
+<p class="fichier">Fichier : <a href="diagrammes/Design/DC.svg">diagrammes/Design/DC.svg</a></p>
+
+<h3>2.2 Diagrammes de séquence</h3>
+
+<h4>Vérifier les voyages (Responsable : )</h4>
+<img src="diagrammes/Design/DSVerifierLesVoyages.svg" alt="Diagramme de séquence verifierVoyages">
+<p class="fichier">Fichier : <a href="diagrammes/Design/DSVerifierLesVoyages.svg">diagrammes/Design/DSVerifierLesVoyages.svg</a></p>
+
+<h4>Réserver une unité (Responsable : )</h4>
+<img src="diagrammes/Design/DSReserverUneUnite.svg" alt="Diagramme de séquence reserver">
+<p class="fichier">Fichier : <a href="diagrammes/Design/DSReserverUneUnite.svg">diagrammes/Design/DSReserverUneUnite.svg</a></p>
+
+<h4>Payer une réservation (Responsable : )</h4>
+<img src="diagrammes/Design/DSPayerUneReservation.svg" alt="Diagramme de séquence payer">
+<p class="fichier">Fichier : <a href="diagrammes/Design/DSPayerUneReservation.svg">diagrammes/Design/DSPayerUneReservation.svg</a></p>
+
+<h3>2.3 Diagramme de paquets</h3>
+<img src="diagrammes/Design/DP.svg" alt="Diagramme de paquets">
+<p class="fichier">Fichier : <a href="diagrammes/Design/DP.svg">diagrammes/Design/DP.svg</a></p>
+
+<h2>3. Contraintes OCL</h2>
+<p>Une contrainte qui vaut pour plusieurs modes est écrite une seule fois sur la classe commune (<code>Vehicule</code>, <code>Voyage</code>).</p>
+
+<h3>3.1 Contraintes communes</h3>
+
+<h4>Pas de chevauchement (1.1.3, 1.2.3) <span class="ocl">[OCL]</span></h4>
+<pre>context Vehicule
+inv pasDeChevauchement:
+  self.voyages-&gt;forAll(v1, v2 | v1 &lt;&gt; v2 implies
+      v1.getFin() &lt;= v2.getDebut() or v2.getFin() &lt;= v1.getDebut())</pre>
+
+<h4>Une seule réservation confirmée par passager pour un même voyage (2) <span class="ocl">[OCL]</span></h4>
+<pre>context Voyage
+inv unPasseportParVoyage:
+  self.reservations-&gt;select(r | r.etat = EtatReservation::Confirmee)
+                   -&gt;isUnique(r | r.passager.numeroPasseport)</pre>
+<p>On compare le numéro de passeport parce qu'un nouvel objet <code>Passager</code> est créé à chaque paiement.</p>
+
+<h4>reserver() (2.1.2, 2.2.2) <span class="ocl">[OCL]</span></h4>
+<pre>context Voyage::reserver(codeSection : String, priorite : Priorite) : String
+pre uniteDisponible:
+  let s : Section = self.vehicule.sections-&gt;any(sec | sec.type.code = codeSection) in
+  s.unites-&gt;exists(u |
+      self.reservations-&gt;forAll(r | r.unite &lt;&gt; u or r.etat = EtatReservation::Expiree))
+
+post reservationCreee:
+  self.reservations-&gt;size() = self.reservations@pre-&gt;size() + 1
+  and self.reservations-&gt;exists(r | r.oclIsNew()
+        and r.numero = result
+        and r.etat = EtatReservation::EnAttente
+        and r.passager-&gt;isEmpty()
+        and r.unite.section.type.code = codeSection)</pre>
+
+<h4>payer() (2.1.3, 2.2.3) <span class="ocl">[OCL]</span></h4>
+<pre>context ControleurClient::payer(numeroReservation : String, nom : String,
+        courriel : String, numeroPasseport : String, carte : CarteCredit) : String
+pre reservationEnAttente:
+  let r : Reservation = self.catalogue.voyages.reservations
+                            -&gt;any(res | res.numero = numeroReservation) in
+  not r.oclIsUndefined()
+  and r.etat = EtatReservation::EnAttente
+  and r.voyage.reservations-&gt;forAll(r2 | r2.etat = EtatReservation::Confirmee
+        implies r2.passager.numeroPasseport &lt;&gt; numeroPasseport)
+
+post reservationConfirmee:
+  let r : Reservation = self.catalogue.voyages.reservations
+                            -&gt;any(res | res.numero = numeroReservation) in
+  r.etat = EtatReservation::Confirmee
+  and r.unite = r.unite@pre
+  and r.passager.nom = nom
+  and r.passager.courriel = courriel
+  and r.passager.numeroPasseport = numeroPasseport
+  and r.paiement.oclIsNew()
+  and r.paiement.carte = carte
+  and r.paiement.numeroConfirmation = result</pre>
+
+<h3>3.2 Voyage aérien</h3>
+<p>À compléter</p>
+
+<h3>3.3 Voyage naval</h3>
+
+<h4>Itinéraire de 14 jours au plus (1.2.3) <span class="ocl">[OCL]</span></h4>
+<pre>context Itineraire
+inv dureeMax14Jours:
+  self.getFin() &lt;= self.getDebut().plusJours(14)</pre>
+
+<h4>Au moins trois ports distincts (1.2.3) <span class="ocl">[OCL]</span></h4>
+<pre>context Itineraire
+inv auMoinsTroisPortsDistincts:
+  self.escales.port-&gt;asSet()-&gt;size() &gt;= 3</pre>
+<p><code>asSet()</code> enlève le port de départ qui revient à la fin.</p>
+
+<h4>Même port de départ et d'arrivée (1.2.3) <span class="ocl">[OCL]</span></h4>
+<pre>context Itineraire
+inv boucle:
+  self.escales-&gt;sortedBy(numero)-&gt;first().port
+    = self.escales-&gt;sortedBy(numero)-&gt;last().port</pre>
+
+<h3>3.4 Voyage ferroviaire</h3>
+<p>À compléter</p>
+
+<h2>4. Justifications</h2>
+
+<h3>4.1 Domaine</h3>
+<ul>
+<li><b>Classes communes abstraites</b> (<code>Compagnie</code>, <code>Vehicule</code>, <code>Voyage</code>, <code>Section</code>, <code>UniteReservable</code>, <code>Terminal</code>) : les trois modes ont les mêmes associations. Elles sont placées une seule fois au niveau commun et chaque mode ajoute ses sous-classes. Ça permet aussi d'écrire une seule fois les contraintes OCL communes.</li>
+<li><b>Escale</b> : un itinéraire revient à son port de départ. Une association directe entre <code>Itineraire</code> et <code>Port</code> ne garde ni l'ordre ni les doublons. Chaque escale a un numéro et pointe vers un port.</li>
+<li><b>Reservation</b> est liée au voyage et à l'unité : une même cabine peut être libre sur un itinéraire et réservée sur un autre.</li>
+<li><b>Prix</b> : il dépend du plein tarif de la compagnie et du pourcentage du type de section, il n'est pas stocké dans chaque unité.</li>
+</ul>
+
+<h3>4.2 Design</h3>
+<table>
+<tr><th>Classe</th><th>Principe</th><th>Raison</th></tr>
+<tr><td>ControleurClient</td><td>Contrôleur</td><td>Reçoit les opérations système du client (verifierVoyages, reserver, payer) et délègue le travail.</td></tr>
+<tr><td>CatalogueVoyages</td><td>Fabrication pure, Expert</td><td>Connaît tous les voyages. Retrouve un voyage ou une réservation à partir de son numéro.</td></tr>
+<tr><td>CatalogueTerminaux</td><td>Fabrication pure, Expert</td><td>Convertit les codes reçus de l'interface en objets <code>Terminal</code>.</td></tr>
+<tr><td>IServicePaiement</td><td>Variations protégées</td><td>Isole le service de paiement externe. Le contrôleur ne dépend que de l'interface.</td></tr>
+<tr><td>Voyage</td><td>Expert, Créateur</td><td>Connaît son véhicule et ses réservations : calcule les unités disponibles et crée les réservations.</td></tr>
+<tr><td>Itineraire</td><td>Polymorphisme</td><td>Redéfinit <code>correspond()</code> : l'origine est le port de la première escale et il n'y a pas de destination.</td></tr>
+<tr><td>Reservation</td><td>Expert, Créateur</td><td>Connaît son état et son unité. Crée le <code>Passager</code> et le <code>Paiement</code> lors du paiement.</td></tr>
+<tr><td>Compagnie</td><td>Expert</td><td>A le plein tarif, donc calcule le prix d'un type de section.</td></tr>
+<tr><td>TypeSection</td><td>Forte cohésion</td><td>Regroupe le code, le pourcentage et la capacité d'un type de section. C'est une classe plutôt qu'une énumération parce que chaque type a des données.</td></tr>
+</table>
+
+<h2>Distribution des tâches</h2>
+<table>
+<tr><th>Tâche</th><th>Membre 1</th><th>Membre 2</th><th>Membre 3</th></tr>
+<tr><td>Diagramme de classes conceptuel</td><td> %</td><td> %</td><td> %</td></tr>
+<tr><td>Diagrammes de séquence système</td><td> %</td><td> %</td><td> %</td></tr>
+<tr><td>Diagramme de classes logiciel</td><td> %</td><td> %</td><td> %</td></tr>
+<tr><td>Diagramme de séquence : vérifier les voyages</td><td> %</td><td> %</td><td> %</td></tr>
+<tr><td>Diagramme de séquence : réserver</td><td> %</td><td> %</td><td> %</td></tr>
+<tr><td>Diagramme de séquence : payer</td><td> %</td><td> %</td><td> %</td></tr>
+<tr><td>Diagramme de paquets</td><td> %</td><td> %</td><td> %</td></tr>
+<tr><td>Contraintes OCL</td><td> %</td><td> %</td><td> %</td></tr>
+<tr><td>Justifications et rapport</td><td> %</td><td> %</td><td> %</td></tr>
+</table>
+
+</div>
+</body>
+</html>

@@ -62,7 +62,7 @@
 <table>
 <tr><th>Nom</th><th>Matricule (4 derniers chiffres)</th><th>Courriel</th><th>Temps sur le devoir</th></tr>
 <tr><td>Toky Erick Rabenantoandro</td><td>6409</td><td>toky.erick.rabenantoandro@umontreal.ca</td><td> 10h</td></tr>
-<tr><td>Membre 2</td><td>XXXX</td><td></td><td> h</td></tr>
+<tr><td>Gabriel Barroso</td><td>3304</td><td></td><td> h</td></tr>
 <tr><td>Membre 3</td><td>XXXX</td><td></td><td> h</td></tr>
 </table>
 <p>repo github : <a href="https://github.com/Toky5/IFT3911-dev1">https://github.com/Toky5/IFT3911-dev1</a></p>
@@ -136,57 +136,145 @@
 
 <h4>Pas de chevauchement (1.1.3, 1.2.3) <span class="ocl">[OCL]</span></h4>
 <pre>context Vehicule
-inv pasDeChevauchement:
-  self.voyages-&gt;forAll(v1, v2 | v1 &lt;&gt; v2 implies
-      v1.getFin() &lt;= v2.getDebut() or v2.getFin() &lt;= v1.getDebut())</pre>
+  inv: self.voyages-&gt;forAll(v1, v2 | v1 &lt;&gt; v2 implies
+         v1.getFin() &lt;= v2.getDebut() or v2.getFin() &lt;= v1.getDebut())</pre>
 
 <h4>Une seule réservation confirmée par passager pour un même voyage (2) <span class="ocl">[OCL]</span></h4>
 <pre>context Voyage
-inv unPasseportParVoyage:
-  self.reservations-&gt;select(r | r.etat = EtatReservation::Confirmee)
-                   -&gt;isUnique(r | r.passager.numeroPasseport)</pre>
+  inv: self.reservations-&gt;select(etat = EtatReservation::Confirmee)
+         -&gt;isUnique(passager.numeroPasseport)</pre>
 <p>On compare le numéro de passeport parce qu'un nouvel objet <code>Passager</code> est créé à chaque paiement.</p>
 
 <h4>reserver() (2.1.2, 2.2.2) <span class="ocl">[OCL]</span></h4>
 <pre>context Voyage::reserver(codeSection : String, priorite : Priorite) : String
-pre uniteDisponible:
-  let s : Section = self.vehicule.sections-&gt;any(sec | sec.type.code = codeSection) in
-  s.unites-&gt;exists(u |
-      self.reservations-&gt;forAll(r | r.unite &lt;&gt; u or r.etat = EtatReservation::Expiree))
-
-post reservationCreee:
-  self.reservations-&gt;size() = self.reservations@pre-&gt;size() + 1
-  and self.reservations-&gt;exists(r | r.oclIsNew()
-        and r.numero = result
-        and r.etat = EtatReservation::EnAttente
-        and r.passager-&gt;isEmpty()
-        and r.unite.section.type.code = codeSection)</pre>
+  pre: self.getNbUnitesDisponibles(codeSection) &gt; 0
+  post: self.reservations-&gt;size() = self.reservations@pre-&gt;size() + 1
+        and self.reservations-&gt;exists(r | r.numero = result
+              and r.etat = EtatReservation::EnAttente
+              and r.passager-&gt;isEmpty())</pre>
 
 <h4>payer() (2.1.3, 2.2.3) <span class="ocl">[OCL]</span></h4>
 <pre>context ControleurClient::payer(numeroReservation : String, nom : String,
-        courriel : String, numeroPasseport : String, carte : CarteCredit) : String
-pre reservationEnAttente:
-  let r : Reservation = self.catalogue.voyages.reservations
-                            -&gt;any(res | res.numero = numeroReservation) in
-  not r.oclIsUndefined()
-  and r.etat = EtatReservation::EnAttente
-  and r.voyage.reservations-&gt;forAll(r2 | r2.etat = EtatReservation::Confirmee
-        implies r2.passager.numeroPasseport &lt;&gt; numeroPasseport)
-
-post reservationConfirmee:
-  let r : Reservation = self.catalogue.voyages.reservations
-                            -&gt;any(res | res.numero = numeroReservation) in
-  r.etat = EtatReservation::Confirmee
-  and r.unite = r.unite@pre
-  and r.passager.nom = nom
-  and r.passager.courriel = courriel
-  and r.passager.numeroPasseport = numeroPasseport
-  and r.paiement.oclIsNew()
-  and r.paiement.carte = carte
-  and r.paiement.numeroConfirmation = result</pre>
+      courriel : String, numeroPasseport : String, carte : CarteCredit) : String
+  pre: self.catalogue.getReservation(numeroReservation).etat = EtatReservation::EnAttente
+  post: let r = self.catalogue.getReservation(numeroReservation) in
+        r.etat = EtatReservation::Confirmee
+        and r.passager.numeroPasseport = numeroPasseport
+        and r.paiement.numeroConfirmation = result</pre>
 
 <h3>3.2 Voyage aérien</h3>
-<p>À compléter</p>
+<h3>1. Volet administratif</h3>
+
+<h4>1.1.1 Identification de l'aéroport</h4>
+<p>« Un aéroport est identifié par un code de trois lettres unique à chaque aéroport »</p>
+<pre>context Aeroport inv:
+  self.id.size() = 3
+  Aeroport.allInstances()-&gt;isUnique(id)</pre>
+
+<h4>1.1.2 Identification de la compagnie aérienne</h4>
+<p>« Une compagnie aérienne est identifiée par un code de deux lettres unique à chaque compagnie »</p>
+<pre>context CompagnieAerienne inv:
+  self.id.size() = 2
+  CompagnieAerienne.allInstances()-&gt;isUnique(id)</pre>
+
+<h4>1.1.3 Contraintes sur les vols</h4>
+<p>Appartenance de l'avion : « Chaque vol est assigné à un avion appartenant à la compagnie aérienne qui l'exploite »</p>
+<pre>context Vol inv:
+  self.avion.CompagnieAerienne = self.CompagnieAerienne</pre>
+
+<p>Non-chevauchement des vols : « Un même avion peut être assigné à plusieurs vols, mais deux vols assignés au même avion ne peuvent pas se chevaucher »</p>
+<pre>context Vol inv:
+  Vol.allInstances()-&gt;forAll(v1, v2 | v1 &lt;&gt; v2 and v1.avion &lt;&gt; v2.avion)
+    implies
+      ((v1.dateArrivee &lt; v2.dateDepart)
+        or (v1.dateArrivee = v2.dateDepart and v1.heureArrivee &lt;= v2.heureDepart))
+      or
+      ((v2.dateArrivee &lt; v1.dateDepart
+        or (v2.dateArrivee = v1.dateDepart and v2.heureArrivee &lt;= v1.heureDepart)))</pre>
+
+<p>Format et unicité de l'identifiant de vol : « Un vol est identifié par un ID formé du code à deux lettres de la compagnie aérienne suivi d'exactement quatre chiffres. L'ID complet est unique à chaque vol »</p>
+<pre>context Vol inv:
+  -- Taille de l'id
+  self.id.size() = 6
+  -- Id unique
+  Vol.allInstances()-&gt;isUnique(id)
+  -- Une partie de l'id du vol, c'est l'id de la compagnie aerienne
+  self.id.substring(1, 2) = self.CompagnieAerienne.id</pre>
+
+<p>Aéroports distincts : « L'aéroport de départ et d'arrivée d'un vol doit être différent »</p>
+<pre>context Vol inv:
+  self.origine &lt;&gt; self.destinantion</pre>
+
+<h4>1.1.4 Structure et disposition des sièges</h4>
+<p>« Un avion comporte des sièges organisés en maximum 100 rangées et 10 colonnes. Chaque siège est identifié par sa section (F, A, P, E), son numéro de rangée et la lettre de la colonne (A-J). Les sièges peuvent être disposés selon quatre possibilités au sein d'une section :</p>
+<ul>
+<li>Étroit (S) : trois colonnes avec une aile entre les colonnes 1 et 2</li>
+<li>Confort (C) : quatre colonnes avec une aile entre les colonnes 2 et 3</li>
+<li>Moyen (M) : six colonnes avec une aile entre 3 et 4</li>
+<li>Large (L) : dix colonnes avec une aile entre les colonnes 3 et 4, et entre 7 et 8 »</li>
+</ul>
+<pre>context Siege inv:
+  self.rangee &lt;= 100
+
+context Siege inv:
+  self.colonne &gt;= 'A' and self.colonne &lt;= 'J'
+
+context Siege inv:
+  self.sectionOfSiege.dispositionSiege = 'S' implies self.colonne &gt;= "A" and self.colonne &lt;= 'C'
+
+context Siege inv:
+  self.sectionOfSiege.dispositionSiege = 'C' implies self.colonne &gt;= 'A' and self.colonne &lt;= 'D'
+
+context Siege inv:
+  self.sectionOfSiege.dispositionSiege = 'M' implies self.colonne &gt;= 'A' and self.colonne &lt;= 'F'
+
+context Siege inv:
+  self.sectionOfSiege.dispositionSiege = 'L' implies self.colonne &gt;= 'A' and self.colonne &lt;= 'J'</pre>
+<pre>context Section inv:
+  self.dispositionSiege = 'S' or
+  self.dispositionSiege = 'C' or
+  self.dispositionSiege = 'M' or
+  self.dispositionSiege = 'L'
+
+context Section inv:
+  self.typesSection = 'F' or
+  self.typesSection = 'A' or
+  self.typesSection = 'P' or
+  self.typesSection = 'E'
+
+context Section inv:
+  self.dispositionSiege = 'S' implies self.aile = Set{1}
+
+context Section inv:
+  self.dispositionSiege = 'C' implies self.aile = Set{2}
+
+context Section inv:
+  self.dispositionSiege = 'M' implies self.aile = Set{3}
+
+context Section inv:
+  self.dispositionSiege = 'L' implies self.aile = Set{3, 7}</pre>
+
+<h3>1.2 Volet administratif - Pre et Pos conditions</h3>
+
+<h4>1.2.1 reserver()</h4>
+<pre>context Siege::reserver()
+pre:
+  self.disponible = true
+pos:
+  self.disponible = false</pre>
+
+<h4>1.2.2 payer()</h4>
+<pre>context Paiment :: payer(montant : Real,
+    carteCredit : String,
+)
+pre:
+  montant&gt;0
+
+context Reservation ::confirmer(passager: Passager)
+pre:
+  self.passager = null
+pos:
+  self.passager = passager and self.statut = 'CONFIRMEE"</pre>
 
 <h3>3.3 Voyage naval</h3>
 

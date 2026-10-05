@@ -62,8 +62,8 @@
 <table>
 <tr><th>Nom</th><th>Matricule (4 derniers chiffres)</th><th>Courriel</th><th>Temps sur le devoir</th></tr>
 <tr><td>Toky Erick Rabenantoandro</td><td>6409</td><td>toky.erick.rabenantoandro@umontreal.ca</td><td> 10h</td></tr>
-<tr><td>Gabriel Barroso</td><td>3304</td><td></td><td> h</td></tr>
-<tr><td>Membre 3</td><td>XXXX</td><td></td><td> h</td></tr>
+<tr><td>Gabriel Barroso</td><td>3304</td><td>gabriel.barroso@umontreal.ca</td><td> 25h</td></tr>
+<tr><td>Membre 3</td><td>XXXX</td><td></td><td> 20h</td></tr>
 </table>
 <p>repo github : <a href="https://github.com/Toky5/IFT3911-dev1">https://github.com/Toky5/IFT3911-dev1</a></p>
 
@@ -274,7 +274,7 @@ context Reservation ::confirmer(passager: Passager)
 pre:
   self.passager = null
 pos:
-  self.passager = passager and self.statut = 'CONFIRMEE"</pre>
+  self.passager = passager and self.statut = 'CONFIRMEE'</pre>
 
 <h3>3.3 Voyage naval</h3>
 
@@ -304,8 +304,12 @@ inv boucle:
 <ul>
 <li><b>Classes communes abstraites</b> (<code>Compagnie</code>, <code>Vehicule</code>, <code>Voyage</code>, <code>Section</code>, <code>UniteReservable</code>, <code>Terminal</code>) : les trois modes ont les mêmes associations. Elles sont placées une seule fois au niveau commun et chaque mode ajoute ses sous-classes. Ça permet aussi d'écrire une seule fois les contraintes OCL communes.</li>
 <li><b>Escale</b> : un itinéraire revient à son port de départ. Une association directe entre <code>Itineraire</code> et <code>Port</code> ne garde ni l'ordre ni les doublons. Chaque escale a un numéro et pointe vers un port.</li>
-<li><b>Reservation</b> est liée au voyage et à l'unité : une même cabine peut être libre sur un itinéraire et réservée sur un autre.</li>
+<li><b>Reservation</b> : la réservation est modélisée comme une classe distincte puisqu'elle possède son propre numéro, sa date et son heure de création ainsi que son état. Elle relie un Voyage à une UniteReservable. Cette modélisation est nécessaire puisqu'une même unité physique peut être disponible pour un voyage et réservée pour un autre.</li>
 <li><b>Prix</b> : il dépend du plein tarif de la compagnie et du pourcentage du type de section, il n'est pas stocké dans chaque unité.</li>
+<li><b>UniteReservable</b>: les sièges des avions et trains ainsi que les cabines des paquebots jouent le même rôle dans le processus de réservation. La classe abstraite UniteReservable permet donc de représenter de manière commune l'unité associée à une réservation, tout en laissant Siege et Cabine conserver leurs caractéristiques propres.</li>
+<li><b>Spécialisation de Section</b>:une classe commune Section représente les propriétés partagées par toutes les sections, tandis que SectionAvion, SectionTrain et SectionPaquebot contiennent les caractéristiques propres à chaque mode de transport. Cette organisation limite la duplication tout en permettant de représenter les différences entre les types de sections.</li>
+<li><b>Escale</b>:une association directe entre Itineraire et Port ne permettrait pas de représenter correctement l'ordre des ports ni le retour au port de départ. Chaque Escale possède donc un numéro et référence un port.</li>
+<li><b>Arrêt</b>: permet de représenter l'ordre des gares traversées par un trajet. Cette classe intermédiaire rend possible la contrainte selon laquelle un trajet contient une séquence ordonnée de gares.</li>
 </ul>
 
 <h3>4.2 Design</h3>

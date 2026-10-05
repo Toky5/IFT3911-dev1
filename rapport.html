@@ -208,7 +208,13 @@ inv boucle:
     = self.escales-&gt;sortedBy(numero)-&gt;last().port</pre>
 
 <h3>3.4 Voyage ferroviaire</h3>
-<p>À compléter</p>
+
+<h4>Une même gare ne peut apparaître qu'une seule fois dans un trajet
+<span class="ocl">[OCL]</span></h4>
+
+<pre>context Trajet
+inv garesUniques:
+  self.arrets->isUnique(a | a.gare.code)</pre>
 
 <h2>4. Justifications</h2>
 

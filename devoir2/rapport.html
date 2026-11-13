@@ -1,0 +1,1303 @@
+```
+
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rapport – IFT 3911 – Devoir maison 2</title>
+  <style>
+    :root {
+      --ink: #18212d;
+      --muted: #647083;
+      --line: #dfe5ec;
+      --bg: #f3f5f8;
+      --accent: #c72f2f;
+      --soft: #f8fafc;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      line-height: 1.58;
+    }
+
+    .page {
+      max-width: 990px;
+      margin: 24px auto;
+      padding: 30px 38px 44px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    h1 {
+      font-size: 29px;
+      margin: 0 0 3px;
+    }
+
+    .subtitle {
+      margin: 0 0 20px;
+      color: #465569;
+      font-size: 16px;
+    }
+
+    h2 {
+      margin: 38px 0 12px;
+      color: var(--accent);
+      font-size: 21px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 5px;
+    }
+
+    h3 { margin: 23px 0 7px; font-size: 17px; }
+    h4 { margin: 17px 0 6px; font-size: 15px; }
+    p { margin: 8px 0 11px; }
+
+    ul, ol {
+      margin: 8px 0 14px;
+      padding-left: 24px;
+    }
+
+    li { margin-bottom: 4px; }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 12px 0 16px;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid #b7c0cb;
+      padding: 8px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f0f3f6;
+      font-weight: 700;
+    }
+
+    img.diagram {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #c9d2dc;
+      background: #fff;
+      margin: 10px auto 5px;
+    }
+
+    figure { margin: 12px 0 22px; }
+
+    figcaption, .fichier {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 5px 0 10px;
+    }
+
+    .missing-img {
+      padding: 14px;
+      background: #fafbfc;
+      border: 1px dashed #b5c0cd;
+      color: #536176;
+      font-size: 13px;
+    }
+
+    .todo {
+      border-left: 3px solid #a7b2c1;
+      background: var(--soft);
+      padding: 10px 14px;
+      margin: 10px 0 14px;
+      color: #4f5e71;
+    }
+
+    .todo strong { color: #293e54; }
+
+    .note {
+      background: #f6f7fa;
+      border: 1px solid var(--line);
+      padding: 12px 15px;
+      margin: 14px 0;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .flag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: #f1f4f7;
+      border: 1px solid #dee5ee;
+      border-radius: 4px;
+      padding: 2px 7px;
+      color: #4d5c6b;
+    }
+
+    code, pre {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 13px;
+    }
+
+    pre {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      padding: 11px 13px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    a {
+      color: #225a8b;
+      text-decoration: underline;
+    }
+
+    .footer {
+      margin-top: 30px;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page {
+        border: 0;
+        margin: 0;
+        padding: 0;
+        max-width: none;
+      }
+      h2, h3, figure, pre, table {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+<!--
+INSTRUCTIONS POUR L'ÉQUIPE :
+1. Compléter tous les champs [À COMPLÉTER].
+2. Adapter les chemins des images aux fichiers réels.
+3. Vérifier les contributions et les heures de chaque membre.
+4. Supprimer les indications de travail avant la remise.
+5. Placer rapport.htm à la racine du ZIP.
+-->
+
+<h1>Rapport</h1>
+
+<p class="subtitle">
+IFT 3911 — Devoir2 — Modélisation et analyse
+</p>
+
+<table>
+  <tr>
+    <th>Nom</th>
+    <th>Matricule (4 derniers chiffres)</th>
+    <th>Courriel</th>
+    <th>Temps consacré au devoir</th>
+  </tr>
+  <tr>
+    <td>Toky Erick Rabenantoandro</td>
+    <td>6409</td>
+    <td>toky.erick.rabenantoandro@umontreal.ca</td>
+    <td>[À COMPLÉTER] h</td>
+  </tr>
+  <tr>
+    <td>Gabriel Barroso Magno Viana</td>
+    <td>3304</td>
+    <td>gabriel.barroso.magno.viana@umontreal.ca</td>
+    <td>[À COMPLÉTER] h</td>
+  </tr>
+  <tr>
+    <td>Jad Idrissi</td>
+    <td>8693</td>
+    <td>jad.idrissi@umontreal.ca</td>
+    <td>[À COMPLÉTER] h</td>
+  </tr>
+</table>
+
+
+<p>
+  <strong>Dépôt GitHub :</strong>
+  <a href="[URL-DU-REPOSITORY]">
+    [URL DU RÉPERTOIRE GITHUB DU DM2]
+  </a>
+</p>
+
+
+<h2>Fichiers remis</h2>
+
+<p>
+Le fichier <code>rapport.html</code> se trouve à la racine
+de l'archive ZIP. Le dépôt est organisé comme suit :
+</p>
+
+<pre>
+rapport.html
+
+Design/
+    projet.vpp
+    diagrammes/
+
+Réseau de Petri/
+    [modèle du tunnel]
+    [graphe de couverture]
+    [images]
+
+Statechart/
+    Microwave/
+        model/
+            microwave.sct
+            java.sgen
+            image.sgen
+        src/
+        images/
+    microwave_complet.png
+    microwave.png
+    porte.png
+</pre>
+
+<div class="todo">
+<strong>À compléter :</strong>
+Vérifier les noms et les chemins des fichiers.
+Supprimer les fichiers qui ne sont pas présents
+dans la remise finale.
+</div>
+
+
+<h2>Hypothèses générales</h2>
+
+<div class="todo">
+<strong>À compléter par l'équipe :</strong>
+Ajouter les hypothèses générales concernant le réseau de Pétri
+et les modifications apportées au système de réservation.
+</div>
+
+<h3>Hypothèses concernant le micro-ondes</h3>
+
+<ul>
+  <li>
+    Le four démarre au repos, avec la porte fermée.
+  </li>
+  <li>
+    La puissance doit être sélectionnée avant la saisie du temps.
+    La puissance forte correspond à <code>power = 1</code>,
+    tandis que la puissance faible correspond à
+    <code>power = 2</code>.
+  </li>
+  <li>
+    Le temps saisi comporte au maximum quatre chiffres
+    et représente une durée en secondes.
+  </li>
+  <li>
+    Une durée nulle ne permet pas de démarrer la cuisson.
+  </li>
+  <li>
+    L'ouverture et la fermeture de la porte ne déclenchent
+    jamais automatiquement la cuisson.
+  </li>
+  <li>
+    L'événement <code>stop</code> interrompt le processus
+    sans modifier physiquement l'état de la porte.
+  </li>
+</ul>
+
+
+<!-- ======================================== -->
+<!-- 1. RÉSEAU DE PÉTRI                      -->
+<!-- ======================================== -->
+
+<h2>1. Réseau de Pétri — Tunnel</h2>
+
+<h3>1.1 Hypothèses et modélisation</h3>
+
+<div class="todo">
+<strong>[RESPONSABLE — À COMPLÉTER]</strong>
+
+Décrire :
+<ul>
+  <li>Les places et les transitions du réseau.</li>
+  <li>Le marquage initial.</li>
+  <li>Les règles de circulation dans le tunnel.</li>
+  <li>Le mécanisme d'alternance des feux.</li>
+  <li>Les hypothèses nécessaires au modèle.</li>
+</ul>
+</div>
+
+<figure>
+  <img
+    class="diagram"
+    src="Réseau de Petri/reseau-tunnel.png"
+    alt="Réseau de Pétri du tunnel">
+
+  <figcaption>
+    Figure 1 — Réseau de Pétri du tunnel.
+    Fichier : Réseau de Petri/reseau-tunnel.png
+  </figcaption>
+</figure>
+
+<h3>1.2 Lois de conservation et sécurité</h3>
+
+<div class="todo">
+<strong>[RESPONSABLE — À COMPLÉTER]</strong>
+
+Présenter les lois de conservation du réseau.
+
+Démontrer qu'au plus une voiture peut se trouver
+à l'intérieur du tunnel à un instant donné.
+
+Justifier les propriétés de sécurité du modèle.
+</div>
+
+<h3>1.3 Graphe de couverture et absence de famine</h3>
+
+<div class="todo">
+<strong>[RESPONSABLE — À COMPLÉTER]</strong>
+
+Présenter le graphe de couverture et analyser
+le comportement du système.
+
+Expliquer comment le modèle garantit
+l'alternance entre les deux directions.
+
+Démontrer l'absence de famine.
+</div>
+
+<figure>
+  <img
+    class="diagram"
+    src="Réseau de Petri/graphe-couverture.png"
+    alt="Graphe de couverture">
+
+  <figcaption>
+    Figure 2 — Graphe de couverture du réseau de Pétri.
+  </figcaption>
+</figure>
+
+<p class="fichier">
+Fichier source du modèle :
+[À COMPLÉTER]
+</p>
+
+
+<!-- ======================================== -->
+<!-- 2. STATECHART — GABRIEL                 -->
+<!-- ======================================== -->
+
+<h2>2. Statechart — Four à micro-ondes</h2>
+
+<p>
+<strong>Responsable :</strong>
+Gabriel Barroso Magno Viana
+</p>
+
+
+<h3>2.1 Présentation générale du modèle</h3>
+
+<p>
+Le comportement du four à micro-ondes est modélisé
+à l'aide d'un Statechart réalisé dans itemis CREATE,
+à partir du modèle initial fourni dans l'énoncé.
+</p>
+
+<p>
+Le modèle est organisé en deux régions orthogonales :
+<code>Microwave</code> et <code>Porte</code>.
+La première région est responsable du fonctionnement
+du micro-ondes, notamment la sélection de la puissance,
+la saisie du temps, la cuisson et sa finalisation.
+La seconde région contrôle l'ouverture et la fermeture
+de la porte.
+</p>
+
+<p>
+L'utilisation de régions orthogonales permet de représenter
+simultanément deux aspects indépendants du système.
+Ainsi, le micro-ondes peut se trouver dans un état
+de fonctionnement, comme <code>Addtime</code> ou
+<code>Waiting</code>, tout en ayant la porte ouverte
+ou fermée.
+</p>
+
+<p>
+Cette approche évite de multiplier les états
+pour représenter toutes les combinaisons possibles
+entre le fonctionnement du micro-ondes
+et la position de la porte.
+</p>
+
+<figure>
+  <img
+    class="diagram"
+    src="Statechart/microwave_complet.png"
+    alt="Statechart complet du micro-ondes">
+</figure>
+
+
+<h3>2.2 Région Microwave</h3>
+
+<figure>
+  <img
+    class="diagram"
+    src="Statechart/microwave.png"
+    alt="Région Microwave">
+</figure>
+
+
+<h4>2.2.1 Sélection de la puissance</h4>
+
+<p>
+Le système commence dans l'état <code>Repos</code>.
+Dans cet état, l'afficheur est initialisé
+par l'opération <code>clearDisplay()</code>.
+</p>
+
+<p>
+Les événements <code>high</code> et <code>low</code>
+permettent de sélectionner respectivement
+une puissance forte ou faible.
+Le système peut également passer d'une puissance
+à l'autre avant la configuration du temps de cuisson.
+</p>
+
+<p>
+Lors de l'entrée dans l'état <code>High</code>,
+la variable <code>power</code> reçoit la valeur 1
+et le message « High » est affiché.
+Dans l'état <code>Low</code>,
+la variable reçoit la valeur 2
+et le message « Low » est affiché.
+</p>
+
+
+<h4>2.2.2 Saisie du temps</h4>
+
+<p>
+L'événement <code>timer</code> permet de passer
+de l'état de sélection de puissance à
+l'état <code>Addtime</code>.
+</p>
+
+<p>
+Cet état permet de saisir une durée maximale
+de quatre chiffres.
+Deux variables internes sont utilisées :
+<code>remainingTime</code>, qui contient
+la durée saisie en secondes,
+et <code>digitCount</code>, qui représente
+le nombre de chiffres introduits.
+</p>
+
+<p>
+Une réaction locale associée à l'événement
+<code>digit</code> permet de mettre à jour le temps
+sans quitter l'état <code>Addtime</code>.
+La garde <code>digitCount &lt; 4</code>
+empêche l'introduction de chiffres supplémentaires
+après les quatre premiers.
+</p>
+
+<pre>
+digit [digitCount &lt; 4] /
+    remainingTime = remainingTime * 10 + valueof(digit);
+    digitCount += 1;
+    displayTime((remainingTime / 60) * 100 + remainingTime % 60)
+</pre>
+
+<p>
+La conversion utilisée pour
+<code>displayTime()</code> permet de représenter
+le temps sous la forme minutes:secondes,
+tout en conservant la durée réelle en secondes
+dans la variable <code>remainingTime</code>.
+</p>
+
+
+<h4>2.2.3 Cuisson et compte à rebours</h4>
+
+<p>
+La transition vers l'état <code>Cooking</code>
+nécessite l'événement <code>start</code>
+et le respect de deux conditions :
+la durée doit être positive et la porte doit être fermée.
+</p>
+
+<pre>
+start [remainingTime &gt; 0 &amp;&amp; doorOpen == false]
+</pre>
+
+<p>
+À l'entrée dans <code>Cooking</code>,
+l'opération <code>cook()</code> démarre la cuisson
+et le temps restant est affiché.
+</p>
+
+<p>
+Le compte à rebours est modélisé par une réaction
+temporelle <code>every 1 s</code>,
+qui diminue la variable <code>remainingTime</code>
+d'une unité toutes les secondes,
+tant que sa valeur est supérieure à 1.
+</p>
+
+<pre>
+every 1 s [remainingTime &gt; 1] /
+    remainingTime -= 1;
+    displayTime((remainingTime / 60) * 100 + remainingTime % 60)
+</pre>
+
+<p>
+Lorsque le temps restant est égal à une seconde,
+une transition temporelle vers
+<code>Finishingcooking</code>
+permet de terminer le processus.
+</p>
+
+<pre>
+every 1 s [remainingTime == 1] /
+    remainingTime = 0
+</pre>
+
+<p>
+L'action de sortie <code>stopCook()</code>
+assure l'interruption de la cuisson
+lorsque l'état <code>Cooking</code> est quitté.
+</p>
+
+
+<h3>2.3 Région Porte</h3>
+
+<figure>
+  <img
+    class="diagram"
+    src="Statechart/porte.png"
+    alt="Région Porte">
+</figure>
+
+<p>
+La région <code>Porte</code> comporte deux états :
+<code>Closing</code> et <code>Opening</code>.
+</p>
+
+<p>
+L'état initial est <code>Closing</code>,
+qui représente une porte fermée.
+Les événements <code>open</code> et
+<code>close</code> permettent de passer
+d'un état à l'autre.
+</p>
+
+<p>
+La variable interne booléenne
+<code>doorOpen</code> mémorise la position
+de la porte.
+</p>
+
+<p>
+Lors de l'entrée dans <code>Opening</code>,
+cette variable devient <code>true</code>
+et l'opération <code>openDoor()</code>
+est exécutée.
+À l'inverse, l'entrée dans
+<code>Closing</code> met
+<code>doorOpen</code> à <code>false</code>
+et exécute <code>closeDoor()</code>.
+</p>
+
+<p>
+Cette variable est consultée dans les gardes
+de la région principale afin d'empêcher
+la cuisson lorsque la porte est ouverte.
+</p>
+
+
+<h3>2.4 Interruption et reprise de la cuisson</h3>
+
+<p>
+Lorsqu'un événement <code>open</code>
+survient pendant la cuisson,
+le système passe de <code>Cooking</code>
+à <code>Waiting</code>.
+</p>
+
+<p>
+La sortie de l'état <code>Cooking</code>
+provoque l'exécution de <code>stopCook()</code>,
+interrompant immédiatement le processus de cuisson.
+</p>
+
+<p>
+Le temps restant est conservé dans
+la variable <code>remainingTime</code>.
+Il n'est donc pas nécessaire de recommencer
+la configuration du temporisateur.
+</p>
+
+<p>
+À l'entrée dans <code>Waiting</code>,
+le message « Waiting » est affiché.
+Si la porte est refermée, une réaction locale
+associée à <code>close</code>
+permet de restaurer le temps restant
+sur l'afficheur.
+</p>
+
+<p>
+Une nouvelle ouverture de la porte dans
+cet état affiche à nouveau le message
+« Waiting ».
+</p>
+
+<p>
+La fermeture de la porte ne déclenche
+pas automatiquement la reprise.
+L'utilisateur doit appuyer à nouveau sur
+<code>start</code>.
+La transition vers <code>Cooking</code>
+est alors autorisée uniquement
+si la porte est fermée
+et si le temps restant est positif.
+</p>
+
+<pre>
+start [doorOpen == false &amp;&amp; remainingTime &gt; 0]
+</pre>
+
+<p>
+Cette solution permet d'assurer
+la sécurité du système et la conservation
+des informations nécessaires
+à la reprise de la cuisson.
+</p>
+
+
+<h3>2.5 Fin de la cuisson</h3>
+
+<p>
+Lorsque le compte à rebours arrive à son terme,
+le système entre dans l'état composite
+<code>Finishingcooking</code>.
+</p>
+
+<p>
+L'entrée dans cet état affiche
+le message « Finished ».
+Deux sous-états,
+<code>BeepOn</code> et <code>BeepOff</code>,
+assurent la signalisation sonore
+et le clignotement de l'afficheur.
+</p>
+
+<p>
+Les deux états alternent à intervalles
+de 500 millisecondes,
+grâce à des transitions temporelles
+<code>after 500 ms</code>.
+</p>
+
+<p>
+Une transition <code>after 5 s</code>,
+définie au niveau de l'état composite,
+met fin à cette signalisation
+et ramène le micro-ondes
+à l'état <code>Repos</code>.
+</p>
+
+<p>
+L'action de sortie
+<code>beepOff()</code>
+permet d'interrompre la signalisation
+au moment de quitter
+<code>Finishingcooking</code>.
+</p>
+
+
+<h3>2.6 Arrêt du système</h3>
+
+<p>
+L'événement <code>stop</code>
+permet d'interrompre le fonctionnement
+du micro-ondes et de revenir à
+l'état <code>Repos</code>.
+</p>
+
+<p>
+Cette possibilité est prévue depuis
+les différents états du processus,
+notamment la sélection de puissance,
+la saisie du temps,
+la cuisson,
+l'attente et la signalisation de fin.
+</p>
+
+<p>
+Lors de l'arrêt,
+les actions de sortie des états concernés
+garantissent l'interruption
+de la cuisson ou de la signalisation.
+</p>
+
+<p>
+La région de la porte reste indépendante :
+l'utilisation de <code>stop</code>
+ne provoque pas automatiquement
+la fermeture de la porte.
+</p>
+
+
+<h3>2.7 Fichiers du projet</h3>
+
+<p class="fichier">
+Fichier source principal :
+<a href="Statechart/Microwave/model/microwave.sct">
+Statechart/Microwave/model/microwave.sct
+</a>
+</p>
+
+<p>
+Le dossier <code>Statechart/Microwave/</code>
+contient les fichiers du projet
+itemis CREATE utilisé pour
+la modélisation du système.
+</p>
+
+
+<h3>2.8 Génération du code et vérification</h3>
+
+<div class="note">
+<strong>Modification des consignes :</strong>
+
+Selon la communication de l'enseignant,
+la version d'itemis CREATE compatible
+avec le code Java fourni n'est plus disponible
+au téléchargement.
+
+Par conséquent, la correction de cette partie
+porte uniquement sur le diagramme Statechart.
+L'exécutabilité du code Java
+n'est pas exigée.
+</div>
+
+
+
+
+<!-- ======================================== -->
+<!-- 3. DESIGN LOGICIEL                      -->
+<!-- ======================================== -->
+
+<h2>3. Design logiciel — Révision du devoir 1</h2>
+
+<p>
+Le système de réservation de voyages
+développé dans le devoir maison 1
+est révisé afin d'améliorer
+sa modularité,
+sa réutilisabilité
+et la répartition des responsabilités.
+</p>
+
+
+<h3>3.1 Révision du diagramme de classes logiciel</h3>
+
+<div class="todo">
+<strong>[RESPONSABLE — À COMPLÉTER]</strong>
+
+Insérer le diagramme de classes révisé.
+
+Présenter les modifications apportées
+par rapport au DM1.
+
+Expliquer les responsabilités
+des nouvelles classes
+et les changements dans les associations.
+</div>
+
+<figure>
+  <img
+    class="diagram"
+    src="Design/diagrammes/classes-logiciel.png"
+    alt="Diagramme de classes logiciel révisé">
+
+  <figcaption>
+    Figure 6 — Diagramme de classes logiciel révisé.
+  </figcaption>
+</figure>
+
+
+<h3>3.2 Révision des diagrammes de séquence</h3>
+
+<p>
+<strong>Responsable :</strong>
+Gabriel Barroso Magno Viana
+</p>
+
+<div class="todo">
+<strong>[GABRIEL — À COMPLÉTER]</strong>
+
+Présenter les modifications apportées
+aux diagrammes de séquence du DM1.
+
+Vérifier leur cohérence avec
+le nouveau diagramme de classes logiciel.
+
+Décrire les changements dans :
+<ul>
+  <li>La répartition des responsabilités.</li>
+  <li>Les messages entre objets.</li>
+  <li>Les appels d'opérations.</li>
+  <li>La création des objets.</li>
+  <li>Les interactions avec les services externes.</li>
+</ul>
+</div>
+
+
+<h4>3.2.1 Vérifier les voyages disponibles</h4>
+
+<figure>
+  <img
+    class="diagram"
+    src="Design/diagrammes/DSVerifierLesVoyages.png"
+    alt="Diagramme de séquence vérifier les voyages">
+
+  <figcaption>
+    Figure 7 — Diagramme de séquence
+    « Vérifier les voyages ».
+  </figcaption>
+</figure>
+
+<div class="todo">
+<strong>[GABRIEL]</strong>
+Décrire les changements effectués
+dans ce diagramme.
+</div>
+
+
+<h4>3.2.2 Réserver une unité</h4>
+
+<figure>
+  <img
+    class="diagram"
+    src="Design/diagrammes/DSReserverUneUnite.png"
+    alt="Diagramme de séquence réserver une unité">
+
+  <figcaption>
+    Figure 8 — Diagramme de séquence
+    « Réserver une unité ».
+  </figcaption>
+</figure>
+
+<div class="todo">
+<strong>[GABRIEL]</strong>
+Décrire les changements effectués
+dans ce diagramme.
+</div>
+
+
+<h4>3.2.3 Payer une réservation</h4>
+
+<figure>
+  <img
+    class="diagram"
+    src="Design/diagrammes/DSPayerUneReservation.png"
+    alt="Diagramme de séquence payer une réservation">
+
+  <figcaption>
+    Figure 9 — Diagramme de séquence
+    « Payer une réservation ».
+  </figcaption>
+</figure>
+
+<div class="todo">
+<strong>[GABRIEL]</strong>
+Décrire les changements effectués
+dans ce diagramme.
+</div>
+
+
+<h3>3.3 Révision du diagramme de paquets</h3>
+
+<div class="todo">
+<strong>[RESPONSABLE — À COMPLÉTER]</strong>
+
+Insérer le diagramme de paquets révisé.
+
+Expliquer :
+<ul>
+  <li>Les nouveaux regroupements de classes.</li>
+  <li>Les dépendances entre les paquets.</li>
+  <li>La direction des dépendances.</li>
+  <li>Les interfaces utilisées.</li>
+  <li>Les améliorations apportées au design.</li>
+</ul>
+</div>
+
+<figure>
+  <img
+    class="diagram"
+    src="Design/diagrammes/paquets.png"
+    alt="Diagramme de paquets révisé">
+
+  <figcaption>
+    Figure 10 — Diagramme de paquets révisé.
+  </figcaption>
+</figure>
+
+
+<h3>3.4 Révision des contraintes OCL</h3>
+
+<div class="todo">
+<strong>[RESPONSABLE — À COMPLÉTER]</strong>
+
+Insérer les contraintes OCL révisées.
+
+Présenter les corrections
+apportées aux contraintes du DM1.
+
+Vérifier leur cohérence avec
+les noms des classes,
+des attributs
+et des associations
+du nouveau diagramme.
+</div>
+
+<pre>
+-- Contraintes OCL révisées
+
+-- [À COMPLÉTER]
+
+-- context Classe
+-- inv nomContrainte: ...
+</pre>
+
+
+<h3>3.5 Modules réutilisables</h3>
+
+<div class="todo">
+<strong>[RESPONSABLE — À COMPLÉTER]</strong>
+
+Identifier les modules à usage général.
+
+Présenter les classes ou paquets
+qui peuvent être réutilisés
+dans d'autres applications.
+
+Expliquer les décisions
+de conception favorisant
+la réutilisabilité.
+</div>
+
+<p class="fichier">
+Projet Visual Paradigm :
+<a href="Design/projet.vpp">
+Design/projet.vpp
+</a>
+</p>
+
+
+<!-- ======================================== -->
+<!-- 4. QUALITÉ DU DESIGN                    -->
+<!-- ======================================== -->
+
+<h2>4. Qualité du design</h2>
+
+
+<h3>4.1 Couplage et cohésion</h3>
+
+<div class="todo">
+<strong>[RESPONSABLE — À COMPLÉTER]</strong>
+
+Analyser les types et niveaux de couplage
+entre les classes et les paquets.
+
+Évaluer la cohésion des classes.
+
+Identifier les améliorations
+apportées au design.
+</div>
+
+
+<h3>4.2 Fardeau et domaine des classes</h3>
+
+<div class="todo">
+<strong>[RESPONSABLE — À COMPLÉTER]</strong>
+
+Analyser la relation entre
+le fardeau et le domaine des classes.
+
+Identifier les classes
+ayant trop de responsabilités.
+
+Justifier les éventuelles
+modifications apportées.
+</div>
+
+
+<h3>4.3 Graphe Instabilité–Abstraction (IA)</h3>
+
+<div class="todo">
+<strong>[RESPONSABLE — À COMPLÉTER]</strong>
+
+Calculer les mesures d'instabilité
+et d'abstraction des paquets.
+
+Présenter le graphe IA.
+
+Interpréter les résultats
+et justifier la structure obtenue.
+</div>
+
+<figure>
+  <img
+    class="diagram"
+    src="Design/diagrammes/graphe-IA.png"
+    alt="Graphe Instabilité-Abstraction">
+
+  <figcaption>
+    Figure 11 — Graphe IA des paquets.
+  </figcaption>
+</figure>
+
+
+<h3>4.4 Principes de conception</h3>
+
+<div class="todo">
+<strong>[RESPONSABLE — À COMPLÉTER]</strong>
+
+Présenter les principes de conception
+appliqués dans la révision du système.
+
+Analyser notamment les principes GRASP,
+SOLID et les principes de conception
+des paquets lorsque pertinents.
+
+Associer chaque principe
+à des exemples concrets du design.
+</div>
+
+
+<!-- ======================================== -->
+<!-- DISTRIBUTION DES TÂCHES                 -->
+<!-- ======================================== -->
+
+<h2>Distribution des tâches</h2>
+
+<p>
+Les pourcentages de la colonne
+« Poids » correspondent au barème initial du devoir.
+Les contributions de chaque membre doivent être
+confirmées par l'équipe avant la remise.
+</p>
+
+<table>
+  <tr>
+    <th>Tâche</th>
+    <th>Poids</th>
+    <th>Membre 1<br>Toky</th>
+    <th>Membre 2<br>Gabriel</th>
+    <th>Membre 3<br>Jad</th>
+  </tr>
+
+  <tr>
+    <td>Modélisation du réseau de Pétri</td>
+    <td>15 %</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+  </tr>
+
+  <tr>
+    <td>Analyse du réseau de Pétri</td>
+    <td>10 %</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+  </tr>
+
+  <tr>
+    <td>Statechart du micro-ondes</td>
+    <td>25 %</td>
+    <td>0 %</td>
+    <td>100 %</td>
+    <td>0 %</td>
+  </tr>
+
+  <tr>
+    <td>Génération du code et vérification
+      (consigne révisée)</td>
+    <td>5 %*</td>
+    <td>0 %</td>
+    <td>100 %*</td>
+    <td>0 %</td>
+  </tr>
+
+  <tr>
+    <td>Diagramme de classes logiciel</td>
+    <td>5 %</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+  </tr>
+
+  <tr>
+    <td>Diagrammes de séquence</td>
+    <td>5 %</td>
+    <td>0 %</td>
+    <td>100 %</td>
+    <td>0 %</td>
+  </tr>
+
+  <tr>
+    <td>Diagramme de paquets</td>
+    <td>5 %</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+  </tr>
+
+  <tr>
+    <td>Contraintes OCL</td>
+    <td>5 %</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+  </tr>
+
+  <tr>
+    <td>Modules réutilisables</td>
+    <td>5 %</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+  </tr>
+
+  <tr>
+    <td>Couplage et cohésion</td>
+    <td>5 %</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+  </tr>
+
+  <tr>
+    <td>Fardeau des classes</td>
+    <td>5 %</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+  </tr>
+
+  <tr>
+    <td>Graphe IA et justification</td>
+    <td>5 %</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+  </tr>
+
+  <tr>
+    <td>Principes de conception</td>
+    <td>5 %</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+    <td>[À compléter]</td>
+  </tr>
+
+  <tr>
+    <th>Total du barème initial</th>
+    <th>100 %</th>
+    <th colspan="3">
+      Répartition à confirmer par l'équipe
+    </th>
+  </tr>
+</table>
+
+<p class="small">
+* Selon la communication ultérieure de l'enseignant,
+la correction de la partie Statechart porte uniquement
+sur le diagramme. La répartition affichée pour Gabriel
+reflète l'attribution initiale des tâches
+et ne constitue pas une validation de l'application Java.
+</p>
+
+
+<h3>Membre 1 — Toky</h3>
+
+<div class="todo">
+<strong>[TOKY — À COMPLÉTER]</strong>
+
+Décrire les tâches réellement effectuées,
+la contribution à la conception,
+aux analyses et à la préparation du rapport.
+</div>
+
+
+<h3>Membre 2 — Gabriel</h3>
+
+<p>
+Responsable de la modélisation du Statechart
+du four à micro-ondes.
+Conception des états et transitions,
+de la sélection de puissance,
+de la configuration du temps
+et de la logique de cuisson.
+</p>
+
+<p>
+Modélisation du contrôle de la porte
+à l'aide de régions orthogonales,
+gestion de l'interruption et de la reprise
+de la cuisson et réalisation de la signalisation
+de fin de cuisson.
+</p>
+
+<p>
+Préparation des images du Statechart
+pour le rapport et organisation des fichiers
+du projet itemis CREATE.
+</p>
+
+<div class="todo">
+<strong>[GABRIEL — À COMPLÉTER APRÈS RÉVISION]</strong>
+
+Ajouter la description des modifications
+réellement effectuées aux diagrammes
+de séquence du DM1.
+</div>
+
+
+<h3>Membre 3 — Jad</h3>
+
+<div class="todo">
+<strong>[JAD — À COMPLÉTER]</strong>
+
+Décrire les tâches réellement effectuées,
+la contribution à la conception,
+aux analyses et à la préparation du rapport.
+</div>
+
+
+<div class="footer">
+IFT 3911 — Devoir maison 2.
+Rapport à compléter et à vérifier
+avant la remise finale sur StudiUM.
+</div>
+
+</div>
+</body>
+</html>
+
+```

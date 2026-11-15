@@ -1,186 +1,155 @@
+```
+
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rapport – IFT 3911 – Devoir maison 2</title>
-  <style>
-    :root {
-      --ink: #18212d;
-      --muted: #647083;
-      --line: #dfe5ec;
-      --bg: #f3f5f8;
-      --accent: #c72f2f;
-      --soft: #f8fafc;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rapport – IFT 3911 – Devoir maison 2</title>
 
-    * { box-sizing: border-box; }
+<style>
+  body {
+    margin: 0;
+    background: #f3f5f8;
+    color: #18212d;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+  }
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 15px;
-      line-height: 1.58;
-    }
+  .page {
+    max-width: 990px;
+    margin: 24px auto;
+    padding: 30px 38px 44px;
+    background: white;
+    border: 1px solid #dfe5ec;
+  }
 
+  h1 {
+    font-size: 29px;
+    margin-bottom: 5px;
+  }
+
+  .subtitle {
+    color: #465569;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    margin-top: 38px;
+    color: #c72f2f;
+    font-size: 21px;
+    border-bottom: 1px solid #dfe5ec;
+    padding-bottom: 5px;
+  }
+
+  h3 {
+    margin-top: 24px;
+    font-size: 17px;
+  }
+
+  h4 {
+    margin-top: 18px;
+    font-size: 15px;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 12px 0 16px;
+    font-size: 14px;
+  }
+
+  th, td {
+    border: 1px solid #b7c0cb;
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background: #f0f3f6;
+  }
+
+  img.diagram {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #c9d2dc;
+    margin: 10px auto;
+  }
+
+  figure {
+    margin: 12px 0 22px;
+  }
+
+  figcaption, .fichier {
+    font-size: 13px;
+    color: #647083;
+    margin: 5px 0 10px;
+  }
+
+  .todo {
+    border-left: 3px solid #a7b2c1;
+    background: #f8fafc;
+    padding: 10px 14px;
+    margin: 10px 0 14px;
+    color: #4f5e71;
+  }
+
+  .note {
+    background: #f6f7fa;
+    border: 1px solid #dfe5ec;
+    padding: 12px 15px;
+    margin: 14px 0;
+  }
+
+  .small {
+    color: #647083;
+    font-size: 13px;
+  }
+
+  pre {
+    background: #f8fafc;
+    border: 1px solid #dfe5ec;
+    padding: 11px 13px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font-family: Consolas, monospace;
+    font-size: 13px;
+  }
+
+  code {
+    font-family: Consolas, monospace;
+    font-size: 13px;
+  }
+
+  a {
+    color: #225a8b;
+  }
+
+  .footer {
+    margin-top: 30px;
+    border-top: 1px solid #dfe5ec;
+    padding-top: 12px;
+    color: #647083;
+    font-size: 13px;
+  }
+
+  @media print {
+    body { background: white; }
     .page {
-      max-width: 990px;
-      margin: 24px auto;
-      padding: 30px 38px 44px;
-      background: #fff;
-      border: 1px solid var(--line);
+      border: 0;
+      margin: 0;
+      max-width: none;
     }
-
-    h1 {
-      font-size: 29px;
-      margin: 0 0 3px;
+    img, pre, table {
+      page-break-inside: avoid;
     }
-
-    .subtitle {
-      margin: 0 0 20px;
-      color: #465569;
-      font-size: 16px;
-    }
-
-    h2 {
-      margin: 38px 0 12px;
-      color: var(--accent);
-      font-size: 21px;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 5px;
-    }
-
-    h3 { margin: 23px 0 7px; font-size: 17px; }
-    h4 { margin: 17px 0 6px; font-size: 15px; }
-    p { margin: 8px 0 11px; }
-
-    ul, ol {
-      margin: 8px 0 14px;
-      padding-left: 24px;
-    }
-
-    li { margin-bottom: 4px; }
-
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 12px 0 16px;
-      font-size: 14px;
-    }
-
-    th, td {
-      border: 1px solid #b7c0cb;
-      padding: 8px 10px;
-      text-align: left;
-      vertical-align: top;
-    }
-
-    th {
-      background: #f0f3f6;
-      font-weight: 700;
-    }
-
-    img.diagram {
-      display: block;
-      max-width: 100%;
-      height: auto;
-      border: 1px solid #c9d2dc;
-      background: #fff;
-      margin: 10px auto 5px;
-    }
-
-    figure { margin: 12px 0 22px; }
-
-    figcaption, .fichier {
-      font-size: 13px;
-      color: var(--muted);
-      margin: 5px 0 10px;
-    }
-
-    .missing-img {
-      padding: 14px;
-      background: #fafbfc;
-      border: 1px dashed #b5c0cd;
-      color: #536176;
-      font-size: 13px;
-    }
-
-    .todo {
-      border-left: 3px solid #a7b2c1;
-      background: var(--soft);
-      padding: 10px 14px;
-      margin: 10px 0 14px;
-      color: #4f5e71;
-    }
-
-    .todo strong { color: #293e54; }
-
-    .note {
-      background: #f6f7fa;
-      border: 1px solid var(--line);
-      padding: 12px 15px;
-      margin: 14px 0;
-    }
-
-    .small {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .flag {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      background: #f1f4f7;
-      border: 1px solid #dee5ee;
-      border-radius: 4px;
-      padding: 2px 7px;
-      color: #4d5c6b;
-    }
-
-    code, pre {
-      font-family: Consolas, "Courier New", monospace;
-      font-size: 13px;
-    }
-
-    pre {
-      background: var(--soft);
-      border: 1px solid var(--line);
-      padding: 11px 13px;
-      overflow-x: auto;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-    }
-
-    a {
-      color: #225a8b;
-      text-decoration: underline;
-    }
-
-    .footer {
-      margin-top: 30px;
-      border-top: 1px solid var(--line);
-      padding-top: 12px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    @media print {
-      body { background: #fff; }
-      .page {
-        border: 0;
-        margin: 0;
-        padding: 0;
-        max-width: none;
-      }
-      h2, h3, figure, pre, table {
-        break-inside: avoid;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 
 <body>
@@ -188,54 +157,60 @@
 
 <!--
 INSTRUCTIONS POUR L'ÉQUIPE :
-1. Compléter tous les champs [À COMPLÉTER].
-2. Adapter les chemins des images aux fichiers réels.
-3. Vérifier les contributions et les heures de chaque membre.
-4. Supprimer les indications de travail avant la remise.
+1. Compléter les champs [À COMPLÉTER].
+2. Vérifier les chemins des images.
+3. Confirmer la répartition des tâches.
+4. Vérifier la cohérence avec les diagrammes définitifs.
 5. Placer rapport.htm à la racine du ZIP.
 -->
 
 <h1>Rapport</h1>
 
 <p class="subtitle">
-IFT 3911 — Devoir2 — Modélisation et analyse
+IFT 3911 – Devoir 2 – Modélisation et analyse
 </p>
 
 <table>
-  <tr>
-    <th>Nom</th>
-    <th>Matricule (4 derniers chiffres)</th>
-    <th>Courriel</th>
-    <th>Temps consacré au devoir</th>
-  </tr>
-  <tr>
-    <td>Toky Erick Rabenantoandro</td>
-    <td>6409</td>
-    <td>toky.erick.rabenantoandro@umontreal.ca</td>
-    <td>[À COMPLÉTER] h</td>
-  </tr>
-  <tr>
-    <td>Gabriel Barroso Magno Viana</td>
-    <td>3304</td>
-    <td>gabriel.barroso.magno.viana@umontreal.ca</td>
-    <td>[À COMPLÉTER] h</td>
-  </tr>
-  <tr>
-    <td>Jad Idrissi</td>
-    <td>8693</td>
-    <td>jad.idrissi@umontreal.ca</td>
-    <td>[À COMPLÉTER] h</td>
-  </tr>
+<tr>
+  <th>Nom</th>
+  <th>Matricule (4 derniers chiffres)</th>
+  <th>Courriel</th>
+  <th>Temps consacré au devoir</th>
+</tr>
+
+<tr>
+  <td>Toky Erick Rabenantoandro</td>
+  <td>6409</td>
+  <td>toky.erick.rabenantoandro@umontreal.ca</td>
+  <td>[À COMPLÉTER] h</td>
+</tr>
+
+<tr>
+  <td>Gabriel Barroso Magno Viana</td>
+  <td>3304</td>
+  <td>gabriel.barroso.magno.viana@umontreal.ca</td>
+  <td>20 h</td>
+</tr>
+
+<tr>
+  <td>Jad Idrissi</td>
+  <td>8693</td>
+  <td>jad.idrissi@umontreal.ca</td>
+  <td>[À COMPLÉTER] h</td>
+</tr>
 </table>
 
-
 <p>
-  <strong>Dépôt GitHub :</strong>
-  <a href="[URL-DU-REPOSITORY]">
-    [URL DU RÉPERTOIRE GITHUB DU DM2]
-  </a>
+<strong>Dépôt GitHub :</strong>
+<a href="https://github.com/frdyykksch/ift3700-1">
+[URL DU RÉPERTOIRE GITHUB DU DM2]
+</a>
 </p>
 
+
+<!-- ===================================== -->
+<!-- FICHIERS REMIS                        -->
+<!-- ===================================== -->
 
 <h2>Fichiers remis</h2>
 
@@ -245,7 +220,7 @@ de l'archive ZIP. Le dépôt est organisé comme suit :
 </p>
 
 <pre>
-rapport.html
+rapport.htm
 
 Design/
     projet.vpp
@@ -271,11 +246,14 @@ Statechart/
 
 <div class="todo">
 <strong>À compléter :</strong>
-Vérifier les noms et les chemins des fichiers.
-Supprimer les fichiers qui ne sont pas présents
-dans la remise finale.
+Vérifier les noms et les chemins des fichiers
+avant la remise finale.
 </div>
 
+
+<!-- ===================================== -->
+<!-- HYPOTHÈSES                            -->
+<!-- ===================================== -->
 
 <h2>Hypothèses générales</h2>
 
@@ -288,47 +266,71 @@ les modifications apportées au système de réservation.
 <h3>Hypothèses concernant le réseau de Pétri</h3>
 
 <ul>
-  <li>Le flux est continu : une voiture attend en tout temps à chaque entrée du tunnel.</li>
-  <li>Une voiture quitte le système dès qu'elle sort du tunnel ; aucune place ne représente les voitures arrivées.</li>
-  <li>Un feu est vert lorsque sa place contient un jeton, et rouge sinon. Pendant une traversée, les deux feux sont rouges.</li>
-  <li>Au départ, le tunnel est vide et le feu côté Montréal est vert. Ce choix est arbitraire : l'autre choix produit le même cycle.</li>
+<li>
+Le flux est continu : une voiture attend en tout temps
+à chaque entrée du tunnel.
+</li>
+
+<li>
+Une voiture quitte le système dès qu'elle sort du tunnel ;
+aucune place ne représente les voitures arrivées.
+</li>
+
+<li>
+Un feu est vert lorsque sa place contient un jeton,
+et rouge sinon. Pendant une traversée,
+les deux feux sont rouges.
+</li>
+
+<li>
+Au départ, le tunnel est vide et le feu côté Montréal
+est vert. Ce choix est arbitraire :
+l'autre choix produit le même cycle.
+</li>
 </ul>
 
 <h3>Hypothèses concernant le micro-ondes</h3>
 
 <ul>
-  <li>
-    Le four démarre au repos, avec la porte fermée.
-  </li>
-  <li>
-    La puissance doit être sélectionnée avant la saisie du temps.
-    La puissance forte correspond à <code>power = 1</code>,
-    tandis que la puissance faible correspond à
-    <code>power = 2</code>.
-  </li>
-  <li>
-    Le temps saisi comporte au maximum quatre chiffres
-    et représente une durée en secondes.
-  </li>
-  <li>
-    Une durée nulle ne permet pas de démarrer la cuisson.
-  </li>
-  <li>
-    L'ouverture et la fermeture de la porte ne déclenchent
-    jamais automatiquement la cuisson.
-  </li>
-  <li>
-    L'événement <code>stop</code> interrompt le processus
-    sans modifier physiquement l'état de la porte.
-  </li>
+<li>
+Le four démarre au repos, avec la porte fermée.
+</li>
+
+<li>
+La puissance doit être sélectionnée avant
+la saisie du temps.
+La puissance forte correspond à
+<code>power = 1</code>,
+tandis que la puissance faible correspond
+à <code>power = 2</code>.
+</li>
+
+<li>
+Le temps saisi comporte au maximum quatre chiffres
+et représente une durée en secondes.
+</li>
+
+<li>
+Une durée nulle ne permet pas de démarrer la cuisson.
+</li>
+
+<li>
+L'ouverture et la fermeture de la porte
+ne déclenchent jamais automatiquement la cuisson.
+</li>
+
+<li>
+L'événement <code>stop</code> interrompt le processus
+sans modifier physiquement l'état de la porte.
+</li>
 </ul>
 
 
-<!-- ======================================== -->
-<!-- 1. RÉSEAU DE PÉTRI                      -->
-<!-- ======================================== -->
+<!-- ===================================== -->
+<!-- 1. RÉSEAU DE PÉTRI                    -->
+<!-- ===================================== -->
 
-<h2>1. Réseau de Pétri — Tunnel</h2>
+<h2>1. Réseau de Pétri – Tunnel</h2>
 
 <p>
 <strong>Responsable :</strong>
@@ -338,106 +340,212 @@ Toky Erick Rabenantoandro
 <h3>1.1 Hypothèses et modélisation</h3>
 
 <p>
-Le réseau a été construit en trois incréments, dans l'ordre
-des consignes. Chaque place représente une condition
+Le réseau a été construit en trois incréments,
+dans l'ordre des consignes.
+Chaque place représente une condition
 et chaque transition un événement.
 </p>
 
 <ul>
-  <li><strong>Voiture en attente MTL</strong> et <strong>Voiture en attente RS</strong> : une voiture attend à l'entrée du tunnel (1 jeton chacune au départ).</li>
-  <li><strong>Tunnel Libre</strong> : aucune voiture n'est dans le tunnel (1 jeton au départ).</li>
-  <li><strong>Dans tunnel vers RS</strong> et <strong>Dans tunnel vers MTL</strong> : une voiture traverse le tunnel dans ce sens (0 jeton au départ).</li>
-  <li><strong>Feu MTL</strong> et <strong>Feu RS</strong> : le feu de ce côté est vert (1 jeton pour Feu MTL, 0 pour Feu RS au départ).</li>
+<li>
+<strong>Voiture en attente MTL</strong> et
+<strong>Voiture en attente RS</strong> :
+une voiture attend à l'entrée du tunnel
+(1 jeton chacune au départ).
+</li>
+
+<li>
+<strong>Tunnel Libre</strong> :
+aucune voiture n'est dans le tunnel
+(1 jeton au départ).
+</li>
+
+<li>
+<strong>Dans tunnel vers RS</strong> et
+<strong>Dans tunnel vers MTL</strong> :
+une voiture traverse le tunnel dans ce sens
+(0 jeton au départ).
+</li>
+
+<li>
+<strong>Feu MTL</strong> et <strong>Feu RS</strong> :
+le feu de ce côté est vert
+(1 jeton pour Feu MTL,
+0 pour Feu RS au départ).
+</li>
 </ul>
 
 <table>
-  <tr>
-    <th>Transition</th>
-    <th>Consomme</th>
-    <th>Produit</th>
-  </tr>
-  <tr><td>Entrer depuis Montréal</td><td>Voiture en attente MTL, Tunnel Libre, Feu MTL</td><td>Voiture en attente MTL, Dans tunnel vers RS</td></tr>
-  <tr><td>Sortir vers Rive Sud</td><td>Dans tunnel vers RS</td><td>Tunnel Libre, Feu RS</td></tr>
-  <tr><td>Entrer depuis Rive Sud</td><td>Voiture en attente RS, Tunnel Libre, Feu RS</td><td>Voiture en attente RS, Dans tunnel vers MTL</td></tr>
-  <tr><td>Sortir vers Montréal</td><td>Dans tunnel vers MTL</td><td>Tunnel Libre, Feu MTL</td></tr>
+<tr>
+<th>Transition</th>
+<th>Consomme</th>
+<th>Produit</th>
+</tr>
+
+<tr>
+<td>Entrer depuis Montréal</td>
+<td>Voiture en attente MTL, Tunnel Libre, Feu MTL</td>
+<td>Voiture en attente MTL, Dans tunnel vers RS</td>
+</tr>
+
+<tr>
+<td>Sortir vers Rive Sud</td>
+<td>Dans tunnel vers RS</td>
+<td>Tunnel Libre, Feu RS</td>
+</tr>
+
+<tr>
+<td>Entrer depuis Rive Sud</td>
+<td>Voiture en attente RS, Tunnel Libre, Feu RS</td>
+<td>Voiture en attente RS, Dans tunnel vers MTL</td>
+</tr>
+
+<tr>
+<td>Sortir vers Montréal</td>
+<td>Dans tunnel vers MTL</td>
+<td>Tunnel Libre, Feu MTL</td>
+</tr>
 </table>
 
 <p>
-Tous les arcs ont un poids de 1. L'état est noté
-M = [Voiture en attente MTL, Voiture en attente RS, Tunnel Libre,
-Dans tunnel vers RS, Dans tunnel vers MTL, Feu MTL, Feu RS],
-avec le marquage initial M<sub>0</sub> = [1, 1, 1, 0, 0, 1, 0].
+Tous les arcs ont un poids de 1.
+L'état est noté :
 </p>
 
-<h4>Incrément 1, Les deux voies et le flux continu</h4>
+<pre>
+M = [
+  Voiture en attente MTL,
+  Voiture en attente RS,
+  Tunnel Libre,
+  Dans tunnel vers RS,
+  Dans tunnel vers MTL,
+  Feu MTL,
+  Feu RS
+]
+
+M0 = [1, 1, 1, 0, 0, 1, 0]
+</pre>
+
+<h4>Incrément 1 – Les deux voies et le flux continu</h4>
 
 <p>
-Chaque voie possède une place d'attente et une place représentant
-la voiture dans le tunnel. Chaque place d'attente est reliée
-à sa transition d'entrée par deux arcs : le jeton est consommé
-(la voiture part dans le tunnel), puis immédiatement restitué
-(la voiture suivante arrive). Son marquage reste donc constant
-à 1, ce qui modélise le flux continu. Ce jeton reste indispensable :
+Chaque voie possède une place d'attente et une place
+représentant la voiture dans le tunnel.
+Chaque place d'attente est reliée à sa transition d'entrée
+par deux arcs : le jeton est consommé
+(la voiture part dans le tunnel),
+puis immédiatement restitué
+(la voiture suivante arrive).
+</p>
+
+<p>
+Son marquage reste donc constant à 1,
+ce qui modélise le flux continu.
+Ce jeton reste indispensable :
 sans lui, l'entrée ne serait jamais franchissable.
-À ce stade, rien ne limite le nombre de voitures dans le tunnel :
-le réseau n'est pas borné.
+À ce stade, rien ne limite le nombre de voitures
+dans le tunnel : le réseau n'est pas borné.
 </p>
 
-<h4>Incrément 2, Une seule voiture dans le tunnel</h4>
+<h4>Incrément 2 – Une seule voiture dans le tunnel</h4>
 
 <p>
-La place « Tunnel Libre » joue le rôle de capacité : les deux
-transitions d'entrée la consomment et les deux transitions
-de sortie la rendent. Une voiture n'entre donc que si le tunnel
-est vide. Les deux entrées sont toutefois en conflit sur cette
-place : rien n'empêche une même voie de reprendre le tunnel
-indéfiniment. Le système n'est pas équitable.
+La place « Tunnel Libre » joue le rôle de capacité :
+les deux transitions d'entrée la consomment
+et les deux transitions de sortie la rendent.
+Une voiture n'entre donc que si le tunnel est vide.
 </p>
 
-<h4>Incrément 3, Les feux</h4>
+<p>
+Les deux entrées sont toutefois en conflit
+sur cette place :
+rien n'empêche une même voie de reprendre
+le tunnel indéfiniment.
+Le système n'est pas équitable.
+</p>
+
+<h4>Incrément 3 – Les feux</h4>
 
 <p>
-Une transition d'entrée consomme le feu vert de son côté,
-et la transition de sortie correspondante donne le vert
-au côté opposé. Lorsqu'une voiture venue de Montréal sort,
-le feu côté Rive Sud passe au vert, et inversement.
+Une transition d'entrée consomme le feu vert
+de son côté, et la transition de sortie
+correspondante donne le vert au côté opposé.
+</p>
+
+<p>
+Lorsqu'une voiture venue de Montréal sort,
+le feu côté Rive Sud passe au vert,
+et inversement.
 Les deux sens de circulation alternent donc.
 </p>
 
 <figure>
-  <img
-    class="diagram"
-    src="Réseau de Petri/reseau-tunnel.png"
-    alt="Réseau de Pétri du tunnel">
+<img
+  class="diagram"
+  src="Réseau de Petri/reseau-tunnel.png"
+  alt="Réseau de Pétri du tunnel">
+<figcaption>
+Figure 1 – Réseau de Pétri du tunnel.
+</figcaption>
 </figure>
 
 <h3>1.2 Lois de conservation et sécurité</h3>
 
 <p>
-On considère le vecteur de pondération γ = [0, 0, 1, 1, 1, 0, 0],
-c'est-à-dire la somme
-S(M) = M(Tunnel Libre) + M(Dans tunnel vers RS) + M(Dans tunnel vers MTL).
+On considère le vecteur de pondération :
 </p>
 
+<pre>
+γ = [0, 0, 1, 1, 1, 0, 0]
+
+S(M) =
+M(Tunnel Libre)
++ M(Dans tunnel vers RS)
++ M(Dans tunnel vers MTL)
+</pre>
+
 <ul>
-  <li>« Entrer depuis Montréal » retire un jeton de Tunnel Libre et en ajoute un dans Dans tunnel vers RS : S ne change pas.</li>
-  <li>« Sortir vers Rive Sud » retire un jeton de Dans tunnel vers RS et en ajoute un dans Tunnel Libre : S ne change pas.</li>
-  <li>« Entrer depuis Rive Sud » et « Sortir vers Montréal » font de même avec Dans tunnel vers MTL : S ne change pas.</li>
+<li>
+« Entrer depuis Montréal » retire un jeton
+de Tunnel Libre et en ajoute un dans
+Dans tunnel vers RS : S ne change pas.
+</li>
+
+<li>
+« Sortir vers Rive Sud » retire un jeton
+de Dans tunnel vers RS et en ajoute un
+dans Tunnel Libre : S ne change pas.
+</li>
+
+<li>
+« Entrer depuis Rive Sud » et
+« Sortir vers Montréal » font de même
+avec Dans tunnel vers MTL :
+S ne change pas.
+</li>
 </ul>
 
 <p>
-Au départ, S(M<sub>0</sub>) = 1 + 0 + 0 = 1. Comme tout marquage
-accessible s'obtient par une suite de franchissements depuis
-M<sub>0</sub>, on a S(M) = 1 pour tout marquage accessible :
+Au départ, S(M<sub>0</sub>) = 1 + 0 + 0 = 1.
+Comme tout marquage accessible s'obtient
+par une suite de franchissements depuis M<sub>0</sub>,
+on a S(M) = 1 pour tout marquage accessible :
 le réseau est conservateur pour γ, avec k = 1.
 </p>
 
 <p>
 Puisqu'un nombre de jetons est toujours positif ou nul,
-M(Tunnel Libre) ≥ 0, et donc
-<strong>M(Dans tunnel vers RS) + M(Dans tunnel vers MTL) ≤ 1</strong> :
-au plus une voiture se trouve dans le tunnel,
-quel que soit son sens. ∎
+M(Tunnel Libre) ≥ 0, et donc :
+</p>
+
+<pre>
+M(Dans tunnel vers RS)
++ M(Dans tunnel vers MTL) ≤ 1
+</pre>
+
+<p>
+Au plus une voiture se trouve dans le tunnel,
+quel que soit son sens.
 </p>
 
 <p>
@@ -445,12 +553,25 @@ Deux autres lois se vérifient de la même façon :
 </p>
 
 <ul>
-  <li>M(Voiture en attente MTL) = 1 et M(Voiture en attente RS) = 1 : une voiture attend en tout temps à chaque entrée.</li>
-  <li>M(Dans tunnel vers RS) + M(Dans tunnel vers MTL) + M(Feu MTL) + M(Feu RS) = 1 : au plus un feu est vert, et aucun ne l'est lorsque le tunnel est occupé.</li>
+<li>
+M(Voiture en attente MTL) = 1
+et M(Voiture en attente RS) = 1 :
+une voiture attend en tout temps à chaque entrée.
+</li>
+
+<li>
+M(Dans tunnel vers RS)
++ M(Dans tunnel vers MTL)
++ M(Feu MTL)
++ M(Feu RS) = 1 :
+au plus un feu est vert,
+et aucun ne l'est lorsque le tunnel est occupé.
+</li>
 </ul>
 
 <p>
-Ces lois montrent que chaque place contient au plus un jeton :
+Ces lois montrent que chaque place contient
+au plus un jeton :
 le réseau est borné et sécuritaire.
 </p>
 
@@ -458,94 +579,165 @@ le réseau est borné et sécuritaire.
 
 <p>
 Le graphe est construit avec l'algorithme de Karp-Miller,
-à partir de M<sub>0</sub>. Pour chaque nœud, on teste les quatre
-transitions ; une transition est franchissable lorsque chacune
+à partir de M<sub>0</sub>.
+Pour chaque nœud, on teste les quatre transitions ;
+une transition est franchissable lorsque chacune
 de ses places d'entrée contient au moins un jeton.
 </p>
 
 <table>
-  <tr>
-    <th>Nœud</th>
-    <th>Marquage</th>
-    <th>Seule transition franchissable</th>
-    <th>Pourquoi les autres sont bloquées</th>
-    <th>Résultat</th>
-  </tr>
-  <tr><td>M<sub>0</sub></td><td>[1,1,1,0,0,1,0]</td><td>Entrer depuis Montréal</td><td>Feu RS = 0 ; tunnel vide</td><td>M<sub>1</sub></td></tr>
-  <tr><td>M<sub>1</sub></td><td>[1,1,0,1,0,0,0]</td><td>Sortir vers Rive Sud</td><td>Tunnel Libre = 0</td><td>M<sub>2</sub></td></tr>
-  <tr><td>M<sub>2</sub></td><td>[1,1,1,0,0,0,1]</td><td>Entrer depuis Rive Sud</td><td>Feu MTL = 0 ; tunnel vide</td><td>M<sub>3</sub></td></tr>
-  <tr><td>M<sub>3</sub></td><td>[1,1,0,0,1,0,0]</td><td>Sortir vers Montréal</td><td>Tunnel Libre = 0</td><td>M<sub>0</sub> (duplicata)</td></tr>
+<tr>
+<th>Nœud</th>
+<th>Marquage</th>
+<th>Transition franchissable</th>
+<th>Résultat</th>
+</tr>
+
+<tr>
+<td>M0</td>
+<td>[1,1,1,0,0,1,0]</td>
+<td>Entrer depuis Montréal</td>
+<td>M1</td>
+</tr>
+
+<tr>
+<td>M1</td>
+<td>[1,1,0,1,0,0,0]</td>
+<td>Sortir vers Rive Sud</td>
+<td>M2</td>
+</tr>
+
+<tr>
+<td>M2</td>
+<td>[1,1,1,0,0,0,1]</td>
+<td>Entrer depuis Rive Sud</td>
+<td>M3</td>
+</tr>
+
+<tr>
+<td>M3</td>
+<td>[1,1,0,0,1,0,0]</td>
+<td>Sortir vers Montréal</td>
+<td>M0</td>
+</tr>
 </table>
 
 <p>
-À chaque étape, le marquage obtenu est comparé aux nœuds
-de son chemin depuis M<sub>0</sub>. Il contient toujours moins
-de jetons qu'eux dans au moins une place : aucun marquage
-ne domine un ancêtre, donc aucun ω n'est introduit.
-Le marquage obtenu depuis M<sub>3</sub> est égal à M<sub>0</sub> :
-c'est un duplicata, et la construction s'arrête.
+À chaque étape, le marquage obtenu est comparé
+aux nœuds de son chemin depuis M<sub>0</sub>.
+Il contient toujours moins de jetons qu'eux
+dans au moins une place :
+aucun marquage ne domine un ancêtre,
+donc aucun ω n'est introduit.
+</p>
+
+<p>
+Le marquage obtenu depuis M<sub>3</sub>
+est égal à M<sub>0</sub> :
+c'est un duplicata,
+et la construction s'arrête.
 </p>
 
 <figure>
-  <img
-    class="diagram"
-    src="Réseau de Petri/graphe-couverture.png"
-    alt="Graphe de couverture">
+<img
+  class="diagram"
+  src="Réseau de Petri/graphe-couverture.png"
+  alt="Graphe de couverture">
+<figcaption>
+Figure 2 – Graphe de couverture.
+</figcaption>
 </figure>
 
 <h4>Propriétés lues sur le graphe</h4>
 
 <ul>
-  <li><strong>Borné :</strong> aucun ω n'apparaît. Le graphe de couverture est donc identique au graphe d'accessibilité, sans perte d'information.</li>
-  <li><strong>Pas d'interblocage :</strong> aucun nœud n'est terminal.</li>
-  <li><strong>Vivant :</strong> les quatre transitions apparaissent dans le cycle et restent franchissables depuis tout marquage accessible ; elles sont L4-vivantes.</li>
+<li>
+<strong>Borné :</strong>
+aucun ω n'apparaît.
+Le graphe de couverture est donc identique
+au graphe d'accessibilité.
+</li>
+
+<li>
+<strong>Pas d'interblocage :</strong>
+aucun nœud n'est terminal.
+</li>
+
+<li>
+<strong>Vivant :</strong>
+les quatre transitions apparaissent dans le cycle
+et restent franchissables depuis tout marquage accessible ;
+elles sont L4-vivantes.
+</li>
 </ul>
 
 <h4>Équité</h4>
 
 <p>
-Chaque nœud a un seul arc sortant : la seule séquence possible
-est ⟨Entrer depuis Montréal, Sortir vers Rive Sud,
-Entrer depuis Rive Sud, Sortir vers Montréal⟩, répétée indéfiniment.
-Aucun marquage ne rend les deux transitions d'entrée franchissables
-en même temps : elles ne sont jamais en conflit, contrairement
-à l'incrément 2. Les entrées des deux sens alternent strictement,
-et une même voie ne peut jamais entrer deux fois de suite.
-Le système est donc équitable de part et d'autre du tunnel. 
+Chaque nœud a un seul arc sortant :
+la seule séquence possible est :
+</p>
+
+<pre>
+Entrer depuis Montréal
+→ Sortir vers Rive Sud
+→ Entrer depuis Rive Sud
+→ Sortir vers Montréal
+→ ...
+</pre>
+
+<p>
+Cette séquence est répétée indéfiniment.
+Aucun marquage ne rend les deux transitions
+d'entrée franchissables en même temps.
+Les entrées des deux sens alternent strictement,
+et une même voie ne peut jamais entrer
+deux fois de suite.
 </p>
 
 <h4>Absence de famine</h4>
 
 <p>
-Il y a famine lorsqu'un processus se voit refuser indéfiniment
-une ressource dont il a besoin. Ici, les processus sont les deux
-voies et la ressource est le tunnel. Puisque le système est
-équitable, chaque voie obtient le tunnel en au plus trois
-franchissements depuis n'importe quel état, c'est-à-dire après
-le passage d'une seule voiture de l'autre côté. Comme il n'y a
-pas d'interblocage, aucune voie n'attend indéfiniment :
-il n'y a pas de famine dans le réseau. 
+Il y a famine lorsqu'un processus se voit
+refuser indéfiniment une ressource
+dont il a besoin.
+Ici, les processus sont les deux voies
+et la ressource est le tunnel.
 </p>
 
+<p>
+Puisque le système est équitable,
+chaque voie obtient le tunnel
+en au plus trois franchissements
+depuis n'importe quel état,
+c'est-à-dire après le passage
+d'une seule voiture de l'autre côté.
+</p>
+
+<p>
+Comme il n'y a pas d'interblocage,
+aucune voie n'attend indéfiniment :
+il n'y a pas de famine dans le réseau.
+</p>
 
 <p class="fichier">
-Fichier source du modèle :
+Fichier source :
 <a href="Réseau de Petri/reseau-tunnel.xml">
 Réseau de Petri/reseau-tunnel.xml
 </a>
 </p>
 
-<!-- ======================================== -->
-<!-- 2. STATECHART — GABRIEL                 -->
-<!-- ======================================== -->
 
-<h2>2. Statechart — Four à micro-ondes</h2>
+<!-- ===================================== -->
+<!-- 2. STATECHART                         -->
+<!-- ===================================== -->
+
+<h2>2. Statechart – Four à micro-ondes</h2>
 
 <p>
 <strong>Responsable :</strong>
 Gabriel Barroso Magno Viana
 </p>
-
 
 <h3>2.1 Présentation générale du modèle</h3>
 
@@ -558,20 +750,27 @@ Le comportement du four à micro-ondes est modélisé
 <p>
 Le modèle est organisé en deux régions orthogonales :
 <code>Microwave</code> et <code>Porte</code>.
-La première région est responsable du fonctionnement
-du micro-ondes, notamment la sélection de la puissance,
-la saisie du temps, la cuisson et sa finalisation.
-La seconde région contrôle l'ouverture et la fermeture
-de la porte.
 </p>
 
 <p>
-L'utilisation de régions orthogonales permet de représenter
-simultanément deux aspects indépendants du système.
-Ainsi, le micro-ondes peut se trouver dans un état
-de fonctionnement, comme <code>Addtime</code> ou
-<code>Waiting</code>, tout en ayant la porte ouverte
-ou fermée.
+La première région est responsable du fonctionnement
+du micro-ondes, notamment la sélection de puissance,
+la saisie du temps, la cuisson et sa finalisation.
+La seconde région contrôle l'ouverture
+et la fermeture de la porte.
+</p>
+
+<p>
+L'utilisation de régions orthogonales permet
+de représenter simultanément deux aspects
+indépendants du système.
+</p>
+
+<p>
+Ainsi, le micro-ondes peut se trouver
+dans un état de fonctionnement,
+comme <code>Addtime</code> ou <code>Waiting</code>,
+tout en ayant la porte ouverte ou fermée.
 </p>
 
 <p>
@@ -582,22 +781,21 @@ et la position de la porte.
 </p>
 
 <figure>
-  <img
-    class="diagram"
-    src="Statechart/microwave_complet.png"
-    alt="Statechart complet du micro-ondes">
+<img
+  class="diagram"
+  src="Statechart/microwave_complet.png"
+  alt="Statechart complet du micro-ondes">
 </figure>
 
 
 <h3>2.2 Région Microwave</h3>
 
 <figure>
-  <img
-    class="diagram"
-    src="Statechart/microwave.png"
-    alt="Région Microwave">
+<img
+  class="diagram"
+  src="Statechart/microwave.png"
+  alt="Région Microwave">
 </figure>
-
 
 <h4>2.2.1 Sélection de la puissance</h4>
 
@@ -611,6 +809,9 @@ par l'opération <code>clearDisplay()</code>.
 Les événements <code>high</code> et <code>low</code>
 permettent de sélectionner respectivement
 une puissance forte ou faible.
+</p>
+
+<p>
 Le système peut également passer d'une puissance
 à l'autre avant la configuration du temps de cuisson.
 </p>
@@ -619,6 +820,9 @@ Le système peut également passer d'une puissance
 Lors de l'entrée dans l'état <code>High</code>,
 la variable <code>power</code> reçoit la valeur 1
 et le message « High » est affiché.
+</p>
+
+<p>
 Dans l'état <code>Low</code>,
 la variable reçoit la valeur 2
 et le message « Low » est affiché.
@@ -629,24 +833,27 @@ et le message « Low » est affiché.
 
 <p>
 L'événement <code>timer</code> permet de passer
-de l'état de sélection de puissance à
-l'état <code>Addtime</code>.
+de l'état de sélection de puissance
+à l'état <code>Addtime</code>.
 </p>
 
 <p>
-Cet état permet de saisir une durée maximale
-de quatre chiffres.
+Cet état permet de saisir une durée
+de quatre chiffres au maximum.
 Deux variables internes sont utilisées :
-<code>remainingTime</code>, qui contient
-la durée saisie en secondes,
-et <code>digitCount</code>, qui représente
-le nombre de chiffres introduits.
+<code>remainingTime</code>,
+qui contient la durée saisie en secondes,
+et <code>digitCount</code>,
+qui représente le nombre de chiffres introduits.
 </p>
 
 <p>
 Une réaction locale associée à l'événement
-<code>digit</code> permet de mettre à jour le temps
-sans quitter l'état <code>Addtime</code>.
+<code>digit</code> permet de mettre à jour
+le temps sans quitter l'état <code>Addtime</code>.
+</p>
+
+<p>
 La garde <code>digitCount &lt; 4</code>
 empêche l'introduction de chiffres supplémentaires
 après les quatre premiers.
@@ -661,10 +868,11 @@ digit [digitCount &lt; 4] /
 
 <p>
 La conversion utilisée pour
-<code>displayTime()</code> permet de représenter
-le temps sous la forme minutes:secondes,
-tout en conservant la durée réelle en secondes
-dans la variable <code>remainingTime</code>.
+<code>displayTime()</code>
+permet de représenter le temps
+sous la forme minutes:secondes,
+tout en conservant la durée réelle
+en secondes dans <code>remainingTime</code>.
 </p>
 
 
@@ -674,7 +882,8 @@ dans la variable <code>remainingTime</code>.
 La transition vers l'état <code>Cooking</code>
 nécessite l'événement <code>start</code>
 et le respect de deux conditions :
-la durée doit être positive et la porte doit être fermée.
+la durée doit être positive
+et la porte doit être fermée.
 </p>
 
 <pre>
@@ -688,9 +897,11 @@ et le temps restant est affiché.
 </p>
 
 <p>
-Le compte à rebours est modélisé par une réaction
-temporelle <code>every 1 s</code>,
-qui diminue la variable <code>remainingTime</code>
+Le compte à rebours est modélisé
+par une réaction temporelle
+<code>every 1 s</code>.
+Elle diminue la variable
+<code>remainingTime</code>
 d'une unité toutes les secondes,
 tant que sa valeur est supérieure à 1.
 </p>
@@ -723,14 +934,18 @@ lorsque l'état <code>Cooking</code> est quitté.
 <h3>2.3 Région Porte</h3>
 
 <figure>
-  <img
-    class="diagram"
-    src="Statechart/porte.png"
-    alt="Région Porte">
+<img
+  class="diagram"
+  src="Statechart/porte.png"
+  alt="Région Porte">
+<figcaption>
+Figure 5 – Région orthogonale Porte.
+</figcaption>
 </figure>
 
 <p>
-La région <code>Porte</code> comporte deux états :
+La région <code>Porte</code>
+comporte deux états :
 <code>Closing</code> et <code>Opening</code>.
 </p>
 
@@ -744,8 +959,8 @@ d'un état à l'autre.
 
 <p>
 La variable interne booléenne
-<code>doorOpen</code> mémorise la position
-de la porte.
+<code>doorOpen</code>
+mémorise la position de la porte.
 </p>
 
 <p>
@@ -753,16 +968,21 @@ Lors de l'entrée dans <code>Opening</code>,
 cette variable devient <code>true</code>
 et l'opération <code>openDoor()</code>
 est exécutée.
+</p>
+
+<p>
 À l'inverse, l'entrée dans
-<code>Closing</code> met
-<code>doorOpen</code> à <code>false</code>
+<code>Closing</code>
+met <code>doorOpen</code> à
+<code>false</code>
 et exécute <code>closeDoor()</code>.
 </p>
 
 <p>
-Cette variable est consultée dans les gardes
-de la région principale afin d'empêcher
-la cuisson lorsque la porte est ouverte.
+Cette variable est consultée
+dans les gardes de la région principale
+afin d'empêcher la cuisson
+lorsque la porte est ouverte.
 </p>
 
 
@@ -782,32 +1002,38 @@ interrompant immédiatement le processus de cuisson.
 </p>
 
 <p>
-Le temps restant est conservé dans
-la variable <code>remainingTime</code>.
-Il n'est donc pas nécessaire de recommencer
-la configuration du temporisateur.
+Le temps restant est conservé
+dans la variable <code>remainingTime</code>.
+Il n'est donc pas nécessaire
+de recommencer la configuration du temporisateur.
 </p>
 
 <p>
 À l'entrée dans <code>Waiting</code>,
 le message « Waiting » est affiché.
-Si la porte est refermée, une réaction locale
-associée à <code>close</code>
+</p>
+
+<p>
+Si la porte est refermée,
+une réaction locale associée à <code>close</code>
 permet de restaurer le temps restant
 sur l'afficheur.
 </p>
 
 <p>
-Une nouvelle ouverture de la porte dans
-cet état affiche à nouveau le message
-« Waiting ».
+Une nouvelle ouverture de la porte
+dans cet état affiche à nouveau
+le message « Waiting ».
 </p>
 
 <p>
-La fermeture de la porte ne déclenche
-pas automatiquement la reprise.
-L'utilisateur doit appuyer à nouveau sur
-<code>start</code>.
+La fermeture de la porte
+ne déclenche pas automatiquement la reprise.
+L'utilisateur doit appuyer
+à nouveau sur <code>start</code>.
+</p>
+
+<p>
 La transition vers <code>Cooking</code>
 est alors autorisée uniquement
 si la porte est fermée
@@ -820,9 +1046,9 @@ start [doorOpen == false &amp;&amp; remainingTime &gt; 0]
 
 <p>
 Cette solution permet d'assurer
-la sécurité du système et la conservation
-des informations nécessaires
-à la reprise de la cuisson.
+la sécurité du système
+et la conservation des informations
+nécessaires à la reprise de la cuisson.
 </p>
 
 
@@ -837,6 +1063,9 @@ le système entre dans l'état composite
 <p>
 L'entrée dans cet état affiche
 le message « Finished ».
+</p>
+
+<p>
 Deux sous-états,
 <code>BeepOn</code> et <code>BeepOff</code>,
 assurent la signalisation sonore
@@ -844,8 +1073,8 @@ et le clignotement de l'afficheur.
 </p>
 
 <p>
-Les deux états alternent à intervalles
-de 500 millisecondes,
+Les deux états alternent
+à intervalles de 500 millisecondes,
 grâce à des transitions temporelles
 <code>after 500 ms</code>.
 </p>
@@ -859,11 +1088,9 @@ et ramène le micro-ondes
 </p>
 
 <p>
-L'action de sortie
-<code>beepOff()</code>
+L'action de sortie <code>beepOff()</code>
 permet d'interrompre la signalisation
-au moment de quitter
-<code>Finishingcooking</code>.
+au moment de quitter <code>Finishingcooking</code>.
 </p>
 
 
@@ -872,13 +1099,13 @@ au moment de quitter
 <p>
 L'événement <code>stop</code>
 permet d'interrompre le fonctionnement
-du micro-ondes et de revenir à
-l'état <code>Repos</code>.
+du micro-ondes et de revenir
+à l'état <code>Repos</code>.
 </p>
 
 <p>
-Cette possibilité est prévue depuis
-les différents états du processus,
+Cette possibilité est prévue
+depuis les différents états du processus,
 notamment la sélection de puissance,
 la saisie du temps,
 la cuisson,
@@ -911,9 +1138,8 @@ Statechart/Microwave/model/microwave.sct
 
 <p>
 Le dossier <code>Statechart/Microwave/</code>
-contient les fichiers du projet
-itemis CREATE utilisé pour
-la modélisation du système.
+contient les fichiers du projet itemis CREATE
+utilisé pour la modélisation du système.
 </p>
 
 
@@ -924,23 +1150,19 @@ la modélisation du système.
 
 Selon la communication de l'enseignant,
 la version d'itemis CREATE compatible
-avec le code Java fourni n'est plus disponible
-au téléchargement.
+avec le code Java fourni
+n'est plus disponible au téléchargement.
 
 Par conséquent, la correction de cette partie
 porte uniquement sur le diagramme Statechart.
-L'exécutabilité du code Java
-n'est pas exigée.
 </div>
 
 
+<!-- ===================================== -->
+<!-- 3. DESIGN LOGICIEL                    -->
+<!-- ===================================== -->
 
-
-<!-- ======================================== -->
-<!-- 3. DESIGN LOGICIEL                      -->
-<!-- ======================================== -->
-
-<h2>3. Design logiciel — Révision du devoir 1</h2>
+<h2>3. Design logiciel – Révision du devoir 1</h2>
 
 <p>
 Le système de réservation de voyages
@@ -951,33 +1173,37 @@ sa réutilisabilité
 et la répartition des responsabilités.
 </p>
 
-
 <h3>3.1 Révision du diagramme de classes logiciel</h3>
 
 <div class="todo">
-<strong>[RESPONSABLE — À COMPLÉTER]</strong>
+<strong>[JAD – À COMPLÉTER]</strong>
 
+<p>
 Insérer le diagramme de classes révisé.
-
 Présenter les modifications apportées
 par rapport au DM1.
+</p>
 
-Expliquer les responsabilités
-des nouvelles classes
+<p>
+Expliquer les responsabilités des nouvelles classes
 et les changements dans les associations.
+</p>
 </div>
 
 <figure>
-  <img
-    class="diagram"
-    src="Design/diagrammes/classes-logiciel.png"
-    alt="Diagramme de classes logiciel révisé">
-
-  <figcaption>
-    Figure 6 — Diagramme de classes logiciel révisé.
-  </figcaption>
+<img
+  class="diagram"
+  src="Design/diagrammes/classes-logiciel.png"
+  alt="Diagramme de classes logiciel révisé">
+<figcaption>
+Figure 6 – Diagramme de classes logiciel révisé.
+</figcaption>
 </figure>
 
+
+<!-- ===================================== -->
+<!-- 3.2 DIAGRAMMES DE SÉQUENCE            -->
+<!-- ===================================== -->
 
 <h3>3.2 Révision des diagrammes de séquence</h3>
 
@@ -986,117 +1212,116 @@ et les changements dans les associations.
 Gabriel Barroso Magno Viana
 </p>
 
-<div class="todo">
-<strong>[GABRIEL — À COMPLÉTER]</strong>
-
-Présenter les modifications apportées
-aux diagrammes de séquence du DM1.
-
-Vérifier leur cohérence avec
-le nouveau diagramme de classes logiciel.
-
-Décrire les changements dans :
-<ul>
-  <li>La répartition des responsabilités.</li>
-  <li>Les messages entre objets.</li>
-  <li>Les appels d'opérations.</li>
-  <li>La création des objets.</li>
-  <li>Les interactions avec les services externes.</li>
-</ul>
-</div>
-
+<p>
+Lors de la correction du devoir maison 1,
+les diagrammes de séquence ont obtenu une note
+de 14/15. Les scénarios « Réserver une unité »
+et « Payer une réservation » ont été jugés corrects.
+Les modifications ont donc principalement porté
+sur le diagramme « Vérifier les voyages »,
+afin de répondre aux commentaires du correcteur.
+</p>
 
 <h4>3.2.1 Vérifier les voyages disponibles</h4>
 
+<p>
+Les modifications suivantes ont été apportées :
+</p>
+
+<ul>
+  <li>
+    <strong>Ajout du mode de transport :</strong>
+    le paramètre <code>modeTransport</code> a été ajouté
+    à l'opération <code>verifierVoyages()</code>,
+    permettant à l'utilisateur de préciser
+    le mode de transport recherché.
+    Ce paramètre est également transmis
+    au <code>CatalogueVoyages</code>.
+  </li>
+
+  <li>
+    <strong>Clarification de l'acteur :</strong>
+    l'acteur <code>Client</code> a été renommé
+    <code>Utilisateur</code>, afin de préciser
+    qu'il représente un acteur externe
+    et non une classe du système.
+  </li>
+
+  <li>
+    <strong>Filtrage des voyages :</strong>
+    une note a été ajoutée pour préciser
+    que le catalogue sélectionne les voyages
+    selon le mode de transport demandé
+    avant de vérifier les critères de recherche
+    et la disponibilité des unités.
+  </li>
+
+  <li>
+    <strong>Clarification de l'opération
+    correspond() :</strong>
+    son fonctionnement polymorphe a été précisé
+    afin de distinguer les critères de recherche
+    propres aux différents modes de transport.
+  </li>
+</ul>
+
 <figure>
   <img
     class="diagram"
-    src="Design/diagrammes/DSVerifierLesVoyages.png"
-    alt="Diagramme de séquence vérifier les voyages">
-
-  <figcaption>
-    Figure 7 — Diagramme de séquence
-    « Vérifier les voyages ».
-  </figcaption>
+    src= "Desing/DSVerifierLesVoyages.jpg"
+    alt="Diagramme de séquence Vérifier les voyages">
 </figure>
 
-<div class="todo">
-<strong>[GABRIEL]</strong>
-Décrire les changements effectués
-dans ce diagramme.
-</div>
+<h4>3.2.2 Réserver une unité et Payer une réservation</h4>
+
+<p>
+Les diagrammes de séquence « Réserver une unité »
+et « Payer une réservation » ont été jugés
+corrects lors de l'évaluation du DM1.
+Leur structure a donc été conservée,
+sous réserve de vérifier leur cohérence
+avec le diagramme de classes logiciel
+révisé pour le DM2.
+</p>
 
 
-<h4>3.2.2 Réserver une unité</h4>
-
-<figure>
-  <img
-    class="diagram"
-    src="Design/diagrammes/DSReserverUneUnite.png"
-    alt="Diagramme de séquence réserver une unité">
-
-  <figcaption>
-    Figure 8 — Diagramme de séquence
-    « Réserver une unité ».
-  </figcaption>
-</figure>
-
-<div class="todo">
-<strong>[GABRIEL]</strong>
-Décrire les changements effectués
-dans ce diagramme.
-</div>
-
-
-<h4>3.2.3 Payer une réservation</h4>
-
-<figure>
-  <img
-    class="diagram"
-    src="Design/diagrammes/DSPayerUneReservation.png"
-    alt="Diagramme de séquence payer une réservation">
-
-  <figcaption>
-    Figure 9 — Diagramme de séquence
-    « Payer une réservation ».
-  </figcaption>
-</figure>
-
-<div class="todo">
-<strong>[GABRIEL]</strong>
-Décrire les changements effectués
-dans ce diagramme.
-</div>
-
+<!-- ===================================== -->
+<!-- 3.3 PAQUETS                           -->
+<!-- ===================================== -->
 
 <h3>3.3 Révision du diagramme de paquets</h3>
 
 <div class="todo">
-<strong>[RESPONSABLE — À COMPLÉTER]</strong>
+<strong>[JAD – À COMPLÉTER]</strong>
 
+<p>
 Insérer le diagramme de paquets révisé.
+</p>
 
-Expliquer :
 <ul>
-  <li>Les nouveaux regroupements de classes.</li>
-  <li>Les dépendances entre les paquets.</li>
-  <li>La direction des dépendances.</li>
-  <li>Les interfaces utilisées.</li>
-  <li>Les améliorations apportées au design.</li>
+<li>Présenter les nouveaux regroupements de classes.</li>
+<li>Expliquer les dépendances entre les paquets.</li>
+<li>Préciser la direction des dépendances.</li>
+<li>Identifier les interfaces utilisées.</li>
+<li>Justifier les améliorations du design.</li>
 </ul>
 </div>
 
 <figure>
-  <img
-    class="diagram"
-    src="Design/diagrammes/paquets.png"
-    alt="Diagramme de paquets révisé">
+<img
+  class="diagram"
+  src="Design/diagrammes/paquets.png"
+  alt="Diagramme de paquets révisé">
 
-  <figcaption>
-    Figure 10 — Diagramme de paquets révisé.
-  </figcaption>
+<figcaption>
+Figure 10 – Diagramme de paquets révisé.
+</figcaption>
 </figure>
 
+
+<!-- ===================================== -->
+<!-- 3.4 CONTRAINTES OCL                   -->
+<!-- ===================================== -->
 
 <h3>3.4 Révision des contraintes OCL</h3>
 
@@ -1106,52 +1331,60 @@ Toky Erick Rabenantoandro
 </p>
 
 <p>
-Les contraintes utilisent les classes et associations du diagramme du DM1.
-Sans nom de rôle, on utilise le nom de la classe en minuscule.
-On suppose que <code>Date</code> offre <code>plusJours(n : Integer) : Date</code>.
+Les contraintes utilisent les classes
+et associations du diagramme du DM1.
+Sans nom de rôle,
+on utilise le nom de la classe en minuscule.
+On suppose que <code>Date</code>
+offre <code>plusJours(n : Integer) : Date</code>.
 </p>
 
 <h4>Corrections par rapport au DM1</h4>
 
 <ul>
-  <li>C2 : retirée (hors énoncé).</li>
-  <li>C4 : contrat déplacé sur <code>Reservation::confirmer</code>.</li>
-  <li>C5 et C6 : chaque caractère du code est une lettre.</li>
-  <li>C7 : navigation par <code>self.vehicule.compagnie</code>.</li>
-  <li>C8 : retirée (doublon de <code>sansChevauchement</code>).</li>
-  <li>C9 : conditions reliées par <code>and</code> ; les quatre chiffres sont vérifiés.</li>
-  <li>C11 : retirée (opération absente du diagramme) ; remplacée par <code>Voyage::reserver</code> avec <code>post</code>.</li>
-  <li>C12 : préconditions sur le passager, l'état et l'unité.</li>
-  <li><code>getDebut()</code> et <code>getFin()</code> : remplacées par <code>def finitAvant</code>.</li>
-  <li>Ajout : invariants de mode (<code>modeAerien</code>, <code>modeNaval</code>, <code>modeFerroviaire</code>).</li>
+<li>C2 : retirée (hors énoncé).</li>
+<li>C4 : contrat déplacé sur <code>Reservation::confirmer</code>.</li>
+<li>C5 et C6 : chaque caractère du code est une lettre.</li>
+<li>C7 : navigation par <code>self.vehicule.compagnie</code>.</li>
+<li>C8 : retirée (doublon de <code>sansChevauchement</code>).</li>
+<li>C9 : conditions reliées par <code>and</code>.</li>
+<li>C11 : remplacée par <code>Voyage::reserver</code>.</li>
+<li>C12 : préconditions sur le passager, l'état et l'unité.</li>
+<li><code>getDebut()</code> et <code>getFin()</code> remplacées par <code>finitAvant</code>.</li>
+<li>Ajout d'invariants de mode pour les transports.</li>
 </ul>
 
 <h4>Contraintes communes</h4>
 
 <p>
-Un voyage finit avant un autre s'il arrive au plus tard à son départ.
+Un voyage finit avant un autre
+s'il arrive au plus tard à son départ.
 </p>
 
 <pre>
 context Voyage
 def: finitAvant(v : Voyage) : Boolean =
   self.dateArrivee &lt; v.dateDepart or
-  (self.dateArrivee = v.dateDepart and self.heureArrivee &lt;= v.heureDepart)
+  (self.dateArrivee = v.dateDepart and
+   self.heureArrivee &lt;= v.heureDepart)
 </pre>
 
 <p>
-Les voyages d'un même véhicule ne se chevauchent pas.
+Les voyages d'un même véhicule
+ne se chevauchent pas.
 </p>
 
 <pre>
 context Vehicule
 inv sansChevauchement:
-  self.voyages-&gt;forAll(v1, v2 | v1 &lt;&gt; v2 implies
+  self.voyages-&gt;forAll(v1, v2 |
+    v1 &lt;&gt; v2 implies
     v1.finitAvant(v2) or v2.finitAvant(v1))
 </pre>
 
 <p>
-Le véhicule d'un voyage appartient à la compagnie qui l'exploite.
+Le véhicule d'un voyage appartient
+à la compagnie qui l'exploite.
 </p>
 
 <pre>
@@ -1160,48 +1393,86 @@ inv vehiculeDeLaCompagnie:
   self.vehicule.compagnie = self.compagnie
 </pre>
 
+<h4>Réserver une unité</h4>
+
 <p>
-Réserver : la section a une unité libre ; une réservation en attente,
-sans passager, est ajoutée et son numéro est retourné.
+Une réservation en attente est créée
+lorsqu'une unité est disponible.
 </p>
 
 <pre>
-context Voyage::reserver(codeSection : String, priorite : Priorite) : String
-pre:  self.getNbUnitesDisponibles(codeSection) &gt; 0
-post: self.reservations-&gt;size() = self.reservations@pre-&gt;size() + 1
-post: self.reservations-&gt;exists(r |
-        r.numero = result and
-        r.etat = EtatReservation::EnAttente and
-        r.passager-&gt;isEmpty())
+context Voyage::reserver(
+    codeSection : String,
+    priorite : Priorite
+) : String
+
+pre:
+  self.getNbUnitesDisponibles(codeSection) &gt; 0
+
+post:
+  self.reservations-&gt;size() =
+  self.reservations@pre-&gt;size() + 1
+
+post:
+  self.reservations-&gt;exists(r |
+    r.numero = result and
+    r.etat = EtatReservation::EnAttente and
+    r.passager-&gt;isEmpty())
 </pre>
 
+<h4>Confirmer une réservation</h4>
+
 <p>
-Confirmer : la réservation est en attente, sans passager ni paiement, son unité
-est libre et le montant est positif ; elle devient confirmée, avec son passager
-et un paiement dont le numéro de confirmation est retourné.
+La réservation doit être en attente,
+sans passager ni paiement,
+et son unité doit être libre.
+Le montant doit être positif.
 </p>
 
 <pre>
-context Reservation::confirmer(nom : String, courriel : String,
-    numeroPasseport : String, carte : CarteCredit, montant : Real) : String
-pre:  self.etat = EtatReservation::EnAttente
-pre:  self.passager-&gt;isEmpty() and self.paiement-&gt;isEmpty()
-pre:  self.voyage.reservations-&gt;forAll(r |
-        (r &lt;&gt; self and r.etat = EtatReservation::Confirmee)
-        implies r.uniteReservable &lt;&gt; self.uniteReservable)
-pre:  montant &gt; 0
-post: self.etat = EtatReservation::Confirmee
-post: self.passager.nom = nom and
-      self.passager.courriel = courriel and
-      self.passager.numeroPasseport = numeroPasseport
-post: self.paiement.montant = montant and
-      self.paiement.numeroConfirmation = result
+context Reservation::confirmer(
+    nom : String,
+    courriel : String,
+    numeroPasseport : String,
+    carte : CarteCredit,
+    montant : Real
+) : String
+
+pre:
+  self.etat = EtatReservation::EnAttente
+
+pre:
+  self.passager-&gt;isEmpty() and
+  self.paiement-&gt;isEmpty()
+
+pre:
+  self.voyage.reservations-&gt;forAll(r |
+    (r &lt;&gt; self and
+     r.etat = EtatReservation::Confirmee)
+    implies
+    r.uniteReservable &lt;&gt; self.uniteReservable)
+
+pre:
+  montant &gt; 0
+
+post:
+  self.etat = EtatReservation::Confirmee
+
+post:
+  self.passager.nom = nom and
+  self.passager.courriel = courriel and
+  self.passager.numeroPasseport = numeroPasseport
+
+post:
+  self.paiement.montant = montant and
+  self.paiement.numeroConfirmation = result
 </pre>
 
 <h4>Voyage aérien</h4>
 
 <p>
-Code d'aéroport : trois lettres, unique. Un caractère est une lettre si sa majuscule diffère de sa minuscule.
+Un aéroport est identifié par un code
+de trois lettres unique.
 </p>
 
 <pre>
@@ -1209,14 +1480,18 @@ context Aeroport
 inv codeTroisLettres:
   self.code.size() = 3 and
   Sequence{1..3}-&gt;forAll(i |
-    let c : String = self.code.substring(i, i) in
-    c.toUpperCase() &lt;&gt; c.toLowerCase())
+    let c : String =
+      self.code.substring(i, i)
+    in
+      c.toUpperCase() &lt;&gt; c.toLowerCase())
+
 inv codeUnique:
   Aeroport.allInstances()-&gt;isUnique(code)
 </pre>
 
 <p>
-Code de compagnie aérienne : deux lettres, unique.
+Une compagnie aérienne est identifiée
+par un code de deux lettres unique.
 </p>
 
 <pre>
@@ -1224,15 +1499,21 @@ context CompagnieAerienne
 inv codeDeuxLettres:
   self.code.size() = 2 and
   Sequence{1..2}-&gt;forAll(i |
-    let c : String = self.code.substring(i, i) in
-    c.toUpperCase() &lt;&gt; c.toLowerCase())
+    let c : String =
+      self.code.substring(i, i)
+    in
+      c.toUpperCase() &lt;&gt; c.toLowerCase())
+
 inv codeUnique:
   CompagnieAerienne.allInstances()-&gt;isUnique(code)
 </pre>
 
 <p>
-Un vol utilise une compagnie aérienne et un avion. Son numéro, unique, est le code
-de la compagnie suivi de quatre chiffres. Départ et arrivée sont différents.
+Un vol utilise une compagnie aérienne
+et un avion.
+Son numéro, unique,
+est le code de la compagnie
+suivi de quatre chiffres.
 </p>
 
 <pre>
@@ -1240,43 +1521,62 @@ context Vol
 inv modeAerien:
   self.compagnie.oclIsKindOf(CompagnieAerienne) and
   self.vehicule.oclIsKindOf(Avion)
+
 inv formatNumero:
   self.numero.size() = 6 and
-  self.numero.substring(1, 2) = self.compagnie.code and
+  self.numero.substring(1, 2) =
+    self.compagnie.code and
   Sequence{3..6}-&gt;forAll(i |
     Set{'0','1','2','3','4','5','6','7','8','9'}
-      -&gt;includes(self.numero.substring(i, i)))
+    -&gt;includes(self.numero.substring(i, i)))
+
 inv numeroUnique:
   Vol.allInstances()-&gt;isUnique(numero)
+
 inv aeroportsDistincts:
   self.origine &lt;&gt; self.destination
 </pre>
 
 <p>
-Un avion appartient à une compagnie aérienne et n'a que des sections d'avion.
-La disposition fixe colonnes et ailes : S (3, aile après 1), C (4, après 2), M (6, après 3),
-L (10, après 3 et 7). Rangée de 1 à 100, colonne permise par la disposition.
+Un avion appartient à une compagnie aérienne
+et ne possède que des sections d'avion.
 </p>
 
 <pre>
 context Avion
 inv modeAerien:
   self.compagnie.oclIsKindOf(CompagnieAerienne) and
-  self.section-&gt;forAll(s | s.oclIsKindOf(SectionAvion))
+  self.section-&gt;forAll(s |
+    s.oclIsKindOf(SectionAvion))
+</pre>
 
+<p>
+Les sections d'avion peuvent présenter
+quatre dispositions : S, C, M et L.
+</p>
+
+<pre>
 context SectionAvion
 inv dispositionValide:
-  Set{'S', 'C', 'M', 'L'}-&gt;includes(self.dispositionSiege)
+  Set{'S', 'C', 'M', 'L'}
+    -&gt;includes(self.dispositionSiege)
+
 def: nbColonnes : Integer =
   if self.dispositionSiege = 'S' then 3
   else if self.dispositionSiege = 'C' then 4
   else if self.dispositionSiege = 'M' then 6
   else 10 endif endif endif
+
 inv ailes:
-  (self.dispositionSiege = 'S' implies self.aile = Set{1}) and
-  (self.dispositionSiege = 'C' implies self.aile = Set{2}) and
-  (self.dispositionSiege = 'M' implies self.aile = Set{3}) and
-  (self.dispositionSiege = 'L' implies self.aile = Set{3, 7})
+  (self.dispositionSiege = 'S'
+    implies self.aile = Set{1}) and
+  (self.dispositionSiege = 'C'
+    implies self.aile = Set{2}) and
+  (self.dispositionSiege = 'M'
+    implies self.aile = Set{3}) and
+  (self.dispositionSiege = 'L'
+    implies self.aile = Set{3, 7})
+
 inv sieges:
   self.uniteReservable-&gt;forAll(u |
     u.oclIsKindOf(Siege) and
@@ -1290,8 +1590,11 @@ inv sieges:
 <h4>Voyage naval</h4>
 
 <p>
-Un itinéraire utilise une compagnie de croisière et un paquebot. Il dure au plus
-14 jours, visite au moins trois ports et revient à son port de départ.
+Un itinéraire utilise une compagnie de croisière
+et un paquebot.
+Il dure au plus 14 jours,
+visite au moins trois ports
+et revient à son port de départ.
 </p>
 
 <pre>
@@ -1299,10 +1602,14 @@ context Itineraire
 inv modeNaval:
   self.compagnie.oclIsKindOf(CompagnieDeCroisère) and
   self.vehicule.oclIsKindOf(Paquebot)
+
 inv dureeMax14Jours:
-  self.dateArrivee &lt;= self.dateDepart.plusJours(14)
+  self.dateArrivee &lt;=
+    self.dateDepart.plusJours(14)
+
 inv auMoinsTroisPortsDistincts:
   self.escales.port-&gt;asSet()-&gt;size() &gt;= 3
+
 inv boucle:
   self.escales-&gt;sortedBy(numero)-&gt;first().port =
   self.escales-&gt;sortedBy(numero)-&gt;last().port
@@ -1311,7 +1618,8 @@ inv boucle:
 <h4>Voyage ferroviaire</h4>
 
 <p>
-Un trajet utilise une ligne de train et un train. Une gare n'y apparaît qu'une fois.
+Un trajet utilise une ligne de train et un train.
+Une gare n'y apparaît qu'une seule fois.
 </p>
 
 <pre>
@@ -1319,34 +1627,53 @@ context Trajet
 inv modeFerroviaire:
   self.compagnie.oclIsKindOf(LigneTrain) and
   self.vehicule.oclIsKindOf(Train)
+
 inv garesUniques:
   self.arrets-&gt;isUnique(a | a.gare.code)
 </pre>
 
 <div class="todo">
 <strong>En attente du diagramme révisé :</strong>
+
 <ul>
-  <li><code>carte : CarteCredit</code> → <code>numeroCarte : String</code> si <code>CarteCredit</code> est retirée.</li>
-  <li><code>'S'</code>, <code>'C'</code>, <code>'M'</code>, <code>'L'</code> → énumération si elle est ajoutée (<code>dispositionValide</code> retirée).</li>
-  <li>Noms de rôles à vérifier ; contraintes des nouvelles classes à ajouter.</li>
+<li>
+Adapter <code>CarteCredit</code>
+si cette classe a été retirée.
+</li>
+<li>
+Adapter les dispositions de sièges
+si des énumérations ont été introduites.
+</li>
+<li>
+Vérifier les noms de rôles et les associations.
+</li>
+<li>
+Ajouter les contraintes des nouvelles classes.
+</li>
 </ul>
 </div>
 
 
+<!-- ===================================== -->
+<!-- 3.5 MODULES RÉUTILISABLES             -->
+<!-- ===================================== -->
+
 <h3>3.5 Modules réutilisables</h3>
 
 <div class="todo">
-<strong>[RESPONSABLE — À COMPLÉTER]</strong>
+<strong>[JAD – À COMPLÉTER]</strong>
 
-Identifier les modules à usage général.
-
-Présenter les classes ou paquets
+<p>
+Identifier les modules à usage général
+et présenter les classes ou paquets
 qui peuvent être réutilisés
 dans d'autres applications.
+</p>
 
-Expliquer les décisions
-de conception favorisant
-la réutilisabilité.
+<p>
+Expliquer les décisions de conception
+favorisant la réutilisabilité.
+</p>
 </div>
 
 <p class="fichier">
@@ -1357,67 +1684,74 @@ Design/projet.vpp
 </p>
 
 
-<!-- ======================================== -->
-<!-- 4. QUALITÉ DU DESIGN                    -->
-<!-- ======================================== -->
+<!-- ===================================== -->
+<!-- 4. QUALITÉ DU DESIGN                  -->
+<!-- ===================================== -->
 
 <h2>4. Qualité du design</h2>
-
 
 <h3>4.1 Couplage et cohésion</h3>
 
 <div class="todo">
-<strong>[RESPONSABLE — À COMPLÉTER]</strong>
+<strong>[JAD – À COMPLÉTER]</strong>
 
+<p>
 Analyser les types et niveaux de couplage
 entre les classes et les paquets.
+</p>
 
-Évaluer la cohésion des classes.
-
-Identifier les améliorations
+<p>
+Évaluer la cohésion des classes
+et identifier les améliorations
 apportées au design.
+</p>
 </div>
 
 
 <h3>4.2 Fardeau et domaine des classes</h3>
 
 <div class="todo">
-<strong>[RESPONSABLE — À COMPLÉTER]</strong>
+<strong>[JAD – À COMPLÉTER]</strong>
 
-Analyser la relation entre
-le fardeau et le domaine des classes.
+<p>
+Analyser la relation entre le fardeau
+et le domaine des classes.
+</p>
 
-Identifier les classes
-ayant trop de responsabilités.
-
-Justifier les éventuelles
-modifications apportées.
+<p>
+Identifier les classes ayant trop
+de responsabilités et justifier
+les modifications apportées.
+</p>
 </div>
 
 
 <h3>4.3 Graphe Instabilité–Abstraction (IA)</h3>
 
 <div class="todo">
-<strong>[RESPONSABLE — À COMPLÉTER]</strong>
+<strong>[JAD – À COMPLÉTER]</strong>
 
+<p>
 Calculer les mesures d'instabilité
 et d'abstraction des paquets.
+</p>
 
-Présenter le graphe IA.
-
-Interpréter les résultats
+<p>
+Présenter le graphe IA,
+interpréter les résultats
 et justifier la structure obtenue.
+</p>
 </div>
 
 <figure>
-  <img
-    class="diagram"
-    src="Design/diagrammes/graphe-IA.png"
-    alt="Graphe Instabilité-Abstraction">
+<img
+  class="diagram"
+  src="Design/diagrammes/graphe-IA.png"
+  alt="Graphe Instabilité-Abstraction">
 
-  <figcaption>
-    Figure 11 — Graphe IA des paquets.
-  </figcaption>
+<figcaption>
+Figure 11 – Graphe IA des paquets.
+</figcaption>
 </figure>
 
 
@@ -1425,255 +1759,457 @@ et justifier la structure obtenue.
 
 <p>
 <strong>Responsable :</strong>
-Toky Erick Rabenantoandro
+Jad Idrissi
 </p>
 
+<div class="todo">
+<strong>[JAD – À VÉRIFIER]</strong>
+
+Les justifications ci-dessous sont issues
+d'une version antérieure du rapport.
+Les vérifier et les adapter aux diagrammes
+et responsabilités réellement retenus dans le DM2.
+</div>
 
 <h4>Principes de conception de classes</h4>
 
 <ul>
-  <li><strong>SRP.</strong> Une responsabilité par classe : <code>ControleurClient</code> coordonne, <code>CatalogueVoyages</code> recherche, <code>Reservation</code> gère son état, <code>IServicePaiement</code> isole le paiement.</li>
-  <li><strong>OCP.</strong> <code>Compagnie</code>, <code>Vehicule</code>, <code>Voyage</code>, <code>Section</code> et <code>Terminal</code> sont abstraites : un nouveau mode s'ajoute par sous-classes, sans modifier le contrôleur ni les catalogues.</li>
-  <li><strong>LSP.</strong> <code>Vol</code>, <code>Trajet</code> et <code>Itineraire</code> redéfinissent <code>correspond()</code> avec la même signature et le même contrat ; aucun code ne teste le type concret.</li>
-  <li><strong>ISP.</strong> <code>IServicePaiement</code> n'offre que <code>autoriser()</code>, la seule opération utilisée.</li>
-  <li><strong>DIP.</strong> Le contrôleur dépend de <code>IServicePaiement</code>, et les catalogues de <code>Voyage</code> et <code>Terminal</code>. Non appliqué à la création des objets : pas de fabrique abstraite, les trois modes étant stables.</li>
-  <li><strong>CRP.</strong> Le prix est obtenu par délégation à <code>Compagnie</code> (<code>getPrix</code>), pas par héritage. L'héritage est réservé aux trois modes de transport.</li>
-  <li><strong>Loi de Demeter.</strong> Le contrôleur appelle <code>voyage.reserver()</code> et <code>reservation.confirmer()</code> sans parcourir véhicule, sections et unités.</li>
+
+<li>
+<strong>SRP.</strong>
+Une responsabilité par classe :
+<code>ControleurClient</code> coordonne,
+<code>CatalogueVoyages</code> recherche,
+<code>Reservation</code> gère son état,
+et <code>IServicePaiement</code> isole le paiement.
+</li>
+
+<li>
+<strong>OCP.</strong>
+<code>Compagnie</code>,
+<code>Vehicule</code>,
+<code>Voyage</code>,
+<code>Section</code>
+et <code>Terminal</code>
+sont abstraites.
+Un nouveau mode peut être ajouté
+par sous-classes.
+</li>
+
+<li>
+<strong>LSP.</strong>
+<code>Vol</code>,
+<code>Trajet</code>
+et <code>Itineraire</code>
+redéfinissent <code>correspond()</code>
+avec la même signature et le même contrat.
+</li>
+
+<li>
+<strong>ISP.</strong>
+<code>IServicePaiement</code>
+n'offre que <code>autoriser()</code>,
+l'opération utilisée par le système.
+</li>
+
+<li>
+<strong>DIP.</strong>
+Le contrôleur dépend de
+<code>IServicePaiement</code>,
+et les catalogues dépendent
+des abstractions <code>Voyage</code>
+et <code>Terminal</code>.
+</li>
+
+<li>
+<strong>CRP.</strong>
+Le prix est obtenu par délégation
+à <code>Compagnie</code>,
+et non par héritage.
+</li>
+
+<li>
+<strong>Loi de Demeter.</strong>
+Le contrôleur appelle
+<code>voyage.reserver()</code>
+et <code>reservation.confirmer()</code>
+sans parcourir les objets internes.
+</li>
+
 </ul>
+
 
 <h4>Principes GRASP</h4>
 
 <ul>
-  <li><strong>Contrôleur.</strong> <code>ControleurClient</code> reçoit les opérations système et délègue au domaine.</li>
-  <li><strong>Expert.</strong> <code>Voyage</code> calcule ses unités disponibles ; <code>Compagnie</code> calcule le prix.</li>
-  <li><strong>Créateur.</strong> <code>Voyage</code> crée ses réservations ; <code>Reservation</code> crée le passager et le paiement.</li>
-  <li><strong>Fabrication pure.</strong> <code>CatalogueVoyages</code> et <code>CatalogueTerminaux</code>, absents du domaine, prennent en charge la recherche.</li>
-  <li><strong>Polymorphisme.</strong> <code>correspond()</code> est redéfinie par type de voyage, sans test sur le mode.</li>
-  <li><strong>Variations protégées.</strong> <code>IServicePaiement</code> protège d'un changement de fournisseur de paiement.</li>
-  <li><strong>Faible couplage.</strong> Le contrôleur ne connaît que les catalogues, <code>IServicePaiement</code>, <code>Voyage</code> et <code>Reservation</code>.</li>
+
+<li>
+<strong>Contrôleur.</strong>
+<code>ControleurClient</code>
+reçoit les opérations système
+et délègue au domaine.
+</li>
+
+<li>
+<strong>Expert.</strong>
+<code>Voyage</code> calcule
+ses unités disponibles,
+tandis que <code>Compagnie</code>
+calcule le prix.
+</li>
+
+<li>
+<strong>Créateur.</strong>
+<code>Voyage</code> crée ses réservations.
+<code>Reservation</code> crée
+le passager et le paiement.
+</li>
+
+<li>
+<strong>Fabrication pure.</strong>
+<code>CatalogueVoyages</code>
+et <code>CatalogueTerminaux</code>
+prennent en charge les recherches.
+</li>
+
+<li>
+<strong>Polymorphisme.</strong>
+<code>correspond()</code> est redéfinie
+par type de voyage.
+</li>
+
+<li>
+<strong>Variations protégées.</strong>
+<code>IServicePaiement</code>
+protège le système d'un changement
+de fournisseur de paiement.
+</li>
+
+<li>
+<strong>Faible couplage.</strong>
+Le contrôleur communique
+avec les catalogues,
+les interfaces et les objets
+responsables des opérations.
+</li>
+
 </ul>
+
 
 <h4>Principes de conception de paquets</h4>
 
 <ul>
-  <li><strong>ADP.</strong> Présentation → contrôleur → catalogue et paiement → domaine : aucun cycle. <code>aerien</code>, <code>naval</code> et <code>ferroviaire</code> ne dépendent pas les uns des autres.</li>
-  <li><strong>SDP.</strong> Le domaine, dont tout dépend, est le plus stable ; présentation et contrôleur sont les plus instables.</li>
-  <li><strong>SAP.</strong> Le domaine contient les classes abstraites et le paiement une interface ; les paquets concrets sont instables.</li>
+
+<li>
+<strong>ADP.</strong>
+Les dépendances sont orientées
+de la présentation vers le domaine
+et ne doivent pas former de cycles.
+</li>
+
+<li>
+<strong>SDP.</strong>
+Le domaine est conçu comme
+la partie la plus stable du système.
+</li>
+
+<li>
+<strong>SAP.</strong>
+Les paquets stables contiennent
+davantage d'abstractions,
+tandis que les paquets concrets
+peuvent être plus instables.
+</li>
+
 </ul>
 
 <div class="todo">
 <strong>En attente des diagrammes révisés :</strong>
-contrôleur administrateur (SRP, ISP), retrait des getters (Demeter),
-suppression de <code>CarteCredit</code> et <code>TypeSection</code> (faible couplage),
-mesures du graphe IA (SDP, SAP).
+Vérifier les principes réellement appliqués,
+notamment les contrôleurs administrateurs,
+les changements de classes,
+les interfaces et les résultats du graphe IA.
 </div>
 
 
-<!-- ======================================== -->
-<!-- DISTRIBUTION DES TÂCHES                 -->
-<!-- ======================================== -->
+<!-- ===================================== -->
+<!-- DISTRIBUTION DES TÂCHES               -->
+<!-- ===================================== -->
 
 <h2>Distribution des tâches</h2>
 
 <p>
-Les pourcentages de la colonne
-« Poids » correspondent au barème initial du devoir.
-Les contributions de chaque membre doivent être
-confirmées par l'équipe avant la remise.
+La répartition ci-dessous reprend les responsabilités
+annoncées par l'équipe.
+Pour chaque tâche, le pourcentage de contribution
+indique le membre responsable
+et le poids indique la part du barème initial.
 </p>
 
 <table>
-  <tr>
-    <th>Tâche</th>
-    <th>Poids</th>
-    <th>Membre 1<br>Toky</th>
-    <th>Membre 2<br>Gabriel</th>
-    <th>Membre 3<br>Jad</th>
-  </tr>
 
-  <tr>
-    <td>Modélisation du réseau de Pétri</td>
-    <td>15 %</td>
-    <td>100 %</td>
-    <td>0 %</td>
-    <td>0 %</td>
-  </tr>
+<thead>
+<tr>
+<th>Tâche</th>
+<th>Poids</th>
+<th>Membre 1<br>Toky</th>
+<th>Membre 2<br>Gabriel</th>
+<th>Membre 3<br>Jad</th>
+</tr>
+</thead>
 
-  <tr>
-    <td>Analyse du réseau de Pétri</td>
-    <td>10 %</td>
-    <td>100 %</td>
-    <td>0 %</td>
-    <td>0 %</td>
-  </tr>
+<tbody>
 
-  <tr>
-    <td>Statechart du micro-ondes</td>
-    <td>25 %</td>
-    <td>0 %</td>
-    <td>100 %</td>
-    <td>0 %</td>
-  </tr>
+<tr>
+<td>Réseau de Pétri : modélisation</td>
+<td>15 %</td>
+<td>100 %</td>
+<td>0 %</td>
+<td>0 %</td>
+</tr>
 
-  <tr>
-    <td>Génération du code et vérification
-      (consigne révisée)</td>
-    <td>5 %*</td>
-    <td>0 %</td>
-    <td>100 %*</td>
-    <td>0 %</td>
-  </tr>
+<tr>
+<td>Réseau de Pétri : analyse</td>
+<td>10 %</td>
+<td>100 %</td>
+<td>0 %</td>
+<td>0 %</td>
+</tr>
 
-  <tr>
-    <td>Diagramme de classes logiciel</td>
-    <td>5 %</td>
-    <td>[À compléter]</td>
-    <td>[À compléter]</td>
-    <td>[À compléter]</td>
-  </tr>
+<tr>
+<td>Statechart du micro-ondes</td>
+<td>25 %</td>
+<td>0 %</td>
+<td>100 %</td>
+<td>0 %</td>
+</tr>
 
-  <tr>
-    <td>Diagrammes de séquence</td>
-    <td>5 %</td>
-    <td>0 %</td>
-    <td>100 %</td>
-    <td>0 %</td>
-  </tr>
+<tr>
+<td>Génération du code et vérification</td>
+<td>5 %*</td>
+<td>0 %</td>
+<td>100 %*</td>
+<td>0 %</td>
+</tr>
 
-  <tr>
-    <td>Diagramme de paquets</td>
-    <td>5 %</td>
-    <td>[À compléter]</td>
-    <td>[À compléter]</td>
-    <td>[À compléter]</td>
-  </tr>
+<tr>
+<td>Révision du diagramme de classes logiciel</td>
+<td>5 %</td>
+<td>0 %</td>
+<td>0 %</td>
+<td>100 %</td>
+</tr>
 
-  <tr>
-    <td>Contraintes OCL</td>
-    <td>5 %</td>
-    <td>100 %</td>
-    <td>0 %</td>
-    <td>0 %</td>
-  </tr>
+<tr>
+<td>Révision des diagrammes de séquence</td>
+<td>5 %</td>
+<td>0 %</td>
+<td>100 %</td>
+<td>0 %</td>
+</tr>
 
-  <tr>
-    <td>Modules réutilisables</td>
-    <td>5 %</td>
-    <td>[À compléter]</td>
-    <td>[À compléter]</td>
-    <td>[À compléter]</td>
-  </tr>
+<tr>
+<td>Révision du diagramme de paquets</td>
+<td>5 %</td>
+<td>0 %</td>
+<td>0 %</td>
+<td>100 %</td>
+</tr>
 
-  <tr>
-    <td>Couplage et cohésion</td>
-    <td>5 %</td>
-    <td>[À compléter]</td>
-    <td>[À compléter]</td>
-    <td>[À compléter]</td>
-  </tr>
+<tr>
+<td>Révision des contraintes OCL</td>
+<td>5 %</td>
+<td>100 %</td>
+<td>0 %</td>
+<td>0 %</td>
+</tr>
 
-  <tr>
-    <td>Fardeau des classes</td>
-    <td>5 %</td>
-    <td>[À compléter]</td>
-    <td>[À compléter]</td>
-    <td>[À compléter]</td>
-  </tr>
+<tr>
+<td>Identification des modules réutilisables</td>
+<td>5 %</td>
+<td>0 %</td>
+<td>0 %</td>
+<td>100 %</td>
+</tr>
 
-  <tr>
-    <td>Graphe IA et justification</td>
-    <td>5 %</td>
-    <td>[À compléter]</td>
-    <td>[À compléter]</td>
-    <td>[À compléter]</td>
-  </tr>
+<tr>
+<td>Analyse du couplage et de la cohésion</td>
+<td>5 %</td>
+<td>0 %</td>
+<td>0 %</td>
+<td>100 %</td>
+</tr>
 
-  <tr>
-    <td>Principes de conception</td>
-    <td>5 %</td>
-    <td>100 %</td>
-    <td>0 %</td>
-    <td>0 %</td>
-  </tr>
+<tr>
+<td>Analyse du fardeau des classes</td>
+<td>5 %</td>
+<td>0 %</td>
+<td>0 %</td>
+<td>100 %</td>
+</tr>
 
-  <tr>
-    <th>Total du barème initial</th>
-    <th>100 %</th>
-    <th colspan="3">
-      Répartition à confirmer par l'équipe
-    </th>
-  </tr>
+<tr>
+<td>Graphe IA et justification</td>
+<td>5 %</td>
+<td>0 %</td>
+<td>0 %</td>
+<td>100 %</td>
+</tr>
+
+<tr>
+<td>Justification des principes de conception</td>
+<td>5 %</td>
+<td>0 %</td>
+<td>0 %</td>
+<td>100 %</td>
+</tr>
+
+<tr>
+<th>Total selon les tâches détaillées</th>
+<th>100 %</th>
+<th>30 %</th>
+<th>35 %</th>
+<th>35 %</th>
+</tr>
+
+</tbody>
 </table>
 
-<p class="small">
-* Selon la communication ultérieure de l'enseignant,
-la correction de la partie Statechart porte uniquement
-sur le diagramme. La répartition affichée pour Gabriel
-reflète l'attribution initiale des tâches
-et ne constitue pas une validation de l'application Java.
-</p>
-
-
-<h3>Membre 1 — Toky</h3>
+<div class="todo">
+<strong>Répartition à confirmer avant la remise :</strong>
 
 <p>
-Réseau de Pétri du tunnel : modélisation dans PIPE, lois de conservation,
-graphe de couverture, équité et absence de famine. Révision des contraintes OCL
-et justification des principes de conception. Rédaction des sections 1, 3.4 et 4.4.
+L'équipe a indiqué les totaux suivants :
+Toky 35 %, Gabriel 35 % et Jad 30 %.
+</p>
+
+<p>
+Cependant, les tâches détaillées totalisent
+respectivement 30 %, 35 % et 35 %.
+</p>
+
+<p>
+Il faut confirmer la responsabilité
+de la justification des principes de conception
+(5 %) ou ajuster la répartition
+des tâches avant la remise.
+</p>
+</div>
+
+<p class="small">
+* L'enseignant a annoncé que seule la modélisation
+Statechart serait évaluée pour le micro-ondes,
+la version compatible avec le code Java fourni
+n'étant plus disponible.
+Le poids de 5 % est conservé ici
+comme référence au barème initial.
 </p>
 
 
-<h3>Membre 2 — Gabriel</h3>
+<!-- ===================================== -->
+<!-- CONTRIBUTIONS INDIVIDUELLES           -->
+<!-- ===================================== -->
+
+<h3>Membre 1 – Toky</h3>
+
+<p>
+Responsable du réseau de Pétri du tunnel :
+modélisation et analyse,
+marquage initial,
+lois de conservation,
+graphe de couverture,
+étude de l'équité
+et de l'absence de famine.
+</p>
+
+<p>
+Responsable également de la révision
+des contraintes OCL et de la rédaction
+de leurs justifications.
+</p>
+
+
+<h3>Membre 2 – Gabriel</h3>
 
 <p>
 Responsable de la modélisation du Statechart
 du four à micro-ondes.
-Conception des états et transitions,
-de la sélection de puissance,
-de la configuration du temps
-et de la logique de cuisson.
 </p>
 
 <p>
-Modélisation du contrôle de la porte
+Conception de la sélection de puissance,
+de la configuration du temps,
+du compte à rebours,
+de la gestion de la porte
 à l'aide de régions orthogonales,
-gestion de l'interruption et de la reprise
-de la cuisson et réalisation de la signalisation
-de fin de cuisson.
+de l'interruption et de la reprise de la cuisson,
+ainsi que de la signalisation de fin.
 </p>
 
 <p>
-Préparation des images du Statechart
-pour le rapport et organisation des fichiers
-du projet itemis CREATE.
+Préparation des fichiers et des images
+du diagramme pour le rapport.
 </p>
 
-<div class="todo">
-<strong>[GABRIEL — À COMPLÉTER APRÈS RÉVISION]</strong>
-
-Ajouter la description des modifications
-réellement effectuées aux diagrammes
+<p>
+Responsable de la révision des diagrammes
 de séquence du DM1.
-</div>
+</p>
+
+<p>
+Dans le scénario « Vérifier les voyages »,
+ajout du paramètre <code>modeTransport</code>,
+clarification de l'acteur externe
+<code>Utilisateur</code>
+et amélioration de l'explication
+de l'opération polymorphe
+<code>correspond()</code>.
+</p>
+
+<p>
+Les deux autres scénarios doivent rester
+cohérents avec le diagramme de classes logiciel
+révisé avant la remise finale.
+</p>
+
+<p>
+Concernant la génération du code Java,
+les consignes ont été modifiées
+par l'enseignant :
+l'évaluation porte uniquement
+sur le Statechart.
+</p>
 
 
-<h3>Membre 3 — Jad</h3>
+<h3>Membre 3 – Jad</h3>
 
-<div class="todo">
-<strong>[JAD — À COMPLÉTER]</strong>
+<p>
+Responsable de la révision
+des diagrammes de classes et de paquets,
+de l'identification des modules réutilisables,
+de l'analyse du couplage et de la cohésion,
+et de l'analyse du fardeau des classes.
+</p>
 
-Décrire les tâches réellement effectuées,
-la contribution à la conception,
-aux analyses et à la préparation du rapport.
-</div>
+<p>
+Responsable également du graphe
+Instabilité–Abstraction (IA)
+et de sa justification,
+ainsi que de la justification
+des principes de conception,
+selon la répartition fournie par l'équipe.
+</p>
+
+<p>
+La répartition totale doit être confirmée
+avec les autres membres avant la remise finale.
+</p>
 
 
-<div class="footer">
-IFT 3911 — Devoir maison 2.
-Rapport à compléter et à vérifier
-avant la remise finale sur StudiUM.
-</div>
+
 
 </div>
 </body>
 </html>
+
+```

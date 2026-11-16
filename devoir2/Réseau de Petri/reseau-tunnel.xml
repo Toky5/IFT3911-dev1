@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><pnml>
+    <net id="Net-One" type="P/T net">
+        <token id="Default" enabled="true" red="0" green="0" blue="0"/>
+        <labels x="489" y="42" width="105" height="20" border="true">
+            <text/>
+        </labels>
+        <place id="Dans tunnel vers MTL">
+            <graphics>
+                <position x="495.0" y="450.0"/>
+            </graphics>
+            <name>
+                <value>Dans tunnel vers MTL</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </name>
+            <initialMarking>
+                <value>Default,0</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </initialMarking>
+            <capacity>
+                <value>0</value>
+            </capacity>
+        </place>
+        <place id="Dans tunnel vers RS">
+            <graphics>
+                <position x="495.0" y="210.0"/>
+            </graphics>
+            <name>
+                <value>Dans tunnel vers RS</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </name>
+            <initialMarking>
+                <value>Default,0</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </initialMarking>
+            <capacity>
+                <value>0</value>
+            </capacity>
+        </place>
+        <place id="Feu MTL">
+            <graphics>
+                <position x="345.0" y="330.0"/>
+            </graphics>
+            <name>
+                <value>Feu MTL</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </name>
+            <initialMarking>
+                <value>Default,1</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </initialMarking>
+            <capacity>
+                <value>0</value>
+            </capacity>
+        </place>
+        <place id="Feu RS">
+            <graphics>
+                <position x="660.0" y="330.0"/>
+            </graphics>
+            <name>
+                <value>Feu RS</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </name>
+            <initialMarking>
+                <value>Default,0</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </initialMarking>
+            <capacity>
+                <value>0</value>
+            </capacity>
+        </place>
+        <place id="Tunnel Libre">
+            <graphics>
+                <position x="495.0" y="330.0"/>
+            </graphics>
+            <name>
+                <value>Tunnel Libre</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </name>
+            <initialMarking>
+                <value>Default,1</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </initialMarking>
+            <capacity>
+                <value>0</value>
+            </capacity>
+        </place>
+        <place id="Voiture en attente MTL">
+            <graphics>
+                <position x="165.0" y="210.0"/>
+            </graphics>
+            <name>
+                <value>Voiture en attente MTL</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </name>
+            <initialMarking>
+                <value>Default,1</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </initialMarking>
+            <capacity>
+                <value>0</value>
+            </capacity>
+        </place>
+        <place id="Voiture en attente RS">
+            <graphics>
+                <position x="825.0" y="450.0"/>
+            </graphics>
+            <name>
+                <value>Voiture en attente RS</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </name>
+            <initialMarking>
+                <value>Default,1</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </initialMarking>
+            <capacity>
+                <value>0</value>
+            </capacity>
+        </place>
+        <transition id="Entrer depuis Montréal">
+            <graphics>
+                <position x="345.0" y="210.0"/>
+            </graphics>
+            <name>
+                <value>Entrer depuis Montréal</value>
+                <graphics>
+                    <offset x="-5.0" y="35.0"/>
+                </graphics>
+            </name>
+            <orientation>
+                <value>0</value>
+            </orientation>
+            <rate>
+                <value>1.0</value>
+            </rate>
+            <timed>
+                <value>false</value>
+            </timed>
+            <infiniteServer>
+                <value>false</value>
+            </infiniteServer>
+            <priority>
+                <value>1</value>
+            </priority>
+        </transition>
+        <transition id="Entrer depuis Rive Sud">
+            <graphics>
+                <position x="660.0" y="450.0"/>
+            </graphics>
+            <name>
+                <value>Entrer depuis Rive Sud</value>
+                <graphics>
+                    <offset x="-5.0" y="35.0"/>
+                </graphics>
+            </name>
+            <orientation>
+                <value>0</value>
+            </orientation>
+            <rate>
+                <value>1.0</value>
+            </rate>
+            <timed>
+                <value>false</value>
+            </timed>
+            <infiniteServer>
+                <value>false</value>
+            </infiniteServer>
+            <priority>
+                <value>1</value>
+            </priority>
+        </transition>
+        <transition id="Sortir vers Montréal">
+            <graphics>
+                <position x="345.0" y="450.0"/>
+            </graphics>
+            <name>
+                <value>Sortir vers Montréal</value>
+                <graphics>
+                    <offset x="-5.0" y="35.0"/>
+                </graphics>
+            </name>
+            <orientation>
+                <value>0</value>
+            </orientation>
+            <rate>
+                <value>1.0</value>
+            </rate>
+            <timed>
+                <value>false</value>
+            </timed>
+            <infiniteServer>
+                <value>false</value>
+            </infiniteServer>
+            <priority>
+                <value>1</value>
+            </priority>
+        </transition>
+        <transition id="Sortir vers Rive Sud">
+            <graphics>
+                <position x="660.0" y="210.0"/>
+            </graphics>
+            <name>
+                <value>Sortir vers Rive Sud</value>
+                <graphics>
+                    <offset x="1.0" y="25.0"/>
+                </graphics>
+            </name>
+            <orientation>
+                <value>0</value>
+            </orientation>
+            <rate>
+                <value>1.0</value>
+            </rate>
+            <timed>
+                <value>false</value>
+            </timed>
+            <infiniteServer>
+                <value>false</value>
+            </infiniteServer>
+            <priority>
+                <value>1</value>
+            </priority>
+        </transition>
+        <arc id="Dans tunnel vers MTL to Sortir vers Montréal" source="Dans tunnel vers MTL" target="Sortir vers Montréal">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="492" y="462" curvePoint="false"/>
+            <arcpath id="001" x="361" y="467" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Dans tunnel vers RS to Sortir vers Rive Sud" source="Dans tunnel vers RS" target="Sortir vers Rive Sud">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="521" y="221" curvePoint="false"/>
+            <arcpath id="001" x="667" y="217" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Entrer depuis Montréal to Dans tunnel vers RS" source="Entrer depuis Montréal" target="Dans tunnel vers RS">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="362" y="217" curvePoint="false"/>
+            <arcpath id="001" x="492" y="221" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Entrer depuis Montréal to Voiture en attente MTL" source="Entrer depuis Montréal" target="Voiture en attente MTL">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="351" y="227" curvePoint="false"/>
+            <arcpath id="001" x="267" y="267" curvePoint="false"/>
+            <arcpath id="002" x="190" y="228" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Entrer depuis Rive Sud to Dans tunnel vers MTL" source="Entrer depuis Rive Sud" target="Dans tunnel vers MTL">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="666" y="467" curvePoint="false"/>
+            <arcpath id="001" x="521" y="462" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Entrer depuis Rive Sud to Voiture en attente RS" source="Entrer depuis Rive Sud" target="Voiture en attente RS">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="676" y="467" curvePoint="false"/>
+            <arcpath id="001" x="747" y="492" curvePoint="false"/>
+            <arcpath id="002" x="822" y="466" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Feu MTL to Entrer depuis Montréal" source="Feu MTL" target="Entrer depuis Montréal">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="357" y="327" curvePoint="false"/>
+            <arcpath id="001" x="357" y="237" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Feu RS to Entrer depuis Rive Sud" source="Feu RS" target="Entrer depuis Rive Sud">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="672" y="356" curvePoint="false"/>
+            <arcpath id="001" x="672" y="447" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Sortir vers Montréal to Feu MTL" source="Sortir vers Montréal" target="Feu MTL">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="357" y="447" curvePoint="false"/>
+            <arcpath id="001" x="357" y="356" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Sortir vers Montréal to Tunnel Libre" source="Sortir vers Montréal" target="Tunnel Libre">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="362" y="457" curvePoint="false"/>
+            <arcpath id="001" x="495" y="351" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Sortir vers Rive Sud to Feu RS" source="Sortir vers Rive Sud" target="Feu RS">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="672" y="237" curvePoint="false"/>
+            <arcpath id="001" x="672" y="327" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Sortir vers Rive Sud to Tunnel Libre" source="Sortir vers Rive Sud" target="Tunnel Libre">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="666" y="227" curvePoint="false"/>
+            <arcpath id="001" x="519" y="333" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Tunnel Libre to Entrer depuis Montréal" source="Tunnel Libre" target="Entrer depuis Montréal">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="495" y="332" curvePoint="false"/>
+            <arcpath id="001" x="361" y="227" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Tunnel Libre to Entrer depuis Rive Sud" source="Tunnel Libre" target="Entrer depuis Rive Sud">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="519" y="350" curvePoint="false"/>
+            <arcpath id="001" x="667" y="457" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Voiture en attente MTL to Entrer depuis Montréal" source="Voiture en attente MTL" target="Entrer depuis Montréal">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="191" y="217" curvePoint="false"/>
+            <arcpath id="001" x="267" y="192" curvePoint="false"/>
+            <arcpath id="002" x="352" y="217" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Voiture en attente RS to Entrer depuis Rive Sud" source="Voiture en attente RS" target="Entrer depuis Rive Sud">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="822" y="457" curvePoint="false"/>
+            <arcpath id="001" x="747" y="432" curvePoint="false"/>
+            <arcpath id="002" x="677" y="457" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+    </net>
+</pnml>

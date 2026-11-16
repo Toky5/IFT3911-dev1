@@ -1,186 +1,153 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rapport – IFT 3911 – Devoir maison 2</title>
-  <style>
-    :root {
-      --ink: #18212d;
-      --muted: #647083;
-      --line: #dfe5ec;
-      --bg: #f3f5f8;
-      --accent: #c72f2f;
-      --soft: #f8fafc;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rapport – IFT 3911 – Devoir maison 2</title>
 
-    * { box-sizing: border-box; }
+<style>
+  body {
+    margin: 0;
+    background: #f3f5f8;
+    color: #18212d;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+  }
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 15px;
-      line-height: 1.58;
-    }
+  .page {
+    max-width: 990px;
+    margin: 24px auto;
+    padding: 30px 38px 44px;
+    background: white;
+    border: 1px solid #dfe5ec;
+  }
 
+  h1 {
+    font-size: 29px;
+    margin-bottom: 5px;
+  }
+
+  .subtitle {
+    color: #465569;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    margin-top: 38px;
+    color: #c72f2f;
+    font-size: 21px;
+    border-bottom: 1px solid #dfe5ec;
+    padding-bottom: 5px;
+  }
+
+  h3 {
+    margin-top: 24px;
+    font-size: 17px;
+  }
+
+  h4 {
+    margin-top: 18px;
+    font-size: 15px;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 12px 0 16px;
+    font-size: 14px;
+  }
+
+  th, td {
+    border: 1px solid #b7c0cb;
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background: #f0f3f6;
+  }
+
+  img.diagram {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #c9d2dc;
+    margin: 10px auto;
+  }
+
+  figure {
+    margin: 12px 0 22px;
+  }
+
+  figcaption, .fichier {
+    font-size: 13px;
+    color: #647083;
+    margin: 5px 0 10px;
+  }
+
+  .todo {
+    border-left: 3px solid #a7b2c1;
+    background: #f8fafc;
+    padding: 10px 14px;
+    margin: 10px 0 14px;
+    color: #4f5e71;
+  }
+
+  .note {
+    background: #f6f7fa;
+    border: 1px solid #dfe5ec;
+    padding: 12px 15px;
+    margin: 14px 0;
+  }
+
+  .small {
+    color: #647083;
+    font-size: 13px;
+  }
+
+  pre {
+    background: #f8fafc;
+    border: 1px solid #dfe5ec;
+    padding: 11px 13px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font-family: Consolas, monospace;
+    font-size: 13px;
+  }
+
+  code {
+    font-family: Consolas, monospace;
+    font-size: 13px;
+  }
+
+  a {
+    color: #225a8b;
+  }
+
+  .footer {
+    margin-top: 30px;
+    border-top: 1px solid #dfe5ec;
+    padding-top: 12px;
+    color: #647083;
+    font-size: 13px;
+  }
+
+  @media print {
+    body { background: white; }
     .page {
-      max-width: 990px;
-      margin: 24px auto;
-      padding: 30px 38px 44px;
-      background: #fff;
-      border: 1px solid var(--line);
+      border: 0;
+      margin: 0;
+      max-width: none;
     }
-
-    h1 {
-      font-size: 29px;
-      margin: 0 0 3px;
+    img, pre, table {
+      page-break-inside: avoid;
     }
-
-    .subtitle {
-      margin: 0 0 20px;
-      color: #465569;
-      font-size: 16px;
-    }
-
-    h2 {
-      margin: 38px 0 12px;
-      color: var(--accent);
-      font-size: 21px;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 5px;
-    }
-
-    h3 { margin: 23px 0 7px; font-size: 17px; }
-    h4 { margin: 17px 0 6px; font-size: 15px; }
-    p { margin: 8px 0 11px; }
-
-    ul, ol {
-      margin: 8px 0 14px;
-      padding-left: 24px;
-    }
-
-    li { margin-bottom: 4px; }
-
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 12px 0 16px;
-      font-size: 14px;
-    }
-
-    th, td {
-      border: 1px solid #b7c0cb;
-      padding: 8px 10px;
-      text-align: left;
-      vertical-align: top;
-    }
-
-    th {
-      background: #f0f3f6;
-      font-weight: 700;
-    }
-
-    img.diagram {
-      display: block;
-      max-width: 100%;
-      height: auto;
-      border: 1px solid #c9d2dc;
-      background: #fff;
-      margin: 10px auto 5px;
-    }
-
-    figure { margin: 12px 0 22px; }
-
-    figcaption, .fichier {
-      font-size: 13px;
-      color: var(--muted);
-      margin: 5px 0 10px;
-    }
-
-    .missing-img {
-      padding: 14px;
-      background: #fafbfc;
-      border: 1px dashed #b5c0cd;
-      color: #536176;
-      font-size: 13px;
-    }
-
-    .todo {
-      border-left: 3px solid #a7b2c1;
-      background: var(--soft);
-      padding: 10px 14px;
-      margin: 10px 0 14px;
-      color: #4f5e71;
-    }
-
-    .todo strong { color: #293e54; }
-
-    .note {
-      background: #f6f7fa;
-      border: 1px solid var(--line);
-      padding: 12px 15px;
-      margin: 14px 0;
-    }
-
-    .small {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .flag {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      background: #f1f4f7;
-      border: 1px solid #dee5ee;
-      border-radius: 4px;
-      padding: 2px 7px;
-      color: #4d5c6b;
-    }
-
-    code, pre {
-      font-family: Consolas, "Courier New", monospace;
-      font-size: 13px;
-    }
-
-    pre {
-      background: var(--soft);
-      border: 1px solid var(--line);
-      padding: 11px 13px;
-      overflow-x: auto;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-    }
-
-    a {
-      color: #225a8b;
-      text-decoration: underline;
-    }
-
-    .footer {
-      margin-top: 30px;
-      border-top: 1px solid var(--line);
-      padding-top: 12px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    @media print {
-      body { background: #fff; }
-      .page {
-        border: 0;
-        margin: 0;
-        padding: 0;
-        max-width: none;
-      }
-      h2, h3, figure, pre, table {
-        break-inside: avoid;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 
 <body>
@@ -195,39 +162,46 @@ IFT 3911 — Devoir maison 2 — Modélisation et analyse
 </p>
 
 <table>
-  <tr>
-    <th>Nom</th>
-    <th>Matricule (4 derniers chiffres)</th>
-    <th>Courriel</th>
-    <th>Temps consacré au devoir</th>
-  </tr>
-  <tr>
-    <td>Toky Erick Rabenantoandro</td>
-    <td>6409</td>
-    <td>toky.erick.rabenantoandro@umontreal.ca</td>
-    <td>[À COMPLÉTER] h</td>
-  </tr>
-  <tr>
-    <td>Gabriel Barroso Magno Viana</td>
-    <td>3304</td>
-    <td>gabriel.barroso.magno.viana@umontreal.ca</td>
-    <td>[À COMPLÉTER] h</td>
-  </tr>
-  <tr>
-    <td>Jad Idrissi</td>
-    <td>8693</td>
-    <td>jad.idrissi@umontreal.ca</td>
-    <td>[À COMPLÉTER] h</td>
-  </tr>
+<tr>
+  <th>Nom</th>
+  <th>Matricule (4 derniers chiffres)</th>
+  <th>Courriel</th>
+  <th>Temps consacré au devoir</th>
+</tr>
+
+<tr>
+  <td>Toky Erick Rabenantoandro</td>
+  <td>6409</td>
+  <td>toky.erick.rabenantoandro@umontreal.ca</td>
+  <td> 12 h</td>
+</tr>
+
+<tr>
+  <td>Gabriel Barroso Magno Viana</td>
+  <td>3304</td>
+  <td>gabriel.barroso.magno.viana@umontreal.ca</td>
+  <td>20 h</td>
+</tr>
+
+<tr>
+  <td>Jad Idrissi</td>
+  <td>8693</td>
+  <td>jad.idrissi@umontreal.ca</td>
+  <td>16 h</td>
+</tr>
 </table>
 
-<p><strong>Personne qui soumet le devoir complet :</strong> [À COMPLÉTER]</p>
+<p><strong>Personne qui soumet le devoir complet :</strong> Toky Erick Rabenantoandro</p>
 
 <p>
   <strong>Dépôt GitHub :</strong>
   <a href="https://github.com/Toky5/IFT3911-dev1/tree/main/devoir2">https://github.com/Toky5/IFT3911-dev1 (dossier devoir2)</a>
 </p>
 
+
+<!-- ===================================== -->
+<!-- FICHIERS REMIS                        -->
+<!-- ===================================== -->
 
 <h2>Fichiers remis</h2>
 
@@ -275,6 +249,9 @@ Design/
         metriques.json         Ca, Ce, I, A, D par paquet et fardeau de chaque classe
 </pre>
 
+<!-- ===================================== -->
+<!-- HYPOTHÈSES                            -->
+<!-- ===================================== -->
 
 <h2>Hypothèses générales</h2>
 
@@ -318,11 +295,11 @@ Design/
 </ul>
 
 
-<!-- ======================================== -->
-<!-- 1. RÉSEAU DE PÉTRI                      -->
-<!-- ======================================== -->
+<!-- ===================================== -->
+<!-- 1. RÉSEAU DE PÉTRI                    -->
+<!-- ===================================== -->
 
-<h2>1. Réseau de Pétri — Tunnel</h2>
+<h2>1. Réseau de Pétri – Tunnel</h2>
 
 <h3>1.1 Modélisation</h3>
 
@@ -522,13 +499,16 @@ Fichiers : <a href="Réseau de Petri/tunnel.xml">tunnel.xml</a>,
 <!-- 2. STATECHART — GABRIEL                 -->
 <!-- ======================================== -->
 
-<h2>2. Statechart — Four à micro-ondes</h2>
+<!-- ===================================== -->
+<!-- 2. STATECHART                         -->
+<!-- ===================================== -->
+
+<h2>2. Statechart – Four à micro-ondes</h2>
 
 <p>
 <strong>Responsable :</strong>
 Gabriel Barroso Magno Viana
 </p>
-
 
 <h3>2.1 Présentation générale du modèle</h3>
 
@@ -541,20 +521,27 @@ Le comportement du four à micro-ondes est modélisé
 <p>
 Le modèle est organisé en deux régions orthogonales :
 <code>Microwave</code> et <code>Porte</code>.
-La première région est responsable du fonctionnement
-du micro-ondes, notamment la sélection de la puissance,
-la saisie du temps, la cuisson et sa finalisation.
-La seconde région contrôle l'ouverture et la fermeture
-de la porte.
 </p>
 
 <p>
-L'utilisation de régions orthogonales permet de représenter
-simultanément deux aspects indépendants du système.
-Ainsi, le micro-ondes peut se trouver dans un état
-de fonctionnement, comme <code>Addtime</code> ou
-<code>Waiting</code>, tout en ayant la porte ouverte
-ou fermée.
+La première région est responsable du fonctionnement
+du micro-ondes, notamment la sélection de puissance,
+la saisie du temps, la cuisson et sa finalisation.
+La seconde région contrôle l'ouverture
+et la fermeture de la porte.
+</p>
+
+<p>
+L'utilisation de régions orthogonales permet
+de représenter simultanément deux aspects
+indépendants du système.
+</p>
+
+<p>
+Ainsi, le micro-ondes peut se trouver
+dans un état de fonctionnement,
+comme <code>Addtime</code> ou <code>Waiting</code>,
+tout en ayant la porte ouverte ou fermée.
 </p>
 
 <p>
@@ -565,22 +552,21 @@ et la position de la porte.
 </p>
 
 <figure>
-  <img
-    class="diagram"
-    src="Statechart/microwave_complet.png"
-    alt="Statechart complet du micro-ondes">
+<img
+  class="diagram"
+  src="Statechart/microwave_complet.png"
+  alt="Statechart complet du micro-ondes">
 </figure>
 
 
 <h3>2.2 Région Microwave</h3>
 
 <figure>
-  <img
-    class="diagram"
-    src="Statechart/microwave.png"
-    alt="Région Microwave">
+<img
+  class="diagram"
+  src="Statechart/microwave.png"
+  alt="Région Microwave">
 </figure>
-
 
 <h4>2.2.1 Sélection de la puissance</h4>
 
@@ -594,6 +580,9 @@ par l'opération <code>clearDisplay()</code>.
 Les événements <code>high</code> et <code>low</code>
 permettent de sélectionner respectivement
 une puissance forte ou faible.
+</p>
+
+<p>
 Le système peut également passer d'une puissance
 à l'autre avant la configuration du temps de cuisson.
 </p>
@@ -602,6 +591,9 @@ Le système peut également passer d'une puissance
 Lors de l'entrée dans l'état <code>High</code>,
 la variable <code>power</code> reçoit la valeur 1
 et le message « High » est affiché.
+</p>
+
+<p>
 Dans l'état <code>Low</code>,
 la variable reçoit la valeur 2
 et le message « Low » est affiché.
@@ -612,24 +604,27 @@ et le message « Low » est affiché.
 
 <p>
 L'événement <code>timer</code> permet de passer
-de l'état de sélection de puissance à
-l'état <code>Addtime</code>.
+de l'état de sélection de puissance
+à l'état <code>Addtime</code>.
 </p>
 
 <p>
-Cet état permet de saisir une durée maximale
-de quatre chiffres.
+Cet état permet de saisir une durée
+de quatre chiffres au maximum.
 Deux variables internes sont utilisées :
-<code>remainingTime</code>, qui contient
-la durée saisie en secondes,
-et <code>digitCount</code>, qui représente
-le nombre de chiffres introduits.
+<code>remainingTime</code>,
+qui contient la durée saisie en secondes,
+et <code>digitCount</code>,
+qui représente le nombre de chiffres introduits.
 </p>
 
 <p>
 Une réaction locale associée à l'événement
-<code>digit</code> permet de mettre à jour le temps
-sans quitter l'état <code>Addtime</code>.
+<code>digit</code> permet de mettre à jour
+le temps sans quitter l'état <code>Addtime</code>.
+</p>
+
+<p>
 La garde <code>digitCount &lt; 4</code>
 empêche l'introduction de chiffres supplémentaires
 après les quatre premiers.
@@ -644,10 +639,11 @@ digit [digitCount &lt; 4] /
 
 <p>
 La conversion utilisée pour
-<code>displayTime()</code> permet de représenter
-le temps sous la forme minutes:secondes,
-tout en conservant la durée réelle en secondes
-dans la variable <code>remainingTime</code>.
+<code>displayTime()</code>
+permet de représenter le temps
+sous la forme minutes:secondes,
+tout en conservant la durée réelle
+en secondes dans <code>remainingTime</code>.
 </p>
 
 
@@ -657,7 +653,8 @@ dans la variable <code>remainingTime</code>.
 La transition vers l'état <code>Cooking</code>
 nécessite l'événement <code>start</code>
 et le respect de deux conditions :
-la durée doit être positive et la porte doit être fermée.
+la durée doit être positive
+et la porte doit être fermée.
 </p>
 
 <pre>
@@ -671,9 +668,11 @@ et le temps restant est affiché.
 </p>
 
 <p>
-Le compte à rebours est modélisé par une réaction
-temporelle <code>every 1 s</code>,
-qui diminue la variable <code>remainingTime</code>
+Le compte à rebours est modélisé
+par une réaction temporelle
+<code>every 1 s</code>.
+Elle diminue la variable
+<code>remainingTime</code>
 d'une unité toutes les secondes,
 tant que sa valeur est supérieure à 1.
 </p>
@@ -706,14 +705,18 @@ lorsque l'état <code>Cooking</code> est quitté.
 <h3>2.3 Région Porte</h3>
 
 <figure>
-  <img
-    class="diagram"
-    src="Statechart/porte.png"
-    alt="Région Porte">
+<img
+  class="diagram"
+  src="Statechart/porte.png"
+  alt="Région Porte">
+<figcaption>
+Figure 5 – Région orthogonale Porte.
+</figcaption>
 </figure>
 
 <p>
-La région <code>Porte</code> comporte deux états :
+La région <code>Porte</code>
+comporte deux états :
 <code>Closing</code> et <code>Opening</code>.
 </p>
 
@@ -727,8 +730,8 @@ d'un état à l'autre.
 
 <p>
 La variable interne booléenne
-<code>doorOpen</code> mémorise la position
-de la porte.
+<code>doorOpen</code>
+mémorise la position de la porte.
 </p>
 
 <p>
@@ -736,16 +739,21 @@ Lors de l'entrée dans <code>Opening</code>,
 cette variable devient <code>true</code>
 et l'opération <code>openDoor()</code>
 est exécutée.
+</p>
+
+<p>
 À l'inverse, l'entrée dans
-<code>Closing</code> met
-<code>doorOpen</code> à <code>false</code>
+<code>Closing</code>
+met <code>doorOpen</code> à
+<code>false</code>
 et exécute <code>closeDoor()</code>.
 </p>
 
 <p>
-Cette variable est consultée dans les gardes
-de la région principale afin d'empêcher
-la cuisson lorsque la porte est ouverte.
+Cette variable est consultée
+dans les gardes de la région principale
+afin d'empêcher la cuisson
+lorsque la porte est ouverte.
 </p>
 
 
@@ -765,32 +773,38 @@ interrompant immédiatement le processus de cuisson.
 </p>
 
 <p>
-Le temps restant est conservé dans
-la variable <code>remainingTime</code>.
-Il n'est donc pas nécessaire de recommencer
-la configuration du temporisateur.
+Le temps restant est conservé
+dans la variable <code>remainingTime</code>.
+Il n'est donc pas nécessaire
+de recommencer la configuration du temporisateur.
 </p>
 
 <p>
 À l'entrée dans <code>Waiting</code>,
 le message « Waiting » est affiché.
-Si la porte est refermée, une réaction locale
-associée à <code>close</code>
+</p>
+
+<p>
+Si la porte est refermée,
+une réaction locale associée à <code>close</code>
 permet de restaurer le temps restant
 sur l'afficheur.
 </p>
 
 <p>
-Une nouvelle ouverture de la porte dans
-cet état affiche à nouveau le message
-« Waiting ».
+Une nouvelle ouverture de la porte
+dans cet état affiche à nouveau
+le message « Waiting ».
 </p>
 
 <p>
-La fermeture de la porte ne déclenche
-pas automatiquement la reprise.
-L'utilisateur doit appuyer à nouveau sur
-<code>start</code>.
+La fermeture de la porte
+ne déclenche pas automatiquement la reprise.
+L'utilisateur doit appuyer
+à nouveau sur <code>start</code>.
+</p>
+
+<p>
 La transition vers <code>Cooking</code>
 est alors autorisée uniquement
 si la porte est fermée
@@ -803,9 +817,9 @@ start [doorOpen == false &amp;&amp; remainingTime &gt; 0]
 
 <p>
 Cette solution permet d'assurer
-la sécurité du système et la conservation
-des informations nécessaires
-à la reprise de la cuisson.
+la sécurité du système
+et la conservation des informations
+nécessaires à la reprise de la cuisson.
 </p>
 
 <h4>Porte ouverte en dehors de la cuisson</h4>
@@ -844,6 +858,9 @@ le système entre dans l'état composite
 <p>
 L'entrée dans cet état affiche
 le message « Finished ».
+</p>
+
+<p>
 Deux sous-états,
 <code>BeepOn</code> et <code>BeepOff</code>,
 assurent la signalisation sonore
@@ -851,8 +868,8 @@ et le clignotement de l'afficheur.
 </p>
 
 <p>
-Les deux états alternent à intervalles
-de 500 millisecondes,
+Les deux états alternent
+à intervalles de 500 millisecondes,
 grâce à des transitions temporelles
 <code>after 500 ms</code>.
 </p>
@@ -866,11 +883,9 @@ et ramène le micro-ondes
 </p>
 
 <p>
-L'action de sortie
-<code>beepOff()</code>
+L'action de sortie <code>beepOff()</code>
 permet d'interrompre la signalisation
-au moment de quitter
-<code>Finishingcooking</code>.
+au moment de quitter <code>Finishingcooking</code>.
 </p>
 
 
@@ -879,13 +894,13 @@ au moment de quitter
 <p>
 L'événement <code>stop</code>
 permet d'interrompre le fonctionnement
-du micro-ondes et de revenir à
-l'état <code>Repos</code>.
+du micro-ondes et de revenir
+à l'état <code>Repos</code>.
 </p>
 
 <p>
-Cette possibilité est prévue depuis
-les différents états du processus,
+Cette possibilité est prévue
+depuis les différents états du processus,
 notamment la sélection de puissance,
 la saisie du temps,
 la cuisson,
@@ -918,9 +933,8 @@ Statechart/Microwave/model/microwave.sct
 
 <p>
 Le dossier <code>Statechart/Microwave/</code>
-contient les fichiers du projet
-itemis CREATE utilisé pour
-la modélisation du système.
+contient les fichiers du projet itemis CREATE
+utilisé pour la modélisation du système.
 </p>
 
 
@@ -931,16 +945,17 @@ la modélisation du système.
 
 Selon la communication de l'enseignant,
 la version d'itemis CREATE compatible
-avec le code Java fourni n'est plus disponible
-au téléchargement.
+avec le code Java fourni
+n'est plus disponible au téléchargement.
 
 Par conséquent, la correction de cette partie
 porte uniquement sur le diagramme Statechart.
-L'exécutabilité du code Java
-n'est pas exigée.
 </div>
 
 
+<!-- ===================================== -->
+<!-- 3. DESIGN LOGICIEL                    -->
+<!-- ===================================== -->
 
 <!-- ======================================== -->
 <!-- 3. DESIGN LOGICIEL                      -->
@@ -1107,6 +1122,15 @@ les nouveaux noms et les nouvelles signatures.
       <code>confirmer(pa, p)</code>, qui ne prend plus que deux paramètres.</li>
 </ul>
 
+<p>
+Les diagrammes de séquence « Réserver une unité »
+et « Payer une réservation » ont été jugés
+corrects lors de l'évaluation du DM1.
+Leur structure a donc été conservée,
+sous réserve de vérifier leur cohérence
+avec le diagramme de classes logiciel
+révisé pour le DM2.
+</p>
 
 <h3>3.3 Révision du diagramme de paquets</h3>
 
@@ -1339,6 +1363,20 @@ pre terminauxConnus:
         self.catalogueTerminaux.terminaux-&gt;exists(code = destination))
 </pre>
 
+<p><strong>C20 <code>verifierVoyages</code>.</strong> L'origine et, sauf pour une croisière, la destination sont des terminaux connus.</p>
+<pre>
+context ControleurClient::verifierVoyages(mode : ModeTransport, origine : String,
+    destination : String, date : Date, typeSection : String) : List(String)
+pre terminauxConnus:
+  self.catalogueTerminaux.terminaux-&gt;exists(code = origine) and
+  (mode &lt;&gt; ModeTransport::NAVAL implies
+     self.catalogueTerminaux.terminaux-&gt;exists(code = destination))
+</pre>
+
+
+<!-- ===================================== -->
+<!-- 3.5 MODULES RÉUTILISABLES             -->
+<!-- ===================================== -->
 
 <h3>3.5 Modules réutilisables</h3>
 
@@ -1375,9 +1413,9 @@ Projet Visual Paradigm : <a href="Design/projet.vpp">Design/projet.vpp</a>
 </p>
 
 
-<!-- ======================================== -->
-<!-- 4. QUALITÉ DU DESIGN                    -->
-<!-- ======================================== -->
+<!-- ===================================== -->
+<!-- 4. QUALITÉ DU DESIGN                  -->
+<!-- ===================================== -->
 
 <h2>4. Qualité du design</h2>
 
@@ -1574,9 +1612,44 @@ Le seul cas à surveiller est <code>Voyage</code>.
 </table>
 
 
-<!-- ======================================== -->
-<!-- DISTRIBUTION DES TÂCHES                 -->
-<!-- ======================================== -->
+<h4>Principes GRASP</h4>
+
+<ul>
+  <li><strong>Contrôleur.</strong> <code>ControleurClient</code> et <code>ControleurAdmin</code> reçoivent les opérations système et délèguent le travail.</li>
+  <li><strong>Expert.</strong> <code>Compagnie</code> calcule le prix (plein tarif × coefficient) ; <code>Voyage</code> calcule ses unités libres ; <code>Reservation</code> connaît son état et son expiration.</li>
+  <li><strong>Créateur.</strong> <code>Voyage</code> crée les réservations qu'il agrège ; le contrôleur crée <code>Passager</code>, <code>Paiement</code> et <code>CritereRecherche</code>, dont il possède les données.</li>
+  <li><strong>Fabrication pure.</strong> Les catalogues, <code>RegistreReservations</code>, les fabriques et <code>Lanceur</code> n'existent pas dans le domaine ; ils gardent les classes du domaine cohésives.</li>
+  <li><strong>Polymorphisme.</strong> <code>correspond()</code>, <code>getVehicule()</code>, <code>ITypeSection.getCoefficient()</code> et <code>IStrategieAttribution.choisir()</code> remplacent les tests sur le mode ou le type.</li>
+  <li><strong>Indirection.</strong> <code>IServiceClient</code> entre l'interface et le contrôleur ; <code>AdaptateurBanque</code> entre le système et la banque.</li>
+  <li><strong>Variations protégées.</strong> Une interface à chaque point de variation : modes (<code>FabriqueTransport</code>), règles d'attribution, service de paiement.</li>
+  <li><strong>Faible couplage et forte cohésion.</strong> Voir la section 4.1.</li>
+</ul>
+
+<h4>Patrons de conception</h4>
+
+<ul>
+  <li><strong>Fabrique abstraite :</strong> <code>FabriqueTransport</code> crée des objets cohérents d'un même mode.</li>
+  <li><strong>Stratégie :</strong> <code>IStrategieAttribution</code>.</li>
+  <li><strong>Adaptateur :</strong> <code>AdaptateurBanque</code> traduit <code>IServicePaiement</code> vers l'API bancaire.</li>
+  <li><strong>Méthode patron :</strong> <code>Voyage.reserver()</code> appelle <code>getVehicule()</code>, redéfinie par chaque mode.</li>
+  <li><strong>Singleton (non utilisé) :</strong> les catalogues et le registre sont uniques, mais injectés par <code>Lanceur</code>, ce qui évite un couplage commun caché.</li>
+</ul>
+
+
+<h4>Principes de conception de paquets</h4>
+
+<ul>
+  <li><strong>REP et CRP.</strong> <code>reservation</code>, <code>paiement</code> et <code>transport</code> se réutilisent comme un tout : leurs classes sont utilisées ensemble.</li>
+  <li><strong>CCP.</strong> Un changement de règle d'un mode (par exemple le format des sièges d'avion) ne touche que son paquet.</li>
+  <li><strong>ADP.</strong> Le graphe des paquets est acyclique. Le cycle <code>Voyage</code> ↔ <code>Reservation</code> du DM1 est brisé par inversion de dépendance : <code>reservation</code> définit <code>IOffre</code> et <code>IReservable</code>, que <code>Voyage</code> et <code>UniteReservable</code> réalisent.</li>
+  <li><strong>SDP.</strong> Respecté, sauf une exception mineure : <code>transport</code> (I = 0,12) dépend de <code>reservation</code> (I = 0,20). Cette dépendance vise surtout des interfaces stables ; la supprimer obligerait à sortir la création des réservations de <code>Voyage</code>, contre le principe Créateur.</li>
+  <li><strong>SAP.</strong> <code>transport</code>, le paquet le plus stable, est aussi le plus abstrait (A = 0,82) ; les paquets des modes et <code>configuration</code>, instables, sont concrets (section 4.3).</li>
+</ul>
+
+
+<!-- ===================================== -->
+<!-- DISTRIBUTION DES TÂCHES               -->
+<!-- ===================================== -->
 
 <h2>Distribution des tâches</h2>
 

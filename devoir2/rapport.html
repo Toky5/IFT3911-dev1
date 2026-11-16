@@ -330,210 +330,141 @@ les modifications apportées au système de réservation.
 
 <h2>1. Réseau de Pétri — Tunnel</h2>
 
-<p>
-<strong>Responsable :</strong>
-Toky Erick Rabenantoandro
-</p>
+<p><strong>Responsable :</strong> Toky Erick Rabenantoandro</p>
 
-<h3>1.1 Hypothèses et modélisation</h3>
+<h3>1.1 Modélisation</h3>
 
 <p>
-Le réseau a été construit en trois incréments, dans l'ordre
-des consignes. Chaque place représente une condition
-et chaque transition un événement.
+Le réseau est construit dans PIPE selon les trois incréments de l'énoncé. Tous les arcs ont un poids de 1.
+Le marquage est noté M = [VM, VR, L, TR, TM, FM, FR] :
 </p>
-
 <ul>
-  <li><strong>Voiture en attente MTL</strong> et <strong>Voiture en attente RS</strong> : une voiture attend à l'entrée du tunnel (1 jeton chacune au départ).</li>
-  <li><strong>Tunnel Libre</strong> : aucune voiture n'est dans le tunnel (1 jeton au départ).</li>
-  <li><strong>Dans tunnel vers RS</strong> et <strong>Dans tunnel vers MTL</strong> : une voiture traverse le tunnel dans ce sens (0 jeton au départ).</li>
-  <li><strong>Feu MTL</strong> et <strong>Feu RS</strong> : le feu de ce côté est vert (1 jeton pour Feu MTL, 0 pour Feu RS au départ).</li>
+  <li>VM, VR : <em>Voiture en attente MTL</em>, <em>Voiture en attente RS</em> ;</li>
+  <li>L : <em>Tunnel Libre</em> ;</li>
+  <li>TR, TM : <em>Dans tunnel vers RS</em>, <em>Dans tunnel vers MTL</em> ;</li>
+  <li>FM, FR : <em>Feu MTL</em>, <em>Feu RS</em> (feu vert si la place contient un jeton).</li>
 </ul>
+<p>Marquage initial : M<sub>0</sub> = [1, 1, 1, 0, 0, 1, 0].</p>
 
 <table>
-  <tr>
-    <th>Transition</th>
-    <th>Consomme</th>
-    <th>Produit</th>
-  </tr>
-  <tr><td>Entrer depuis Montréal</td><td>Voiture en attente MTL, Tunnel Libre, Feu MTL</td><td>Voiture en attente MTL, Dans tunnel vers RS</td></tr>
-  <tr><td>Sortir vers Rive Sud</td><td>Dans tunnel vers RS</td><td>Tunnel Libre, Feu RS</td></tr>
-  <tr><td>Entrer depuis Rive Sud</td><td>Voiture en attente RS, Tunnel Libre, Feu RS</td><td>Voiture en attente RS, Dans tunnel vers MTL</td></tr>
-  <tr><td>Sortir vers Montréal</td><td>Dans tunnel vers MTL</td><td>Tunnel Libre, Feu MTL</td></tr>
+  <tr><th>Transition</th><th>Consomme</th><th>Produit</th></tr>
+  <tr><td>Entrer depuis Montréal (EM)</td><td>VM, L, FM</td><td>VM, TR</td></tr>
+  <tr><td>Sortir vers Rive Sud (SR)</td><td>TR</td><td>L, FR</td></tr>
+  <tr><td>Entrer depuis Rive Sud (ER)</td><td>VR, L, FR</td><td>VR, TM</td></tr>
+  <tr><td>Sortir vers Montréal (SM)</td><td>TM</td><td>L, FM</td></tr>
 </table>
 
+<h4>Incrément 1 — deux voies, flux continu</h4>
 <p>
-Tous les arcs ont un poids de 1. L'état est noté
-M = [Voiture en attente MTL, Voiture en attente RS, Tunnel Libre,
-Dans tunnel vers RS, Dans tunnel vers MTL, Feu MTL, Feu RS],
-avec le marquage initial M<sub>0</sub> = [1, 1, 1, 0, 0, 1, 0].
+Places VM, VR, TR, TM et les quatre transitions. Chaque place d'entrée est reliée à sa transition par deux arcs :
+le jeton est consommé (la voiture entre) puis restitué (la voiture suivante arrive). VM et VR restent donc à 1,
+ce qui modélise le flux continu. La voiture qui sort quitte le système.
 </p>
 
-<h4>Incrément 1, Les deux voies et le flux continu</h4>
-
+<h4>Incrément 2 — une seule voiture à la fois</h4>
 <p>
-Chaque voie possède une place d'attente et une place représentant
-la voiture dans le tunnel. Chaque place d'attente est reliée
-à sa transition d'entrée par deux arcs : le jeton est consommé
-(la voiture part dans le tunnel), puis immédiatement restitué
-(la voiture suivante arrive). Son marquage reste donc constant
-à 1, ce qui modélise le flux continu. Ce jeton reste indispensable :
-sans lui, l'entrée ne serait jamais franchissable.
-À ce stade, rien ne limite le nombre de voitures dans le tunnel :
-le réseau n'est pas borné.
+La place L (un jeton) est consommée par chaque entrée et rendue par chaque sortie : c'est l'exclusion mutuelle
+du sémaphore vu en cours.
 </p>
 
-<h4>Incrément 2, Une seule voiture dans le tunnel</h4>
-
+<h4>Incrément 3 — feux alternés</h4>
 <p>
-La place « Tunnel Libre » joue le rôle de capacité : les deux
-transitions d'entrée la consomment et les deux transitions
-de sortie la rendent. Une voiture n'entre donc que si le tunnel
-est vide. Les deux entrées sont toutefois en conflit sur cette
-place : rien n'empêche une même voie de reprendre le tunnel
-indéfiniment. Le système n'est pas équitable.
-</p>
-
-<h4>Incrément 3, Les feux</h4>
-
-<p>
-Une transition d'entrée consomme le feu vert de son côté,
-et la transition de sortie correspondante donne le vert
-au côté opposé. Lorsqu'une voiture venue de Montréal sort,
-le feu côté Rive Sud passe au vert, et inversement.
-Les deux sens de circulation alternent donc.
+Une entrée consomme le feu vert de son côté ; la sortie correspondante donne le vert au côté opposé.
+Pendant une traversée, les deux feux sont rouges.
 </p>
 
 <figure>
-  <img
-    class="diagram"
-    src="Réseau de Petri/reseau-tunnel.png"
-    alt="Réseau de Pétri du tunnel">
+  <img class="diagram" src="Réseau de Petri/reseau-tunnel.png" alt="Réseau de Pétri du tunnel">
 </figure>
+
 
 <h3>1.2 Lois de conservation et sécurité</h3>
 
-<p>
-On considère le vecteur de pondération γ = [0, 0, 1, 1, 1, 0, 0],
-c'est-à-dire la somme
-S(M) = M(Tunnel Libre) + M(Dans tunnel vers RS) + M(Dans tunnel vers MTL).
-</p>
-
-<ul>
-  <li>« Entrer depuis Montréal » retire un jeton de Tunnel Libre et en ajoute un dans Dans tunnel vers RS : S ne change pas.</li>
-  <li>« Sortir vers Rive Sud » retire un jeton de Dans tunnel vers RS et en ajoute un dans Tunnel Libre : S ne change pas.</li>
-  <li>« Entrer depuis Rive Sud » et « Sortir vers Montréal » font de même avec Dans tunnel vers MTL : S ne change pas.</li>
-</ul>
-
-<p>
-Au départ, S(M<sub>0</sub>) = 1 + 0 + 0 = 1. Comme tout marquage
-accessible s'obtient par une suite de franchissements depuis
-M<sub>0</sub>, on a S(M) = 1 pour tout marquage accessible :
-le réseau est conservateur pour γ, avec k = 1.
-</p>
-
-<p>
-Puisqu'un nombre de jetons est toujours positif ou nul,
-M(Tunnel Libre) ≥ 0, et donc
-<strong>M(Dans tunnel vers RS) + M(Dans tunnel vers MTL) ≤ 1</strong> :
-au plus une voiture se trouve dans le tunnel,
-quel que soit son sens. ∎
-</p>
-
-<p>
-Deux autres lois se vérifient de la même façon :
-</p>
-
-<ul>
-  <li>M(Voiture en attente MTL) = 1 et M(Voiture en attente RS) = 1 : une voiture attend en tout temps à chaque entrée.</li>
-  <li>M(Dans tunnel vers RS) + M(Dans tunnel vers MTL) + M(Feu MTL) + M(Feu RS) = 1 : au plus un feu est vert, et aucun ne l'est lorsque le tunnel est occupé.</li>
-</ul>
-
-<p>
-Ces lois montrent que chaque place contient au plus un jeton :
-le réseau est borné et sécuritaire.
-</p>
-
-<h3>1.3 Graphe de couverture et absence de famine</h3>
-
-<p>
-Le graphe est construit avec l'algorithme de Karp-Miller,
-à partir de M<sub>0</sub>. Pour chaque nœud, on teste les quatre
-transitions ; une transition est franchissable lorsque chacune
-de ses places d'entrée contient au moins un jeton.
-</p>
+<p>Matrice d'incidence C = Post − Pré du modèle final :</p>
 
 <table>
-  <tr>
-    <th>Nœud</th>
-    <th>Marquage</th>
-    <th>Seule transition franchissable</th>
-    <th>Pourquoi les autres sont bloquées</th>
-    <th>Résultat</th>
-  </tr>
-  <tr><td>M<sub>0</sub></td><td>[1,1,1,0,0,1,0]</td><td>Entrer depuis Montréal</td><td>Feu RS = 0 ; tunnel vide</td><td>M<sub>1</sub></td></tr>
-  <tr><td>M<sub>1</sub></td><td>[1,1,0,1,0,0,0]</td><td>Sortir vers Rive Sud</td><td>Tunnel Libre = 0</td><td>M<sub>2</sub></td></tr>
-  <tr><td>M<sub>2</sub></td><td>[1,1,1,0,0,0,1]</td><td>Entrer depuis Rive Sud</td><td>Feu MTL = 0 ; tunnel vide</td><td>M<sub>3</sub></td></tr>
-  <tr><td>M<sub>3</sub></td><td>[1,1,0,0,1,0,0]</td><td>Sortir vers Montréal</td><td>Tunnel Libre = 0</td><td>M<sub>0</sub> (duplicata)</td></tr>
+  <tr><th>Place</th><th>EM</th><th>SR</th><th>ER</th><th>SM</th></tr>
+  <tr><td>VM</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+  <tr><td>VR</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+  <tr><td>L</td><td>−1</td><td>+1</td><td>−1</td><td>+1</td></tr>
+  <tr><td>TR</td><td>+1</td><td>−1</td><td>0</td><td>0</td></tr>
+  <tr><td>TM</td><td>0</td><td>0</td><td>+1</td><td>−1</td></tr>
+  <tr><td>FM</td><td>−1</td><td>0</td><td>0</td><td>+1</td></tr>
+  <tr><td>FR</td><td>0</td><td>+1</td><td>−1</td><td>0</td></tr>
 </table>
 
 <p>
-À chaque étape, le marquage obtenu est comparé aux nœuds
-de son chemin depuis M<sub>0</sub>. Il contient toujours moins
-de jetons qu'eux dans au moins une place : aucun marquage
-ne domine un ancêtre, donc aucun ω n'est introduit.
-Le marquage obtenu depuis M<sub>3</sub> est égal à M<sub>0</sub> :
-c'est un duplicata, et la construction s'arrête.
+Une loi de conservation est un vecteur γ tel que γ · C = 0 ; alors γ · M = γ · M<sub>0</sub> pour tout marquage
+accessible M. Une équation par transition :
 </p>
+<pre>
+EM : −γ(L) + γ(TR) − γ(FM) = 0
+SR :  γ(L) − γ(TR) + γ(FR) = 0
+ER : −γ(L) + γ(TM) − γ(FR) = 0
+SM :  γ(L) − γ(TM) + γ(FM) = 0
+⇒ γ(FM) = γ(FR) = a  et  γ(TR) = γ(TM) = γ(L) + a ;  γ(VM) et γ(VR) sont libres.
+</pre>
 
-<figure>
-  <img
-    class="diagram"
-    src="Réseau de Petri/graphe-couverture.png"
-    alt="Graphe de couverture">
-</figure>
-
-<h4>Propriétés lues sur le graphe</h4>
-
+<p>On obtient quatre lois indépendantes, évaluées en M<sub>0</sub> :</p>
 <ul>
-  <li><strong>Borné :</strong> aucun ω n'apparaît. Le graphe de couverture est donc identique au graphe d'accessibilité, sans perte d'information.</li>
-  <li><strong>Pas d'interblocage :</strong> aucun nœud n'est terminal.</li>
-  <li><strong>Vivant :</strong> les quatre transitions apparaissent dans le cycle et restent franchissables depuis tout marquage accessible ; elles sont L4-vivantes.</li>
+  <li><strong>L1</strong> (γ(L) = 1, a = 0) : M(L) + M(TR) + M(TM) = 1 + 0 + 0 = 1 ;</li>
+  <li><strong>L2</strong> (γ(L) = 0, a = 1) : M(TR) + M(TM) + M(FM) + M(FR) = 0 + 0 + 1 + 0 = 1 ;</li>
+  <li><strong>L3</strong> : M(VM) = 1 ; <strong>L4</strong> : M(VR) = 1.</li>
 </ul>
 
-<h4>Équité</h4>
-
 <p>
-Chaque nœud a un seul arc sortant : la seule séquence possible
-est ⟨Entrer depuis Montréal, Sortir vers Rive Sud,
-Entrer depuis Rive Sud, Sortir vers Montréal⟩, répétée indéfiniment.
-Aucun marquage ne rend les deux transitions d'entrée franchissables
-en même temps : elles ne sont jamais en conflit, contrairement
-à l'incrément 2. Les entrées des deux sens alternent strictement,
-et une même voie ne peut jamais entrer deux fois de suite.
-Le système est donc équitable de part et d'autre du tunnel. 
+<strong>Une seule voiture dans le tunnel.</strong> Par L1, M(TR) + M(TM) = 1 − M(L). Comme M(L) ≥ 0,
+M(TR) + M(TM) ≤ 1 : au plus une voiture est dans le tunnel, dans un sens ou dans l'autre. ∎
+</p>
+<p>
+L2 montre que les feux suffisent à eux seuls : une voiture dans le tunnel implique deux feux rouges.
+Les lois L1 à L4 couvrent toutes les places avec des poids positifs : le réseau est conservatif, donc borné,
+et sauf (au plus un jeton par place).
 </p>
 
-<h4>Absence de famine</h4>
+
+<h3>1.3 Graphe de couverture, équité et absence de famine</h3>
+
+<figure>
+  <img class="diagram" src="Réseau de Petri/graphe-couverture.png" alt="Graphe de couverture du modèle final">
+</figure>
+
+<table>
+  <tr><th>Marquage</th><th>Vecteur</th><th>Situation</th><th>Seule transition franchissable</th></tr>
+  <tr><td>M<sub>0</sub></td><td>[1, 1, 1, 0, 0, 1, 0]</td><td>tunnel libre, feu vert à Montréal</td><td>EM</td></tr>
+  <tr><td>M<sub>1</sub></td><td>[1, 1, 0, 1, 0, 0, 0]</td><td>voiture vers la Rive Sud, deux feux rouges</td><td>SR</td></tr>
+  <tr><td>M<sub>2</sub></td><td>[1, 1, 1, 0, 0, 0, 1]</td><td>tunnel libre, feu vert à la Rive Sud</td><td>ER</td></tr>
+  <tr><td>M<sub>3</sub></td><td>[1, 1, 0, 0, 1, 0, 0]</td><td>voiture vers Montréal, deux feux rouges</td><td>SM</td></tr>
+</table>
 
 <p>
-Il y a famine lorsqu'un processus se voit refuser indéfiniment
-une ressource dont il a besoin. Ici, les processus sont les deux
-voies et la ressource est le tunnel. Puisque le système est
-équitable, chaque voie obtient le tunnel en au plus trois
-franchissements depuis n'importe quel état, c'est-à-dire après
-le passage d'une seule voiture de l'autre côté. Comme il n'y a
-pas d'interblocage, aucune voie n'attend indéfiniment :
-il n'y a pas de famine dans le réseau. 
+Aucun marquage ne domine un de ses ancêtres : aucun ω. Le retour à M<sub>0</sub> est un duplicata qui termine
+la construction. Le réseau est borné et sauf ; son graphe de couverture est son graphe d'accessibilité.
 </p>
 
+<p>
+<strong>Équité.</strong> Chaque marquage a un seul successeur : le graphe est le cycle
+M<sub>0</sub> → M<sub>1</sub> → M<sub>2</sub> → M<sub>3</sub> → M<sub>0</sub>. EM et ER ne sont jamais
+franchissables en même temps : elles ne sont jamais en conflit. Toute séquence est un préfixe de
+(EM, SR, ER, SM)<sup>ω</sup>, donc |#EM − #ER| ≤ 1 : les entrées alternent et le système est équitable
+de part et d'autre du tunnel. ∎
+</p>
+
+<p><strong>Absence de famine.</strong> On en déduit :</p>
+<ul>
+  <li>pas d'interblocage : chaque marquage a un successeur ;</li>
+  <li>les quatre transitions sont sur le cycle, donc L4-vivantes : le réseau est vivant ;</li>
+  <li>attente bornée : par L3 et L4, une voiture attend toujours de chaque côté, et elle entre après au plus
+      trois franchissements, soit le passage d'une seule voiture d'en face.</li>
+</ul>
+<p>Aucune voie ne peut se voir refuser le tunnel indéfiniment : il n'y a pas de famine. ∎</p>
 
 <p class="fichier">
-Fichier source du modèle :
-<a href="Réseau de Petri/reseau-tunnel.xml">
-Réseau de Petri/reseau-tunnel.xml
-</a>
+Fichiers : <a href="Réseau de Petri/reseau-tunnel.xml">reseau-tunnel.xml</a>,
+<a href="Réseau de Petri/reseau-tunnel.png">reseau-tunnel.png</a>,
+<a href="Réseau de Petri/graphe-couverture.png">graphe-couverture.png</a>
 </p>
+
 
 <!-- ======================================== -->
 <!-- 2. STATECHART — GABRIEL                 -->
@@ -1100,237 +1031,240 @@ Expliquer :
 
 <h3>3.4 Révision des contraintes OCL</h3>
 
-<p>
-<strong>Responsable :</strong>
-Toky Erick Rabenantoandro
-</p>
+<p><strong>Responsable :</strong> Toky Erick Rabenantoandro</p>
 
 <p>
-Les contraintes utilisent les classes et associations du diagramme du DM1.
-Sans nom de rôle, on utilise le nom de la classe en minuscule.
-On suppose que <code>Date</code> offre <code>plusJours(n : Integer) : Date</code>.
+Chaque contrainte est donnée en langage naturel puis en OCL. Elle n'utilise que les attributs, rôles et
+opérations de requête du diagramme de classes révisé (§ 3.1). Un attribut <code>char</code> est traité comme une
+<code>String</code> d'un caractère. On suppose que <code>DateHeure</code> est un type ordonné
+qui offre <code>plusJours(n : Integer) : DateHeure</code>.
 </p>
 
 <h4>Corrections par rapport au DM1</h4>
-
 <ul>
-  <li>C2 : retirée (hors énoncé).</li>
-  <li>C4 : contrat déplacé sur <code>Reservation::confirmer</code>.</li>
-  <li>C5 et C6 : chaque caractère du code est une lettre.</li>
-  <li>C7 : navigation par <code>self.vehicule.compagnie</code>.</li>
-  <li>C8 : retirée (doublon de <code>sansChevauchement</code>).</li>
-  <li>C9 : conditions reliées par <code>and</code> ; les quatre chiffres sont vérifiés.</li>
-  <li>C11 : retirée (opération absente du diagramme) ; remplacée par <code>Voyage::reserver</code> avec <code>post</code>.</li>
-  <li>C12 : préconditions sur le passager, l'état et l'unité.</li>
-  <li><code>getDebut()</code> et <code>getFin()</code> : remplacées par <code>def finitAvant</code>.</li>
-  <li>Ajout : invariants de mode (<code>modeAerien</code>, <code>modeNaval</code>, <code>modeFerroviaire</code>).</li>
+  <li>Contrainte 2 (un passeport par voyage) : retirée, hors énoncé.</li>
+  <li>Contrainte 4 (<code>payer</code>) : préconditions complètes ; navigation par le rôle <code>registre</code> → C19.</li>
+  <li>Contraintes 5 et 6 (codes) : chaque caractère est une lettre → C3, C4.</li>
+  <li>Contrainte 7 (avion de la compagnie) : navigation par les rôles <code>flotte</code> et <code>vols</code> → C5.</li>
+  <li>Contrainte 8 (chevauchement des vols) : remplacée par la contrainte commune C2.</li>
+  <li>Contrainte 9 (numéro de vol) : conditions reliées par <code>and</code> ; quatre chiffres vérifiés → C6.</li>
+  <li>Contrainte 11 (<code>Siege::reserver</code>) : retirée ; remplacée par <code>Voyage::reserver</code>, avec <code>post</code> → C18.</li>
+  <li>Contrainte 12 (confirmation) : préconditions sur l'état, le passager et l'unité → C19.</li>
+  <li><code>getDebut()</code> et <code>getFin()</code> : remplacées par les attributs <code>depart</code> et <code>arrivee</code>.</li>
+  <li>Ajout : cohérence des modes de transport → C5, C9, C10, C12, C13, C17.</li>
 </ul>
 
 <h4>Contraintes communes</h4>
 
-<p>
-Un voyage finit avant un autre s'il arrive au plus tard à son départ.
-</p>
+<p><strong>C1</strong> Deux terminaux n'ont jamais le même code.</p>
+<pre>
+context Terminal
+inv codeUnique:
+  Terminal.allInstances()-&gt;isUnique(code)
+</pre>
 
+<p><strong>C2</strong> Deux voyages qui utilisent le même véhicule ne se chevauchent pas.</p>
 <pre>
 context Voyage
-def: finitAvant(v : Voyage) : Boolean =
-  self.dateArrivee &lt; v.dateDepart or
-  (self.dateArrivee = v.dateDepart and self.heureArrivee &lt;= v.heureDepart)
-</pre>
-
-<p>
-Les voyages d'un même véhicule ne se chevauchent pas.
-</p>
-
-<pre>
-context Vehicule
-inv sansChevauchement:
-  self.voyages-&gt;forAll(v1, v2 | v1 &lt;&gt; v2 implies
-    v1.finitAvant(v2) or v2.finitAvant(v1))
-</pre>
-
-<p>
-Le véhicule d'un voyage appartient à la compagnie qui l'exploite.
-</p>
-
-<pre>
-context Voyage
-inv vehiculeDeLaCompagnie:
-  self.vehicule.compagnie = self.compagnie
-</pre>
-
-<p>
-Réserver : la section a une unité libre ; une réservation en attente,
-sans passager, est ajoutée et son numéro est retourné.
-</p>
-
-<pre>
-context Voyage::reserver(codeSection : String, priorite : Priorite) : String
-pre:  self.getNbUnitesDisponibles(codeSection) &gt; 0
-post: self.reservations-&gt;size() = self.reservations@pre-&gt;size() + 1
-post: self.reservations-&gt;exists(r |
-        r.numero = result and
-        r.etat = EtatReservation::EnAttente and
-        r.passager-&gt;isEmpty())
-</pre>
-
-<p>
-Confirmer : la réservation est en attente, sans passager ni paiement, son unité
-est libre et le montant est positif ; elle devient confirmée, avec son passager
-et un paiement dont le numéro de confirmation est retourné.
-</p>
-
-<pre>
-context Reservation::confirmer(nom : String, courriel : String,
-    numeroPasseport : String, carte : CarteCredit, montant : Real) : String
-pre:  self.etat = EtatReservation::EnAttente
-pre:  self.passager-&gt;isEmpty() and self.paiement-&gt;isEmpty()
-pre:  self.voyage.reservations-&gt;forAll(r |
-        (r &lt;&gt; self and r.etat = EtatReservation::Confirmee)
-        implies r.uniteReservable &lt;&gt; self.uniteReservable)
-pre:  montant &gt; 0
-post: self.etat = EtatReservation::Confirmee
-post: self.passager.nom = nom and
-      self.passager.courriel = courriel and
-      self.passager.numeroPasseport = numeroPasseport
-post: self.paiement.montant = montant and
-      self.paiement.numeroConfirmation = result
+inv pasDeChevauchement:
+  Voyage.allInstances()-&gt;forAll(v |
+    (v &lt;&gt; self and v.getVehicule() = self.getVehicule())
+    implies (self.arrivee &lt;= v.depart or v.arrivee &lt;= self.depart))
 </pre>
 
 <h4>Voyage aérien</h4>
 
-<p>
-Code d'aéroport : trois lettres, unique. Un caractère est une lettre si sa majuscule diffère de sa minuscule.
-</p>
-
+<p><strong>C3</strong> Un code d'aéroport a trois lettres.</p>
 <pre>
 context Aeroport
 inv codeTroisLettres:
   self.code.size() = 3 and
   Sequence{1..3}-&gt;forAll(i |
-    let c : String = self.code.substring(i, i) in
-    c.toUpperCase() &lt;&gt; c.toLowerCase())
-inv codeUnique:
-  Aeroport.allInstances()-&gt;isUnique(code)
+    self.code.substring(i, i) &gt;= 'A' and self.code.substring(i, i) &lt;= 'Z')
 </pre>
 
-<p>
-Code de compagnie aérienne : deux lettres, unique.
-</p>
-
+<p><strong>C4</strong> Un code de compagnie aérienne a deux lettres et il est unique.</p>
 <pre>
 context CompagnieAerienne
 inv codeDeuxLettres:
   self.code.size() = 2 and
   Sequence{1..2}-&gt;forAll(i |
-    let c : String = self.code.substring(i, i) in
-    c.toUpperCase() &lt;&gt; c.toLowerCase())
-inv codeUnique:
+    self.code.substring(i, i) &gt;= 'A' and self.code.substring(i, i) &lt;= 'Z') and
   CompagnieAerienne.allInstances()-&gt;isUnique(code)
 </pre>
 
-<p>
-Un vol utilise une compagnie aérienne et un avion. Son numéro, unique, est le code
-de la compagnie suivi de quatre chiffres. Départ et arrivée sont différents.
-</p>
-
+<p><strong>C5</strong> Un vol est offert par une seule compagnie aérienne, et son avion fait partie de la flotte de cette compagnie.</p>
 <pre>
 context Vol
-inv modeAerien:
-  self.compagnie.oclIsKindOf(CompagnieAerienne) and
-  self.vehicule.oclIsKindOf(Avion)
-inv formatNumero:
+inv avionDeLaCompagnie:
+  CompagnieAerienne.allInstances()-&gt;one(c | c.vols-&gt;includes(self)) and
+  CompagnieAerienne.allInstances()-&gt;forAll(c |
+    c.vols-&gt;includes(self) implies c.flotte-&gt;includes(self.avion))
+</pre>
+
+<p><strong>C6</strong> Un numéro de vol, unique, est le code de la compagnie suivi de quatre chiffres.</p>
+<pre>
+context Vol
+inv numeroDeVol:
   self.numero.size() = 6 and
-  self.numero.substring(1, 2) = self.compagnie.code and
+  CompagnieAerienne.allInstances()-&gt;forAll(c |
+    c.vols-&gt;includes(self) implies self.numero.substring(1, 2) = c.code) and
   Sequence{3..6}-&gt;forAll(i |
-    Set{'0','1','2','3','4','5','6','7','8','9'}
-      -&gt;includes(self.numero.substring(i, i)))
-inv numeroUnique:
+    self.numero.substring(i, i) &gt;= '0' and self.numero.substring(i, i) &lt;= '9') and
   Vol.allInstances()-&gt;isUnique(numero)
+</pre>
+
+<p><strong>C7</strong> Les aéroports de départ et d'arrivée d'un vol sont différents.</p>
+<pre>
+context Vol
 inv aeroportsDistincts:
   self.origine &lt;&gt; self.destination
 </pre>
 
-<p>
-Un avion appartient à une compagnie aérienne et n'a que des sections d'avion.
-La disposition fixe colonnes et ailes : S (3, aile après 1), C (4, après 2), M (6, après 3),
-L (10, après 3 et 7). Rangée de 1 à 100, colonne permise par la disposition.
-</p>
-
+<p><strong>C8</strong> Une section d'avion ne contient que des sièges, de rangée 1 à 100, dont la colonne est permise par la disposition.</p>
 <pre>
-context Avion
-inv modeAerien:
-  self.compagnie.oclIsKindOf(CompagnieAerienne) and
-  self.section-&gt;forAll(s | s.oclIsKindOf(SectionAvion))
-
 context SectionAvion
-inv dispositionValide:
-  Set{'S', 'C', 'M', 'L'}-&gt;includes(self.dispositionSiege)
-def: nbColonnes : Integer =
-  if self.dispositionSiege = 'S' then 3
-  else if self.dispositionSiege = 'C' then 4
-  else if self.dispositionSiege = 'M' then 6
-  else 10 endif endif endif
-inv ailes:
-  (self.dispositionSiege = 'S' implies self.aile = Set{1}) and
-  (self.dispositionSiege = 'C' implies self.aile = Set{2}) and
-  (self.dispositionSiege = 'M' implies self.aile = Set{3}) and
-  (self.dispositionSiege = 'L' implies self.aile = Set{3, 7})
 inv sieges:
-  self.uniteReservable-&gt;forAll(u |
+  self.unites-&gt;forAll(u |
     u.oclIsKindOf(Siege) and
-    u.oclAsType(Siege).rangee &gt;= 1 and
-    u.oclAsType(Siege).rangee &lt;= 100 and
+    u.oclAsType(Siege).rangee &gt;= 1 and u.oclAsType(Siege).rangee &lt;= 100 and
     Sequence{'A','B','C','D','E','F','G','H','I','J'}
-      -&gt;subSequence(1, self.nbColonnes)
+      -&gt;subSequence(1, self.disposition.getNbColonnes())
+      -&gt;includes(u.oclAsType(Siege).colonne))
+</pre>
+
+<p><strong>C9</strong> Une section d'avion a un type de section aérien (F, A, P ou E).</p>
+<pre>
+context SectionAvion
+inv typeAerien:
+  self.type.oclIsKindOf(TypeSectionAvion)
+</pre>
+
+<h4>Voyage ferroviaire</h4>
+
+<p><strong>C10</strong> Un trajet est offert par une seule compagnie ferroviaire, et son train appartient à cette compagnie.</p>
+<pre>
+context TrajetFerroviaire
+inv trainDeLaCompagnie:
+  CompagnieFerroviaire.allInstances()-&gt;one(c | c.trajets-&gt;includes(self)) and
+  CompagnieFerroviaire.allInstances()-&gt;forAll(c |
+    c.trajets-&gt;includes(self) implies c.trains-&gt;includes(self.train))
+</pre>
+
+<p><strong>C11</strong> Une gare n'apparaît qu'une fois dans les arrêts d'un trajet.</p>
+<pre>
+context TrajetFerroviaire
+inv garesUniques:
+  self.arrets-&gt;isUnique(gare)
+</pre>
+
+<p><strong>C12</strong> Une section de train a un type ferroviaire (P ou E) et ne contient que des sièges permis par sa disposition.</p>
+<pre>
+context SectionTrain
+inv typeEtSieges:
+  self.type.oclIsKindOf(TypeSectionTrain) and
+  self.unites-&gt;forAll(u |
+    u.oclIsKindOf(Siege) and
+    Sequence{'A','B','C','D','E','F','G','H','I','J'}
+      -&gt;subSequence(1, self.disposition.getNbColonnes())
       -&gt;includes(u.oclAsType(Siege).colonne))
 </pre>
 
 <h4>Voyage naval</h4>
 
-<p>
-Un itinéraire utilise une compagnie de croisière et un paquebot. Il dure au plus
-14 jours, visite au moins trois ports et revient à son port de départ.
-</p>
-
+<p><strong>C13</strong> Une croisière est offerte par une seule compagnie de croisière, et son paquebot appartient à cette compagnie.</p>
 <pre>
-context Itineraire
-inv modeNaval:
-  self.compagnie.oclIsKindOf(CompagnieDeCroisère) and
-  self.vehicule.oclIsKindOf(Paquebot)
+context Croisiere
+inv paquebotDeLaCompagnie:
+  CompagnieCroisiere.allInstances()-&gt;one(c | c.croisieres-&gt;includes(self)) and
+  CompagnieCroisiere.allInstances()-&gt;forAll(c |
+    c.croisieres-&gt;includes(self) implies c.paquebots-&gt;includes(self.paquebot))
+</pre>
+
+<p><strong>C14</strong> Une croisière dure au plus 14 jours.</p>
+<pre>
+context Croisiere
 inv dureeMax14Jours:
-  self.dateArrivee &lt;= self.dateDepart.plusJours(14)
-inv auMoinsTroisPortsDistincts:
-  self.escales.port-&gt;asSet()-&gt;size() &gt;= 3
-inv boucle:
-  self.escales-&gt;sortedBy(numero)-&gt;first().port =
-  self.escales-&gt;sortedBy(numero)-&gt;last().port
+  self.arrivee &lt;= self.depart.plusJours(14)
 </pre>
 
-<h4>Voyage ferroviaire</h4>
-
-<p>
-Un trajet utilise une ligne de train et un train. Une gare n'y apparaît qu'une fois.
-</p>
-
+<p><strong>C15</strong> Une croisière visite au moins trois ports distincts.</p>
 <pre>
-context Trajet
-inv modeFerroviaire:
-  self.compagnie.oclIsKindOf(LigneTrain) and
-  self.vehicule.oclIsKindOf(Train)
-inv garesUniques:
-  self.arrets-&gt;isUnique(a | a.gare.code)
+context Croisiere
+inv auMoinsTroisPorts:
+  self.escales.port-&gt;asSet()-&gt;size() &gt;= 3
 </pre>
 
-<div class="todo">
-<strong>En attente du diagramme révisé :</strong>
-<ul>
-  <li><code>carte : CarteCredit</code> → <code>numeroCarte : String</code> si <code>CarteCredit</code> est retirée.</li>
-  <li><code>'S'</code>, <code>'C'</code>, <code>'M'</code>, <code>'L'</code> → énumération si elle est ajoutée (<code>dispositionValide</code> retirée).</li>
-  <li>Noms de rôles à vérifier ; contraintes des nouvelles classes à ajouter.</li>
-</ul>
-</div>
+<p><strong>C16</strong> Une croisière revient à son port de départ.</p>
+<pre>
+context Croisiere
+inv boucle:
+  self.escales-&gt;sortedBy(rang)-&gt;first().port =
+  self.escales-&gt;sortedBy(rang)-&gt;last().port
+</pre>
+
+<p><strong>C17</strong> Une section de paquebot a un type naval et ne contient que des cabines.</p>
+<pre>
+context SectionPaquebot
+inv typeEtCabines:
+  self.type.oclIsKindOf(TypeSectionPaquebot) and
+  self.unites-&gt;forAll(u | u.oclIsKindOf(Cabine))
+</pre>
+
+<h4>Opérations</h4>
+
+<p><strong>C18<code>reserver</code>.</strong> Il reste une unité libre du type demandé. Après l'opération, une
+nouvelle réservation en attente, sans passager ni paiement, porte sur une unité de cette section qui n'était
+pas déjà prise.</p>
+<pre>
+context Voyage::reserver(t : ITypeSection, p : Priorite) : Reservation
+pre uniteLibre:
+  self.getNbUnitesLibres(t) &gt; 0
+post reservationCreee:
+  result.oclIsNew() and
+  result.etat = EtatReservation::EnAttente and
+  result.passager-&gt;isEmpty() and result.paiement-&gt;isEmpty() and
+  self.reservations = self.reservations@pre-&gt;including(result) and
+  self.getVehicule().getSection(t).unites-&gt;includes(result.unite) and
+  self.reservations@pre-&gt;select(r | r.etat &lt;&gt; EtatReservation::Expiree)
+    -&gt;forAll(r | r.unite &lt;&gt; result.unite) and
+  self.getNbUnitesLibres(t) = self.getNbUnitesLibres@pre(t) - 1
+</pre>
+
+<p><strong>C19<code>payer</code>.</strong> La réservation existe, est en attente, n'a ni passager ni paiement, et
+son unité n'est prise par aucune autre réservation active du même voyage. Si le paiement est accepté, elle est
+confirmée avec le passager et un paiement dont le numéro de confirmation est retourné ; sinon, elle reste en attente.</p>
+<pre>
+context ControleurClient::payer(numeroReservation : String, nom : String, courriel : String,
+    passeport : String, numeroCarte : String, expiration : String) : String
+pre reservationPayable:
+  let r : Reservation = self.registre.reservations-&gt;any(numero = numeroReservation) in
+  not r.oclIsUndefined() and
+  r.etat = EtatReservation::EnAttente and
+  r.passager-&gt;isEmpty() and r.paiement-&gt;isEmpty() and
+  self.registre.reservations-&gt;forAll(r2 |
+    (r2 &lt;&gt; r and r2.offre = r.offre and r2.unite = r.unite)
+    implies r2.etat = EtatReservation::Expiree)
+post reservationPayee:
+  let r : Reservation = self.registre.reservations-&gt;any(numero = numeroReservation) in
+  (not result.oclIsUndefined() implies
+     r.etat = EtatReservation::Confirmee and
+     r.passager.nom = nom and r.passager.courriel = courriel and
+     r.passager.numeroPasseport = passeport and
+     r.paiement.montant = r.getMontant() and
+     r.paiement.numeroConfirmation = result) and
+  (result.oclIsUndefined() implies r.etat = EtatReservation::EnAttente)
+</pre>
+
+<p><strong>C20 <code>verifierVoyages</code>.</strong> L'origine et, sauf pour une croisière, la destination sont des terminaux connus.</p>
+<pre>
+context ControleurClient::verifierVoyages(mode : ModeTransport, origine : String,
+    destination : String, date : Date, typeSection : String) : List(String)
+pre terminauxConnus:
+  self.catalogueTerminaux.terminaux-&gt;exists(code = origine) and
+  (mode &lt;&gt; ModeTransport::NAVAL implies
+     self.catalogueTerminaux.terminaux-&gt;exists(code = destination))
+</pre>
 
 
 <h3>3.5 Modules réutilisables</h3>
@@ -1428,45 +1362,52 @@ et justifier la structure obtenue.
 Toky Erick Rabenantoandro
 </p>
 
+<p>Les principes sont justifiés sur le design révisé (diagrammes de classes et de paquets des sections 3.1 et 3.3).</p>
 
 <h4>Principes de conception de classes</h4>
 
 <ul>
-  <li><strong>SRP.</strong> Une responsabilité par classe : <code>ControleurClient</code> coordonne, <code>CatalogueVoyages</code> recherche, <code>Reservation</code> gère son état, <code>IServicePaiement</code> isole le paiement.</li>
-  <li><strong>OCP.</strong> <code>Compagnie</code>, <code>Vehicule</code>, <code>Voyage</code>, <code>Section</code> et <code>Terminal</code> sont abstraites : un nouveau mode s'ajoute par sous-classes, sans modifier le contrôleur ni les catalogues.</li>
-  <li><strong>LSP.</strong> <code>Vol</code>, <code>Trajet</code> et <code>Itineraire</code> redéfinissent <code>correspond()</code> avec la même signature et le même contrat ; aucun code ne teste le type concret.</li>
-  <li><strong>ISP.</strong> <code>IServicePaiement</code> n'offre que <code>autoriser()</code>, la seule opération utilisée.</li>
-  <li><strong>DIP.</strong> Le contrôleur dépend de <code>IServicePaiement</code>, et les catalogues de <code>Voyage</code> et <code>Terminal</code>. Non appliqué à la création des objets : pas de fabrique abstraite, les trois modes étant stables.</li>
-  <li><strong>CRP.</strong> Le prix est obtenu par délégation à <code>Compagnie</code> (<code>getPrix</code>), pas par héritage. L'héritage est réservé aux trois modes de transport.</li>
-  <li><strong>Loi de Demeter.</strong> Le contrôleur appelle <code>voyage.reserver()</code> et <code>reservation.confirmer()</code> sans parcourir véhicule, sections et unités.</li>
+  <li><strong>SRP.</strong> <code>CatalogueVoyages</code> ne gère que les voyages et <code>RegistreReservations</code> que les réservations ; le choix d'une unité est sorti de <code>Voyage</code> vers les stratégies d'attribution. <code>Voyage</code> garde des responsabilités liées (unités libres, prix, création des réservations), dont il est l'expert.</li>
+  <li><strong>OCP.</strong> Ajouter un mode de transport (un paquet et sa fabrique) ou une règle d'attribution ne modifie aucune classe existante, sauf <code>Lanceur</code>, qui assemble le système.</li>
+  <li><strong>LSP.</strong> Les sous-classes de <code>Voyage</code>, <code>Section</code> et <code>UniteReservable</code> ne renforcent aucune précondition. <code>Croisiere.correspond()</code> ignore la destination, facultative pour une croisière, sans changer le contrat.</li>
+  <li><strong>ISP.</strong> Une interface de service par acteur (<code>IServiceClient</code>, <code>IServiceAdmin</code>) ; <code>IOffre</code> et <code>IReservable</code> n'exposent que ce dont <code>Reservation</code> a besoin. <code>IServiceAdmin</code> n'est pas découpée davantage, pour éviter une multiplication d'interfaces.</li>
+  <li><strong>DIP.</strong> Les contrôleurs dépendent de <code>IServicePaiement</code> et de <code>FabriqueTransport</code> ; le paquet <code>reservation</code> dépend de ses propres interfaces. Les classes concrètes ne sont instanciées que dans <code>Lanceur</code> et dans les fabriques.</li>
+  <li><strong>CRP.</strong> Le choix de l'unité est délégué par composition (<code>Voyage → IStrategieAttribution</code>) plutôt que par une sous-classe de <code>Voyage</code> par règle. Le prix est délégué à <code>Compagnie</code> et à <code>ITypeSection</code>.</li>
+  <li><strong>Loi de Demeter.</strong> Le contrôleur appelle <code>voyage.reserver(t, p)</code> et <code>reservation.confirmer(passager, paiement)</code> sans parcourir le véhicule, les sections et les unités. Les getters inutiles du DM1 ont été retirés.</li>
 </ul>
 
 <h4>Principes GRASP</h4>
 
 <ul>
-  <li><strong>Contrôleur.</strong> <code>ControleurClient</code> reçoit les opérations système et délègue au domaine.</li>
-  <li><strong>Expert.</strong> <code>Voyage</code> calcule ses unités disponibles ; <code>Compagnie</code> calcule le prix.</li>
-  <li><strong>Créateur.</strong> <code>Voyage</code> crée ses réservations ; <code>Reservation</code> crée le passager et le paiement.</li>
-  <li><strong>Fabrication pure.</strong> <code>CatalogueVoyages</code> et <code>CatalogueTerminaux</code>, absents du domaine, prennent en charge la recherche.</li>
-  <li><strong>Polymorphisme.</strong> <code>correspond()</code> est redéfinie par type de voyage, sans test sur le mode.</li>
-  <li><strong>Variations protégées.</strong> <code>IServicePaiement</code> protège d'un changement de fournisseur de paiement.</li>
-  <li><strong>Faible couplage.</strong> Le contrôleur ne connaît que les catalogues, <code>IServicePaiement</code>, <code>Voyage</code> et <code>Reservation</code>.</li>
+  <li><strong>Contrôleur.</strong> <code>ControleurClient</code> et <code>ControleurAdmin</code> reçoivent les opérations système et délèguent le travail.</li>
+  <li><strong>Expert.</strong> <code>Compagnie</code> calcule le prix (plein tarif × coefficient) ; <code>Voyage</code> calcule ses unités libres ; <code>Reservation</code> connaît son état et son expiration.</li>
+  <li><strong>Créateur.</strong> <code>Voyage</code> crée les réservations qu'il agrège ; le contrôleur crée <code>Passager</code>, <code>Paiement</code> et <code>CritereRecherche</code>, dont il possède les données.</li>
+  <li><strong>Fabrication pure.</strong> Les catalogues, <code>RegistreReservations</code>, les fabriques et <code>Lanceur</code> n'existent pas dans le domaine ; ils gardent les classes du domaine cohésives.</li>
+  <li><strong>Polymorphisme.</strong> <code>correspond()</code>, <code>getVehicule()</code>, <code>ITypeSection.getCoefficient()</code> et <code>IStrategieAttribution.choisir()</code> remplacent les tests sur le mode ou le type.</li>
+  <li><strong>Indirection.</strong> <code>IServiceClient</code> entre l'interface et le contrôleur ; <code>AdaptateurBanque</code> entre le système et la banque.</li>
+  <li><strong>Variations protégées.</strong> Une interface à chaque point de variation : modes (<code>FabriqueTransport</code>), règles d'attribution, service de paiement.</li>
+  <li><strong>Faible couplage et forte cohésion.</strong> Voir la section 4.1.</li>
+</ul>
+
+<h4>Patrons de conception</h4>
+
+<ul>
+  <li><strong>Fabrique abstraite :</strong> <code>FabriqueTransport</code> crée des objets cohérents d'un même mode.</li>
+  <li><strong>Stratégie :</strong> <code>IStrategieAttribution</code>.</li>
+  <li><strong>Adaptateur :</strong> <code>AdaptateurBanque</code> traduit <code>IServicePaiement</code> vers l'API bancaire.</li>
+  <li><strong>Méthode patron :</strong> <code>Voyage.reserver()</code> appelle <code>getVehicule()</code>, redéfinie par chaque mode.</li>
+  <li><strong>Singleton (non utilisé) :</strong> les catalogues et le registre sont uniques, mais injectés par <code>Lanceur</code>, ce qui évite un couplage commun caché.</li>
 </ul>
 
 <h4>Principes de conception de paquets</h4>
 
 <ul>
-  <li><strong>ADP.</strong> Présentation → contrôleur → catalogue et paiement → domaine : aucun cycle. <code>aerien</code>, <code>naval</code> et <code>ferroviaire</code> ne dépendent pas les uns des autres.</li>
-  <li><strong>SDP.</strong> Le domaine, dont tout dépend, est le plus stable ; présentation et contrôleur sont les plus instables.</li>
-  <li><strong>SAP.</strong> Le domaine contient les classes abstraites et le paiement une interface ; les paquets concrets sont instables.</li>
+  <li><strong>REP et CRP.</strong> <code>reservation</code>, <code>paiement</code> et <code>transport</code> se réutilisent comme un tout : leurs classes sont utilisées ensemble.</li>
+  <li><strong>CCP.</strong> Un changement de règle d'un mode (par exemple le format des sièges d'avion) ne touche que son paquet.</li>
+  <li><strong>ADP.</strong> Le graphe des paquets est acyclique. Le cycle <code>Voyage</code> ↔ <code>Reservation</code> du DM1 est brisé par inversion de dépendance : <code>reservation</code> définit <code>IOffre</code> et <code>IReservable</code>, que <code>Voyage</code> et <code>UniteReservable</code> réalisent.</li>
+  <li><strong>SDP.</strong> Respecté, sauf une exception mineure : <code>transport</code> (I = 0,12) dépend de <code>reservation</code> (I = 0,20). Cette dépendance vise surtout des interfaces stables ; la supprimer obligerait à sortir la création des réservations de <code>Voyage</code>, contre le principe Créateur.</li>
+  <li><strong>SAP.</strong> <code>transport</code>, le paquet le plus stable, est aussi le plus abstrait (A = 0,82) ; les paquets des modes et <code>configuration</code>, instables, sont concrets (section 4.3).</li>
 </ul>
-
-<div class="todo">
-<strong>En attente des diagrammes révisés :</strong>
-contrôleur administrateur (SRP, ISP), retrait des getters (Demeter),
-suppression de <code>CarteCredit</code> et <code>TypeSection</code> (faible couplage),
-mesures du graphe IA (SDP, SAP).
-</div>
 
 
 <!-- ======================================== -->
@@ -1677,3 +1618,4 @@ avant la remise finale sur StudiUM.
 </div>
 </body>
 </html>
+

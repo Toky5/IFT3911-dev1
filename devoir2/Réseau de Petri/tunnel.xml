@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<pnml>
+<net id="tunnel" type="P/T net">
+<place id="VoitureMTL"><graphics><position x="100" y="100"/></graphics><name><value>VoitureMTL</value><graphics><offset x="0" y="-10"/></graphics></name><initialMarking><value>Default,1</value></initialMarking><capacity><value>0</value></capacity></place>
+<place id="VoitureRS"><graphics><position x="230" y="100"/></graphics><name><value>VoitureRS</value><graphics><offset x="0" y="-10"/></graphics></name><initialMarking><value>Default,1</value></initialMarking><capacity><value>0</value></capacity></place>
+<place id="TunnelMS"><graphics><position x="360" y="100"/></graphics><name><value>TunnelMS</value><graphics><offset x="0" y="-10"/></graphics></name><initialMarking><value>Default,0</value></initialMarking><capacity><value>0</value></capacity></place>
+<place id="TunnelSM"><graphics><position x="490" y="100"/></graphics><name><value>TunnelSM</value><graphics><offset x="0" y="-10"/></graphics></name><initialMarking><value>Default,0</value></initialMarking><capacity><value>0</value></capacity></place>
+<place id="Libre"><graphics><position x="620" y="100"/></graphics><name><value>Libre</value><graphics><offset x="0" y="-10"/></graphics></name><initialMarking><value>Default,1</value></initialMarking><capacity><value>0</value></capacity></place>
+<place id="FeuMTL"><graphics><position x="750" y="100"/></graphics><name><value>FeuMTL</value><graphics><offset x="0" y="-10"/></graphics></name><initialMarking><value>Default,1</value></initialMarking><capacity><value>0</value></capacity></place>
+<place id="FeuRS"><graphics><position x="880" y="100"/></graphics><name><value>FeuRS</value><graphics><offset x="0" y="-10"/></graphics></name><initialMarking><value>Default,0</value></initialMarking><capacity><value>0</value></capacity></place>
+<transition id="entrerMTL"><graphics><position x="100" y="300"/></graphics><name><value>entrerMTL</value><graphics><offset x="0" y="-10"/></graphics></name><orientation><value>0</value></orientation><rate><value>1.0</value></rate><timed><value>false</value></timed><infiniteServer><value>false</value></infiniteServer><priority><value>1</value></priority></transition>
+<transition id="sortirRS"><graphics><position x="280" y="300"/></graphics><name><value>sortirRS</value><graphics><offset x="0" y="-10"/></graphics></name><orientation><value>0</value></orientation><rate><value>1.0</value></rate><timed><value>false</value></timed><infiniteServer><value>false</value></infiniteServer><priority><value>1</value></priority></transition>
+<transition id="entrerRS"><graphics><position x="460" y="300"/></graphics><name><value>entrerRS</value><graphics><offset x="0" y="-10"/></graphics></name><orientation><value>0</value></orientation><rate><value>1.0</value></rate><timed><value>false</value></timed><infiniteServer><value>false</value></infiniteServer><priority><value>1</value></priority></transition>
+<transition id="sortirMTL"><graphics><position x="640" y="300"/></graphics><name><value>sortirMTL</value><graphics><offset x="0" y="-10"/></graphics></name><orientation><value>0</value></orientation><rate><value>1.0</value></rate><timed><value>false</value></timed><infiniteServer><value>false</value></infiniteServer><priority><value>1</value></priority></transition>
+<arc id="a0" source="VoitureMTL" target="entrerMTL"><inscription><value>Default,1</value></inscription><tagged><value>false</value></tagged><type value="normal"/></arc>
+<arc id="a1" source="Libre" target="entrerMTL"><inscription><value>Default,1</value></inscription><tagged><value>false</value></tagged><type value="normal"/></arc>
+<arc id="a2" source="FeuMTL" target="entrerMTL"><inscription><value>Default,1</value></inscription><tagged><value>false</value></tagged><type value="normal"/></arc>
+<arc id="a3" source="entrerMTL" target="VoitureMTL"><inscription><value>Default,1</value></inscription><tagged><value>false</value></tagged><type value="normal"/></arc>
+<arc id="a4" source="entrerMTL" target="TunnelMS"><inscription><value>Default,1</value></inscription><tagged><value>false</value></tagged><type value="normal"/></arc>
+<arc id="a5" source="entrerMTL" target="FeuRS"><inscription><value>Default,1</value></inscription><tagged><value>false</value></tagged><type value="normal"/></arc>
+<arc id="a6" source="TunnelMS" target="sortirRS"><inscription><value>Default,1</value></inscription><tagged><value>false</value></tagged><type value="normal"/></arc>
+<arc id="a7" source="sortirRS" target="Libre"><inscription><value>Default,1</value></inscription><tagged><value>false</value></tagged><type value="normal"/></arc>
+<arc id="a8" source="VoitureRS" target="entrerRS"><inscription><value>Default,1</value></inscription><tagged><value>false</value></tagged><type value="normal"/></arc>
+<arc id="a9" source="Libre" target="entrerRS"><inscription><value>Default,1</value></inscription><tagged><value>false</value></tagged><type value="normal"/></arc>
+<arc id="a10" source="FeuRS" target="entrerRS"><inscription><value>Default,1</value></inscription><tagged><value>false</value></tagged><type value="normal"/></arc>
+<arc id="a11" source="entrerRS" target="VoitureRS"><inscription><value>Default,1</value></inscription><tagged><value>false</value></tagged><type value="normal"/></arc>
+<arc id="a12" source="entrerRS" target="TunnelSM"><inscription><value>Default,1</value></inscription><tagged><value>false</value></tagged><type value="normal"/></arc>
+<arc id="a13" source="entrerRS" target="FeuMTL"><inscription><value>Default,1</value></inscription><tagged><value>false</value></tagged><type value="normal"/></arc>
+<arc id="a14" source="TunnelSM" target="sortirMTL"><inscription><value>Default,1</value></inscription><tagged><value>false</value></tagged><type value="normal"/></arc>
+<arc id="a15" source="sortirMTL" target="Libre"><inscription><value>Default,1</value></inscription><tagged><value>false</value></tagged><type value="normal"/></arc>
+</net>
+</pnml>

@@ -1,0 +1,44 @@
+== inc1: 4 marquages
+  M0 = (1, 1, 0, 0)
+  M1 = (1, 1, ω, 0)
+  M2 = (1, 1, 0, ω)
+  M3 = (1, 1, ω, ω)
+  M0 --entrerMTL--> M1
+  M0 --entrerRS--> M2
+  M1 --entrerMTL--> M1
+  M1 --entrerRS--> M3
+  M1 --sortirRS--> M1
+  M2 --entrerMTL--> M3
+  M2 --entrerRS--> M2
+  M2 --sortirMTL--> M2
+  M3 --entrerMTL--> M3
+  M3 --entrerRS--> M3
+  M3 --sortirMTL--> M3
+  M3 --sortirRS--> M3
+  incidence: {'entrerMTL': [0, 0, 1, 0], 'sortirRS': [0, 0, -1, 0], 'entrerRS': [0, 0, 0, 1], 'sortirMTL': [0, 0, 0, -1]}
+== inc2: 3 marquages
+  M0 = (1, 1, 0, 0, 1)
+  M1 = (1, 1, 1, 0, 0)
+  M2 = (1, 1, 0, 1, 0)
+  M0 --entrerMTL--> M1
+  M0 --entrerRS--> M2
+  M1 --sortirRS--> M0
+  M2 --sortirMTL--> M0
+  incidence: {'entrerMTL': [0, 0, 1, 0, -1], 'sortirRS': [0, 0, -1, 0, 1], 'entrerRS': [0, 0, 0, 1, -1], 'sortirMTL': [0, 0, 0, -1, 1]}
+== tunnel: 4 marquages
+  M0 = (1, 1, 0, 0, 1, 1, 0)
+  M1 = (1, 1, 1, 0, 0, 0, 1)
+  M2 = (1, 1, 0, 0, 1, 0, 1)
+  M3 = (1, 1, 0, 1, 0, 1, 0)
+  M0 --entrerMTL--> M1
+  M1 --sortirRS--> M2
+  M2 --entrerRS--> M3
+  M3 --sortirMTL--> M0
+  incidence: {'entrerMTL': [0, 0, 1, 0, -1, -1, 1], 'sortirRS': [0, 0, -1, 0, 1, 0, 0], 'entrerRS': [0, 0, 0, 1, -1, 1, -1], 'sortirMTL': [0, 0, 0, -1, 1, 0, 0]}
+invariant Libre+TunnelMS+TunnelSM: True
+invariant FeuMTL+FeuRS: True
+invariant VoitureMTL: True
+invariant VoitureRS: True
+invariant FeuMTL+TunnelMS (doit échouer): False
+invariant FeuMTL + TunnelSM - TunnelMS ... test: False
+P-invariants {0,1}: FeuMTL+FeuRS; TunnelMS+TunnelSM+Libre; TunnelMS+TunnelSM+Libre+FeuMTL+FeuRS; VoitureRS; VoitureRS+FeuMTL+FeuRS; VoitureRS+TunnelMS+TunnelSM+Libre; VoitureRS+TunnelMS+TunnelSM+Libre+FeuMTL+FeuRS; VoitureMTL; VoitureMTL+FeuMTL+FeuRS; VoitureMTL+TunnelMS+TunnelSM+Libre; VoitureMTL+TunnelMS+TunnelSM+Libre+FeuMTL+FeuRS; VoitureMTL+VoitureRS; VoitureMTL+VoitureRS+FeuMTL+FeuRS; VoitureMTL+VoitureRS+TunnelMS+TunnelSM+Libre; VoitureMTL+VoitureRS+TunnelMS+TunnelSM+Libre+FeuMTL+FeuRS

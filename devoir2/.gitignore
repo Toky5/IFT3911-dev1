@@ -1,0 +1,6 @@
+# Fichiers temporaires de Visual Paradigm
+*.lck
+*.bak_*
+.vpprefdata/
+# Export de test
+_vp_echantillon/

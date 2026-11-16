@@ -1,0 +1,574 @@
+{
+ "packages": [
+  {
+   "pkg": "presentation",
+   "nc": 2,
+   "na": 0,
+   "ca": 1,
+   "ce": 2,
+   "I": 0.67,
+   "A": 0.0,
+   "D": 0.33,
+   "classes": [
+    "InterfaceClient",
+    "InterfaceAdmin"
+   ],
+   "dependsOn": [
+    "application"
+   ]
+  },
+  {
+   "pkg": "configuration",
+   "nc": 1,
+   "na": 0,
+   "ca": 0,
+   "ce": 1,
+   "I": 1.0,
+   "A": 0.0,
+   "D": 0.0,
+   "classes": [
+    "Lanceur"
+   ],
+   "dependsOn": [
+    "aerien",
+    "application",
+    "attribution",
+    "catalogue",
+    "ferroviaire",
+    "infrastructure",
+    "naval",
+    "presentation"
+   ]
+  },
+  {
+   "pkg": "application",
+   "nc": 4,
+   "na": 2,
+   "ca": 3,
+   "ce": 4,
+   "I": 0.57,
+   "A": 0.5,
+   "D": 0.07,
+   "classes": [
+    "IServiceClient",
+    "IServiceAdmin",
+    "ControleurClient",
+    "ControleurAdmin"
+   ],
+   "dependsOn": [
+    "catalogue",
+    "commun",
+    "paiement",
+    "reservation",
+    "transport"
+   ]
+  },
+  {
+   "pkg": "catalogue",
+   "nc": 5,
+   "na": 1,
+   "ca": 3,
+   "ce": 4,
+   "I": 0.57,
+   "A": 0.2,
+   "D": 0.23,
+   "classes": [
+    "Repertoire<T>",
+    "CatalogueVoyages",
+    "CatalogueTerminaux",
+    "CatalogueCompagnies",
+    "RegistreReservations"
+   ],
+   "dependsOn": [
+    "reservation",
+    "transport"
+   ]
+  },
+  {
+   "pkg": "aerien",
+   "nc": 7,
+   "na": 0,
+   "ca": 1,
+   "ce": 7,
+   "I": 0.88,
+   "A": 0.0,
+   "D": 0.12,
+   "classes": [
+    "TypeSectionAvion",
+    "Aeroport",
+    "CompagnieAerienne",
+    "Avion",
+    "SectionAvion",
+    "Vol",
+    "FabriqueAerienne"
+   ],
+   "dependsOn": [
+    "commun",
+    "transport"
+   ]
+  },
+  {
+   "pkg": "ferroviaire",
+   "nc": 8,
+   "na": 0,
+   "ca": 1,
+   "ce": 7,
+   "I": 0.88,
+   "A": 0.0,
+   "D": 0.12,
+   "classes": [
+    "TypeSectionTrain",
+    "Gare",
+    "CompagnieFerroviaire",
+    "Train",
+    "SectionTrain",
+    "Arret",
+    "TrajetFerroviaire",
+    "FabriqueFerroviaire"
+   ],
+   "dependsOn": [
+    "commun",
+    "transport"
+   ]
+  },
+  {
+   "pkg": "naval",
+   "nc": 9,
+   "na": 0,
+   "ca": 1,
+   "ce": 8,
+   "I": 0.89,
+   "A": 0.0,
+   "D": 0.11,
+   "classes": [
+    "TypeSectionPaquebot",
+    "Port",
+    "CompagnieCroisiere",
+    "Paquebot",
+    "SectionPaquebot",
+    "Cabine",
+    "Escale",
+    "Croisiere",
+    "FabriqueNavale"
+   ],
+   "dependsOn": [
+    "transport"
+   ]
+  },
+  {
+   "pkg": "attribution",
+   "nc": 2,
+   "na": 0,
+   "ca": 1,
+   "ce": 2,
+   "I": 0.67,
+   "A": 0.0,
+   "D": 0.33,
+   "classes": [
+    "AttributionParPriorite",
+    "AttributionPremiereLibre"
+   ],
+   "dependsOn": [
+    "commun",
+    "transport"
+   ]
+  },
+  {
+   "pkg": "transport",
+   "nc": 11,
+   "na": 9,
+   "ca": 29,
+   "ce": 4,
+   "I": 0.12,
+   "A": 0.82,
+   "D": 0.06,
+   "classes": [
+    "ITypeSection",
+    "Terminal",
+    "Compagnie",
+    "Vehicule",
+    "Section",
+    "UniteReservable",
+    "Siege",
+    "CritereRecherche",
+    "IStrategieAttribution",
+    "Voyage",
+    "FabriqueTransport"
+   ],
+   "dependsOn": [
+    "commun",
+    "reservation"
+   ]
+  },
+  {
+   "pkg": "reservation",
+   "nc": 5,
+   "na": 2,
+   "ca": 4,
+   "ce": 1,
+   "I": 0.2,
+   "A": 0.4,
+   "D": 0.4,
+   "classes": [
+    "IReservable",
+    "IOffre",
+    "EtatReservation",
+    "Passager",
+    "Reservation"
+   ],
+   "dependsOn": [
+    "paiement"
+   ]
+  },
+  {
+   "pkg": "paiement",
+   "nc": 2,
+   "na": 1,
+   "ca": 3,
+   "ce": 0,
+   "I": 0.0,
+   "A": 0.5,
+   "D": 0.5,
+   "classes": [
+    "IServicePaiement",
+    "Paiement"
+   ],
+   "dependsOn": []
+  },
+  {
+   "pkg": "infrastructure",
+   "nc": 1,
+   "na": 0,
+   "ca": 1,
+   "ce": 1,
+   "I": 0.5,
+   "A": 0.0,
+   "D": 0.5,
+   "classes": [
+    "AdaptateurBanque"
+   ],
+   "dependsOn": [
+    "paiement"
+   ]
+  },
+  {
+   "pkg": "commun",
+   "nc": 3,
+   "na": 0,
+   "ca": 11,
+   "ce": 0,
+   "I": 0.0,
+   "A": 0.0,
+   "D": 1.0,
+   "classes": [
+    "ModeTransport",
+    "Priorite",
+    "Disposition"
+   ],
+   "dependsOn": []
+  }
+ ],
+ "fardeau": {
+  "IServicePaiement": {
+   "pkg": "paiement",
+   "direct": 0,
+   "indirect": 0
+  },
+  "Paiement": {
+   "pkg": "paiement",
+   "direct": 0,
+   "indirect": 0
+  },
+  "AdaptateurBanque": {
+   "pkg": "infrastructure",
+   "direct": 1,
+   "indirect": 1
+  },
+  "IReservable": {
+   "pkg": "reservation",
+   "direct": 0,
+   "indirect": 0
+  },
+  "IOffre": {
+   "pkg": "reservation",
+   "direct": 1,
+   "indirect": 1
+  },
+  "EtatReservation": {
+   "pkg": "reservation",
+   "direct": 0,
+   "indirect": 0
+  },
+  "Passager": {
+   "pkg": "reservation",
+   "direct": 0,
+   "indirect": 0
+  },
+  "Reservation": {
+   "pkg": "reservation",
+   "direct": 5,
+   "indirect": 5
+  },
+  "ModeTransport": {
+   "pkg": "commun",
+   "direct": 0,
+   "indirect": 0
+  },
+  "Priorite": {
+   "pkg": "commun",
+   "direct": 0,
+   "indirect": 0
+  },
+  "Disposition": {
+   "pkg": "commun",
+   "direct": 0,
+   "indirect": 0
+  },
+  "ITypeSection": {
+   "pkg": "transport",
+   "direct": 0,
+   "indirect": 0
+  },
+  "Terminal": {
+   "pkg": "transport",
+   "direct": 0,
+   "indirect": 0
+  },
+  "Compagnie": {
+   "pkg": "transport",
+   "direct": 1,
+   "indirect": 1
+  },
+  "Vehicule": {
+   "pkg": "transport",
+   "direct": 3,
+   "indirect": 5
+  },
+  "Section": {
+   "pkg": "transport",
+   "direct": 2,
+   "indirect": 3
+  },
+  "UniteReservable": {
+   "pkg": "transport",
+   "direct": 2,
+   "indirect": 3
+  },
+  "Siege": {
+   "pkg": "transport",
+   "direct": 1,
+   "indirect": 4
+  },
+  "CritereRecherche": {
+   "pkg": "transport",
+   "direct": 2,
+   "indirect": 2
+  },
+  "IStrategieAttribution": {
+   "pkg": "transport",
+   "direct": 2,
+   "indirect": 5
+  },
+  "AttributionParPriorite": {
+   "pkg": "attribution",
+   "direct": 4,
+   "indirect": 7
+  },
+  "AttributionPremiereLibre": {
+   "pkg": "attribution",
+   "direct": 3,
+   "indirect": 6
+  },
+  "Voyage": {
+   "pkg": "transport",
+   "direct": 11,
+   "indirect": 16
+  },
+  "FabriqueTransport": {
+   "pkg": "transport",
+   "direct": 4,
+   "indirect": 17
+  },
+  "TypeSectionAvion": {
+   "pkg": "aerien",
+   "direct": 1,
+   "indirect": 1
+  },
+  "Aeroport": {
+   "pkg": "aerien",
+   "direct": 1,
+   "indirect": 1
+  },
+  "CompagnieAerienne": {
+   "pkg": "aerien",
+   "direct": 3,
+   "indirect": 20
+  },
+  "Avion": {
+   "pkg": "aerien",
+   "direct": 1,
+   "indirect": 6
+  },
+  "SectionAvion": {
+   "pkg": "aerien",
+   "direct": 2,
+   "indirect": 5
+  },
+  "Vol": {
+   "pkg": "aerien",
+   "direct": 4,
+   "indirect": 19
+  },
+  "FabriqueAerienne": {
+   "pkg": "aerien",
+   "direct": 7,
+   "indirect": 25
+  },
+  "TypeSectionTrain": {
+   "pkg": "ferroviaire",
+   "direct": 1,
+   "indirect": 1
+  },
+  "Gare": {
+   "pkg": "ferroviaire",
+   "direct": 1,
+   "indirect": 1
+  },
+  "CompagnieFerroviaire": {
+   "pkg": "ferroviaire",
+   "direct": 3,
+   "indirect": 21
+  },
+  "Train": {
+   "pkg": "ferroviaire",
+   "direct": 1,
+   "indirect": 6
+  },
+  "SectionTrain": {
+   "pkg": "ferroviaire",
+   "direct": 2,
+   "indirect": 5
+  },
+  "Arret": {
+   "pkg": "ferroviaire",
+   "direct": 1,
+   "indirect": 2
+  },
+  "TrajetFerroviaire": {
+   "pkg": "ferroviaire",
+   "direct": 4,
+   "indirect": 20
+  },
+  "FabriqueFerroviaire": {
+   "pkg": "ferroviaire",
+   "direct": 7,
+   "indirect": 26
+  },
+  "TypeSectionPaquebot": {
+   "pkg": "naval",
+   "direct": 1,
+   "indirect": 1
+  },
+  "Port": {
+   "pkg": "naval",
+   "direct": 1,
+   "indirect": 1
+  },
+  "CompagnieCroisiere": {
+   "pkg": "naval",
+   "direct": 3,
+   "indirect": 21
+  },
+  "Paquebot": {
+   "pkg": "naval",
+   "direct": 1,
+   "indirect": 6
+  },
+  "SectionPaquebot": {
+   "pkg": "naval",
+   "direct": 1,
+   "indirect": 4
+  },
+  "Cabine": {
+   "pkg": "naval",
+   "direct": 1,
+   "indirect": 4
+  },
+  "Escale": {
+   "pkg": "naval",
+   "direct": 1,
+   "indirect": 2
+  },
+  "Croisiere": {
+   "pkg": "naval",
+   "direct": 4,
+   "indirect": 20
+  },
+  "FabriqueNavale": {
+   "pkg": "naval",
+   "direct": 7,
+   "indirect": 25
+  },
+  "Repertoire<T>": {
+   "pkg": "catalogue",
+   "direct": 0,
+   "indirect": 0
+  },
+  "CatalogueVoyages": {
+   "pkg": "catalogue",
+   "direct": 3,
+   "indirect": 18
+  },
+  "CatalogueTerminaux": {
+   "pkg": "catalogue",
+   "direct": 2,
+   "indirect": 2
+  },
+  "CatalogueCompagnies": {
+   "pkg": "catalogue",
+   "direct": 2,
+   "indirect": 3
+  },
+  "RegistreReservations": {
+   "pkg": "catalogue",
+   "direct": 2,
+   "indirect": 7
+  },
+  "IServiceClient": {
+   "pkg": "application",
+   "direct": 2,
+   "indirect": 2
+  },
+  "IServiceAdmin": {
+   "pkg": "application",
+   "direct": 1,
+   "indirect": 1
+  },
+  "ControleurClient": {
+   "pkg": "application",
+   "direct": 14,
+   "indirect": 23
+  },
+  "ControleurAdmin": {
+   "pkg": "application",
+   "direct": 10,
+   "indirect": 23
+  },
+  "InterfaceClient": {
+   "pkg": "presentation",
+   "direct": 1,
+   "indirect": 3
+  },
+  "InterfaceAdmin": {
+   "pkg": "presentation",
+   "direct": 1,
+   "indirect": 2
+  },
+  "Lanceur": {
+   "pkg": "configuration",
+   "direct": 14,
+   "indirect": 56
+  }
+ },
+ "cycle": false
+}

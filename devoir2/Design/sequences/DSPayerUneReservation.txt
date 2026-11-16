@@ -1,0 +1,42 @@
+title Payer une reservation (revise)
+participant Client
+participant ":InterfaceClient" as UI
+participant ":ControleurClient" as CC
+participant ":RegistreReservations" as RG
+participant "r:Reservation" as R
+participant "offre:IOffre" as OF
+participant ":IServicePaiement" as SP
+participant "pa:Passager" as PA
+participant "p:Paiement" as P
+Client->UI: payer(numeroReservation, nom, courriel, passeport, numeroCarte, expiration)
+UI->CC: payer(numeroReservation, nom, courriel, passeport, numeroCarte, expiration)
+CC->RG: r = trouver(numeroReservation)
+RG-->CC: r : Reservation
+CC->R: actif = estActive(maintenant)
+R-->CC: actif : boolean
+alt r != null et actif et r.etat = EnAttente
+CC->R: montant = getMontant()
+R->OF: getPrix(unite)
+note right of OF
+Voyage : compagnie.getPrix(type)
+= pleinTarif x coefficient du type
+end note
+OF-->R: prix : double
+R-->CC: montant : double
+CC->SP: conf = autoriser(numeroCarte, expiration, montant)
+SP-->CC: conf : String (null si refus)
+alt conf != null
+CC->PA: <<create>>(nom, courriel, passeport)
+CC->P: <<create>>(montant, conf)
+CC->R: confirmer(pa, p)
+note right of R: etat = Confirmee
+CC-->UI: conf
+UI-->Client: numero de confirmation
+else sinon
+CC-->UI: null
+UI-->Client: message "Paiement refuse"
+end
+else sinon
+CC-->UI: null
+UI-->Client: message "Reservation introuvable ou expiree"
+end

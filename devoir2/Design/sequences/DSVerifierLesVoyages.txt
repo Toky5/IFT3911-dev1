@@ -1,0 +1,38 @@
+title Verifier les voyages disponibles (revise)
+participant Client
+participant ":InterfaceClient" as UI
+participant ":ControleurClient" as CC
+participant ":CatalogueTerminaux" as CT
+participant "c:CritereRecherche" as CR
+participant ":CatalogueVoyages" as CV
+participant "v:Voyage" as V
+Client->UI: verifierVoyages(mode, origine, destination, date, typeSection)
+UI->CC: verifierVoyages(mode, origine, destination, date, typeSection)
+CC->CT: o = trouver(origine)
+CT-->CC: o : Terminal
+opt mode != NAVAL
+CC->CT: d = trouver(destination)
+CT-->CC: d : Terminal
+end
+CC->CR: <<create>>(mode, o, d, date, typeSection)
+CC->CV: liste = rechercher(c)
+loop pour chaque v : Voyage du catalogue
+CV->V: ok = correspond(c)
+note right of V
+Polymorphisme : Vol compare aeroports et date ;
+TrajetFerroviaire : gare origine avant gare destination ;
+Croisiere : port de la 1re escale (destination ignoree)
+end note
+opt ok
+CV->V: nb = getNbUnitesLibres(c.typeSection)
+V-->CV: nb : int (v ajoute si nb > 0)
+end
+end
+CV-->CC: liste : List<Voyage>
+alt liste non vide
+CC-->UI: resumes (numero, dates, prix)
+UI-->Client: liste des voyages
+else sinon
+CC-->UI: liste vide
+UI-->Client: message "Aucun voyage disponible"
+end

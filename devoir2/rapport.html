@@ -191,8 +191,8 @@ IFT 3911 – Devoir 2 – Modélisation et analyse
 
 <p>
 <strong>Dépôt GitHub :</strong>
-<a href="https://github.com/frdyykksch/ift3700-1">
-https://github.com/frdyykksch/ift3700-1
+<a href="https://github.com/Toky5/IFT3911-dev1">
+https://github.com/Toky5/IFT3911-dev1
 </a>
 </p>
 
@@ -209,7 +209,7 @@ de l'archive ZIP. Le dépôt est organisé comme suit :
 </p>
 
 <pre>
-rapport.htm
+rapport.html
 
 Design/
     projet.vpp                 projet Visual Paradigm du design révisé (6 diagrammes)
@@ -219,6 +219,8 @@ Design/
     DS - Verifier les voyages.png       diagrammes de séquence (export Visual Paradigm)
     DS - Reserver une unite.png
     DS - Payer une reservation.png
+    DSVerifierLesVoyages.vpp            diagramme de séquence « Vérifier les voyages » révisé (Visual Paradigm)
+    DSVerifierLesVoyages.jpg            export de ce diagramme
     code_java/                 squelettes Java du design (source de l'Instant Reverse de Visual Paradigm)
     sequences/                 sources texte des diagrammes de séquence importés dans Visual Paradigm
     diagrammes/                vues détaillées complémentaires et métriques
@@ -367,20 +369,20 @@ Le marquage est noté M = [VM, VR, L, TR, TM, FM, FR] :
   <tr><td>Sortir vers Montréal (SM)</td><td>TM</td><td>L, FM</td></tr>
 </table>
 
-<h4>Incrément 1 — deux voies, flux continu</h4>
+<h4>Incrément 1  deux voies, flux continu</h4>
 <p>
 Places VM, VR, TR, TM et les quatre transitions. Chaque place d'entrée est reliée à sa transition par deux arcs :
 le jeton est consommé (la voiture entre) puis restitué (la voiture suivante arrive). VM et VR restent donc à 1,
 ce qui modélise le flux continu. La voiture qui sort quitte le système.
 </p>
 
-<h4>Incrément 2 — une seule voiture à la fois</h4>
+<h4>Incrément 2  une seule voiture à la fois</h4>
 <p>
 La place L (un jeton) est consommée par chaque entrée et rendue par chaque sortie : c'est l'exclusion mutuelle
 du sémaphore vu en cours.
 </p>
 
-<h4>Incrément 3 — feux alternés</h4>
+<h4>Incrément 3  feux alternés</h4>
 <p>
 Une entrée consomme le feu vert de son côté ; la sortie correspondante donne le vert au côté opposé.
 Pendant une traversée, les deux feux sont rouges.
@@ -1093,7 +1095,7 @@ Les modifications suivantes ont été apportées :
 <figure>
   <img
     class="diagram"
-    src= "Desing/DSVerifierLesVoyages.jpg"
+    src= "Design/DSVerifierLesVoyages.jpg"
     alt="Diagramme de séquence Vérifier les voyages">
 </figure>
 

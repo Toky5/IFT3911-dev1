@@ -5,21 +5,21 @@
       <vertices xsi:type="sgraph:Entry" xmi:id="_g8lvYRwcEeq4Lc5XsD6Vnw">
         <outgoingTransitions xmi:id="_g8m9hxwcEeq4Lc5XsD6Vnw" target="_g8mWdBwcEeq4Lc5XsD6Vnw"/>
       </vertices>
-      <vertices xsi:type="sgraph:State" xmi:id="_g8mWdBwcEeq4Lc5XsD6Vnw" specification="entry/&#xD;&#xA;clearDisplay()&#xD;&#xA;open / display(&quot;Waiting&quot;)&#xD;&#xA;close / clearDisplay()" name="Repos" incomingTransitions="_g8m9hxwcEeq4Lc5XsD6Vnw _F95-4N4LEfG7LtftkwzhYg _M8WXsN4LEfG7LtftkwzhYg _OoHV8N4LEfG7LtftkwzhYg _XGWtkN4LEfG7LtftkwzhYg _VsWi0N4NEfG7LtftkwzhYg _iXfQAN9-EfGXIO2B5C4fmw _tYqecN9-EfGXIO2B5C4fmw">
+      <vertices xsi:type="sgraph:State" xmi:id="_g8mWdBwcEeq4Lc5XsD6Vnw" specification="entry/&#xD;&#xA;clearDisplay()&#xD;&#xA;&#xD;&#xA;" name="Repos" incomingTransitions="_g8m9hxwcEeq4Lc5XsD6Vnw _F95-4N4LEfG7LtftkwzhYg _M8WXsN4LEfG7LtftkwzhYg _OoHV8N4LEfG7LtftkwzhYg _XGWtkN4LEfG7LtftkwzhYg _VsWi0N4NEfG7LtftkwzhYg _iXfQAN9-EfGXIO2B5C4fmw _tYqecN9-EfGXIO2B5C4fmw">
         <outgoingTransitions xmi:id="_l20x8N0_EfGq3teRO_yq5Q" specification="high" target="_veVUMN0-EfGq3teRO_yq5Q"/>
         <outgoingTransitions xmi:id="_og5ykN0_EfGq3teRO_yq5Q" specification="low" target="_zhDiwN0-EfGq3teRO_yq5Q"/>
       </vertices>
-      <vertices xsi:type="sgraph:State" xmi:id="_veVUMN0-EfGq3teRO_yq5Q" specification="entry/ power = 1;&#xD;&#xA;display(&quot;High&quot;)&#xD;&#xA;open / display(&quot;Waiting&quot;)&#xD;&#xA;close / display(&quot;High&quot;)" name="High" incomingTransitions="_l20x8N0_EfGq3teRO_yq5Q _uEL08N0_EfGq3teRO_yq5Q">
+      <vertices xsi:type="sgraph:State" xmi:id="_veVUMN0-EfGq3teRO_yq5Q" specification="entry/ power = 1;&#xD;&#xA;display(&quot;High&quot;)" name="High" incomingTransitions="_l20x8N0_EfGq3teRO_yq5Q _uEL08N0_EfGq3teRO_yq5Q">
         <outgoingTransitions xmi:id="_r0C-UN0_EfGq3teRO_yq5Q" specification="low" target="_zhDiwN0-EfGq3teRO_yq5Q"/>
         <outgoingTransitions xmi:id="_2fTKoN1AEfGq3teRO_yq5Q" specification="timer" target="_fU5gkN1AEfGq3teRO_yq5Q"/>
         <outgoingTransitions xmi:id="_F95-4N4LEfG7LtftkwzhYg" specification="stop" target="_g8mWdBwcEeq4Lc5XsD6Vnw"/>
       </vertices>
-      <vertices xsi:type="sgraph:State" xmi:id="_zhDiwN0-EfGq3teRO_yq5Q" specification="entry/ power = 2;&#xD;&#xA;display(&quot;Low&quot;)&#xD;&#xA;open / display(&quot;Waiting&quot;)&#xD;&#xA;close / display(&quot;Low&quot;)" name="Low" incomingTransitions="_og5ykN0_EfGq3teRO_yq5Q _r0C-UN0_EfGq3teRO_yq5Q">
+      <vertices xsi:type="sgraph:State" xmi:id="_zhDiwN0-EfGq3teRO_yq5Q" specification="entry/ power = 2;&#xD;&#xA;display(&quot;Low&quot;)" name="Low" incomingTransitions="_og5ykN0_EfGq3teRO_yq5Q _r0C-UN0_EfGq3teRO_yq5Q">
         <outgoingTransitions xmi:id="_uEL08N0_EfGq3teRO_yq5Q" specification="high" target="_veVUMN0-EfGq3teRO_yq5Q"/>
         <outgoingTransitions xmi:id="_30O9QN1AEfGq3teRO_yq5Q" specification="timer" target="_fU5gkN1AEfGq3teRO_yq5Q"/>
         <outgoingTransitions xmi:id="_M8WXsN4LEfG7LtftkwzhYg" specification="stop" target="_g8mWdBwcEeq4Lc5XsD6Vnw"/>
       </vertices>
-      <vertices xsi:type="sgraph:State" xmi:id="_fU5gkN1AEfGq3teRO_yq5Q" specification="entry/remainingTime = 0; digitCount = 0&#xD;&#xA;digit [ digitCount&lt;4] / remainingTime = remainingTime*10+ valueof(digit); digitCount +=1 ; displayTime((remainingTime/60)*100 + remainingTime%60)&#xD;&#xA;open / display(&quot;Waiting&quot;)&#xD;&#xA;close [digitCount == 0 &amp;&amp; power == 1] / display(&quot;High&quot;)&#xD;&#xA;close [digitCount == 0 &amp;&amp; power == 2] / display(&quot;Low&quot;)&#xD;&#xA;close [digitCount &gt; 0] / displayTime((remainingTime/60)*100 + remainingTime%60)" name="Addtime" incomingTransitions="_2fTKoN1AEfGq3teRO_yq5Q _30O9QN1AEfGq3teRO_yq5Q">
+      <vertices xsi:type="sgraph:State" xmi:id="_fU5gkN1AEfGq3teRO_yq5Q" specification="entry/remainingTime = 0; digitCount = 0&#xD;&#xA;digit [ digitCount&lt;4] / remainingTime = remainingTime*10+ valueof(digit); digitCount +=1 ; displayTime((remainingTime/60)*100 + remainingTime%60)" name="Addtime" incomingTransitions="_2fTKoN1AEfGq3teRO_yq5Q _30O9QN1AEfGq3teRO_yq5Q">
         <outgoingTransitions xmi:id="_q-_o0N1DEfGq3teRO_yq5Q" specification="start[remainingTime>0 &amp;&amp; doorOpen == false]" target="_IyKzIN1DEfGq3teRO_yq5Q"/>
         <outgoingTransitions xmi:id="_OoHV8N4LEfG7LtftkwzhYg" specification="stop" target="_g8mWdBwcEeq4Lc5XsD6Vnw"/>
       </vertices>
@@ -32,7 +32,7 @@
         <outgoingTransitions xmi:id="_Wp8T0N4KEfG7LtftkwzhYg" specification="start [doorOpen == false &amp;&amp; remainingTime > 0]" target="_IyKzIN1DEfGq3teRO_yq5Q"/>
         <outgoingTransitions xmi:id="_XGWtkN4LEfG7LtftkwzhYg" specification="stop" target="_g8mWdBwcEeq4Lc5XsD6Vnw"/>
       </vertices>
-      <vertices xsi:type="sgraph:State" xmi:id="_BKsSEN4MEfG7LtftkwzhYg" specification="entry/display(&quot;Finished&quot;)&#xD;&#xA;exit/beepOff()&#xD;&#xA;open / display(&quot;Waiting&quot;)&#xD;&#xA;close / display(&quot;Finished&quot;)" name="Finishingcooking" incomingTransitions="_ixWqMN4NEfG7LtftkwzhYg">
+      <vertices xsi:type="sgraph:State" xmi:id="_BKsSEN4MEfG7LtftkwzhYg" specification="entry/display(&quot;Finished&quot;)&#xD;&#xA;exit/beepOff()" name="Finishingcooking" incomingTransitions="_ixWqMN4NEfG7LtftkwzhYg">
         <outgoingTransitions xmi:id="_VsWi0N4NEfG7LtftkwzhYg" specification="after 5s" target="_g8mWdBwcEeq4Lc5XsD6Vnw"/>
         <outgoingTransitions xmi:id="_iXfQAN9-EfGXIO2B5C4fmw" specification="stop&#xD;&#xA;" target="_g8mWdBwcEeq4Lc5XsD6Vnw"/>
         <regions xmi:id="_BKs5It4MEfG7LtftkwzhYg" name="">

@@ -1,0 +1,39 @@
+title Reserver une unite (revise)
+participant Client
+participant ":InterfaceClient" as UI
+participant ":ControleurClient" as CC
+participant ":CatalogueVoyages" as CV
+participant "v:Voyage" as V
+participant ":IStrategieAttribution" as ST
+participant "r:Reservation" as R
+participant ":RegistreReservations" as RG
+Client->UI: reserver(numeroVoyage, typeSection, priorite)
+UI->CC: reserver(numeroVoyage, typeSection, priorite)
+CC->CV: v = trouver(numeroVoyage)
+CV-->CC: v : Voyage
+alt v != null
+CC->V: r = reserver(typeSection, priorite)
+V->V: libres = unitesLibres(typeSection)
+note right of V
+unites de vehicule.getSection(type) sans
+reservation active (EnAttente < 24 h ou Confirmee)
+end note
+V->ST: u = choisir(libres, priorite)
+ST-->V: u : UniteReservable
+opt u != null
+V->R: <<create>>(v, u)
+note right of R
+etat = EnAttente
+dateHeureCreation = maintenant
+end note
+end
+V-->CC: r : Reservation
+opt r != null
+CC->RG: ajouter(r)
+end
+CC-->UI: numero de reservation ou "Aucune unite disponible"
+UI-->Client: numero / message
+else sinon
+CC-->UI: null
+UI-->Client: message "Voyage introuvable"
+end
